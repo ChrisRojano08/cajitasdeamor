@@ -49,6 +49,9 @@ class HomePageComponent extends React.Component{
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default lgBoton">Right</button>
                             </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default lgBoton">Carrito</button>
+                            </div>
                         </div>
                     </div>
                     <div class="col my-6 col-sm-8 col-md-10 col-lg-10">
