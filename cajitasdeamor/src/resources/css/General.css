@@ -1,0 +1,19 @@
+adaptativeTbody {
+    height: 50%;
+    width : 100%;
+    overflow : auto;
+    display : block;
+}
+
+body{
+    margin-top: 0.5%;
+}
+
+.lgBoton{
+    height: 50px;
+}
+
+.p-8{
+    padding-left: 5%;
+}
+
