@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+
+
+/*Icono*/
+.logoC{
+  text-align: center;
+}
+.logo{
+  height: 150px;
+}
+
+  /*Menu*/
+.wrap{   
+  max-width: 90%;
+  margin: 30px auto;
+}
+  
+ul.tabs{
+  width: 100%;
+  background: #363636;
+  list-style: none;
+  display: flex;
+}
+  
+ul.tabs li{
+  width: 18%;
+}
+  
+ul.tabs li a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+  display: block;
+  padding: 20px 0px;
+}
+  
+.active{
+  background: #0984CC;
+}
+  
+ul.tabs li a .tab-text{
+  margin-left: 8px;
+}

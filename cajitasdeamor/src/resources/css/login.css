@@ -1,0 +1,20 @@
+body {
+    margin: 0.5%;
+  }
+  
+   /*Scrollbar*/
+  /*Ancho*/
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  /*parte de atras*/
+  ::-webkit-scrollbar-track {
+    background: #00cc99;
+    border-radius: 50px;
+  }
+  /*pasrte de enfrente*/
+  ::-webkit-scrollbar-thumb {
+    background: #6600ff;
+    border-radius: 50px;
+  }
+    

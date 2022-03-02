@@ -1,0 +1,21 @@
+.ContenedorCon{
+  width: 95%;
+  height: 450px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: darkgrey;
+  padding: 15px;
+}
+.ConteContac{
+  margin: 15Px;
+  width: 45%;
+  height: 60px;
+
+}
+.ConteContac_2{
+  margin: 15Px;
+  width: 93%;
+  height: 220px;
+  
+}
