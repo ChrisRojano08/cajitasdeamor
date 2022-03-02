@@ -12,7 +12,10 @@ import TiendaComponent from "./Tienda/component/TiendaComponent";
 import NosotrosComponent from "./Nosotros/component/NosotrosComponent";
 import LoginComponent from "./Login/component/LoginComponent";
 import ProductoComponent from "./Producto/component/ProductoComponent";
+import ProductosGridComponent from "./Productos/component/ProductosGridComponent";
+import ProductosFormComponent from "./Productos/component/ProductosFormComponent";
 import ContactanosComponent from "./Contactanos/component/ContactanosComponent";
+import MenuSuperAdminComponent from "./SuperAdminMenu/component/MenuSuperAdminComponent";
 import { event } from 'jquery';
 
 export default class App extends React.Component {
@@ -47,6 +50,9 @@ export default class App extends React.Component {
           <Router>
             <div className="content" >
               <Switch>
+                <Route path="/productosForm" component={ProductosFormComponent} />
+                <Route path="/productosGrid" component={ProductosGridComponent} />
+                <Route path="/menuSuper" component={MenuSuperAdminComponent} />
                 <Route path="/Carrito" component={CarritoComponent} />
                 <Route path="/Tienda" component={TiendaComponent} />
                 <Route path="/Nosotros" component={NosotrosComponent} />
