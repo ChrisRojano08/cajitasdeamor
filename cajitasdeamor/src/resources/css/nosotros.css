@@ -1,0 +1,35 @@
+.ContenedorN{
+  height: 95%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  
+}
+.cont{
+  background-color: rgb(169, 169, 169);
+  height: 450px;
+  width: 400px;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+
+}
+
+.Nombre{
+ font-size: 30px;
+}
+.Puesto{
+  font-size: 20px;
+}
+.informacion{
+  font-size: 10pxS;
+  
+}
+.imgp{
+  margin: 15px 15px 10px 15px;
+  width:200px;
+  height:200px;
+  border-radius:150px;
+  border:5px solid rgb(129, 129, 129);
+}

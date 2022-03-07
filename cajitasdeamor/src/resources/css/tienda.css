@@ -1,0 +1,64 @@
+.ContenedorTien{
+  height: 95%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.SelectorTien{   
+  max-width: 50%;
+  margin: 10px auto;
+}
+  
+ul.CategoriaTien{
+  width: 100%;
+  background: #ffffff;
+  list-style: none;
+  display: flex;
+}
+  
+ul.CategoriaTien li{
+  width: 18%;
+}
+  
+ul.CategoriaTien li a{
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+  display: block;
+  padding: 20px 0px;
+}
+.ProductosTien{
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+}
+.ProductoTien{
+  background-color: rgb(231, 231, 231);
+  height: 450px;
+  width: 400px;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+
+}
+.ProductosTien a{
+  text-decoration: none;
+}
+.NombreTien{
+ font-size: 30px;
+}
+.PrecioTien{
+  font-size: 20px;
+  color:darkgray;
+}
+
+.D1Tien{
+  margin: 15px 15px 10px 15px;
+  height: 90%;
+  width: 70%;
+  border-radius:10px;
+}
