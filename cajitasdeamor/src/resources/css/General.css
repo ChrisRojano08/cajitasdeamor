@@ -1,3 +1,4 @@
+  
   /*Scrollbar*/
   /*Ancho*/
   ::-webkit-scrollbar {
@@ -5,24 +6,24 @@
   }
   /*parte de atras*/
   ::-webkit-scrollbar-track {
-    background: #00cc99;
+    background: #cc0000;
     border-radius: 50px;
   }
   /*pasrte de enfrente*/
   ::-webkit-scrollbar-thumb {
-    background: #6600ff;
+    background: #000000;
     border-radius: 50px;
   }
 /*Icono*/
 .logoC{
   text-align: center;
-  }
-  .logo{
-    height: 125px;
-  }
+}
+.logo{
+  height: 125px;
+}
   
     /*Menu*/
-  .wrap{   
+.wrap{   
     max-width: 90%;
     margin: 15px auto;
   }
@@ -72,3 +73,43 @@
   height: 200px;
 }
 
+@media screen and (max-width: 700px){
+	ul.tabs li{
+		width: none;
+		flex-basis: 0;
+		flex-grow: 1;
+	}
+}
+
+@media screen and (max-width: 450px){
+	ul.tabs li a{
+		padding: 15px 0px;
+	}
+
+	ul.tabs li a .tab-text{
+		display: none;
+	}
+
+}
+.pie{
+  background: #363636;
+  color: #fff;
+  height: 100px;
+  display: flex;
+}
+/*pie*/
+.logopie{
+  padding: 10px 25px 0px 25px;
+  color: #cc0000;
+  font-size: 25px;
+}
+.logopieimg{
+  height: 80px;
+}
+.fi{
+  color: #cc0000;
+  font-size: 25px;
+  margin: 10px;
+  text-decoration: none;
+  
+}

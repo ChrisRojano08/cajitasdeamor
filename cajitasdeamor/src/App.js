@@ -1,5 +1,6 @@
 import React from 'react';
 import bannerlogC from './resources/images/logo003.png';
+import logC from './resources/images/logo001.png';
 import {
   BrowserRouter as Router,
   Switch,
@@ -38,12 +39,12 @@ export default class App extends React.Component {
         </div>
         <div class="wrap">
           <ul class="tabs">
-            <li><a href="/"><i class="fi fi-rr-home"></i>Inicio</a></li>
+            <li><a href="/"><i class="fi fi-rr-home"></i><span class="tab-text">Inicio</span></a></li>
             <li><a href="/Tienda"><i class="fi fi-rr-shop"></i><span class="tab-text">Tienda</span></a></li>
             <li><a href="/Nosotros"><i class="fi fi-rr-briefcase"></i><span class="tab-text">Acerca de Nosotros</span></a></li>
             <li><a href="/Contactanos"><i class="fi fi-rr-envelope"></i><span class="tab-text">Contactanos</span></a></li>
             <li><a href="/Carrito"><i class="fi fi-rr-shopping-cart"></i><span class="tab-text">Carrito</span></a></li>
-            <li><a href="/Login"><i class="fi fi-rr-user"></i>Login</a></li>
+            <li><a href="/Login"><i class="fi fi-rr-user"></i><span class="tab-text">Login</span></a></li>
           </ul>
         </div>
         <div className="container-fluid text-white">
@@ -65,7 +66,14 @@ export default class App extends React.Component {
           </Router>
         </div>
         <div class="pie">
-          
+          <div class="logopie ">
+              <img class="logopieimg" src={logC} />
+              <strong>Cajitas de amor</strong>
+          </div>
+          <div class="Redes_Sociales">
+            <a href='https://www.facebook.com/Cajitas-de-amor-102964458600186'><i class="fi fi-brands-facebook">Facebook</i></a>
+            <a href='https://www.instagram.com/cajitasdeamorj/'><i class="fi fi-brands-instagram">Instagram</i></a>
+          </div>
         </div>
       </div>
     )

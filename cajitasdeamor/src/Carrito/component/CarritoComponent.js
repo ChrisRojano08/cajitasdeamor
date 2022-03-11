@@ -23,14 +23,13 @@ class CarritoComponent extends React.Component {
         return (
             <div class="container-fluid p-8">
                 <h1>Carrito De Compras</h1>
-                <div class="ContenedorCarrito">
+                <div class="ContenedorCarrito justify-content-center">
                     <div class="ProductoCarrito">
                         <div class="InfoCarrito">
                             <ul class="CarcateristicasCarrito">
                                 <li>Producto</li>
-                                <li>Precio</li>
                                 <li>Cantidad</li>
-                                <li>Preciio Unidad</li>
+                                <li>Precio Unidad</li>
                             </ul>
                         </div>
                         <div class="EjemploCarrito">
@@ -39,18 +38,18 @@ class CarritoComponent extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div class= "TotalCarrito">
+                    <div class= "InfoTotalCarrito">
                         <div class="TotalCarrito">
                                 Total:
                         </div>
                         <div class="PrecioCarrito">
-                            $350.00
+                            $.00
                         </div>
                         <div class="ComprarCarrito">
-                            <button>Comprar</button>
+                            <button class="BtnComprarCarrito">Comprar</button>
                         </div>
-                        <div>
-                            <button>Dedicatoria</button>
+                        <div class="DediatoriaCarrito">
+                            <button class="BtnDedicatoriaCarrito">Dedicatoria</button>
                         </div>
                     </div>
                 </div>
