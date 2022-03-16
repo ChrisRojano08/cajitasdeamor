@@ -23,9 +23,10 @@ class TiendaComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid p-8">
-                <h1>Tienda</h1>
-                <div class="ContenedorTien">
+            <div class="container-fluid ">
+                <h1 style={{ color: 'red' }} >Productos</h1>
+                <div class="container-fluid justify-content-center">
+
                     <div class="SelectorTien">
                         <ul class="CategoriaTien">
                             <li><a href="#">Todos</a></li>
@@ -35,87 +36,155 @@ class TiendaComponent extends React.Component {
                             <li><a href="#">Graduacion</a></li>
                         </ul>
                     </div>
-                    <div class="ProductosTien">
-                        <a href="/Producto">
-                            <div class="ProductoTien">
-                                <div>
-                                    <img class="D1Tien" src={D1} />
-                                </div>
-                                <div class="NombreTien">
-                                    Desayuno 1
-                                </div>
-                                <div class="PrecioTien">
-                                    $350.00
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/Producto">
-                            <div class="ProductoTien">
-                                <div>
-                                    <img class="D1Tien" src={D1} />
-                                </div>
-                                <div class="NombreTien">
-                                    Desayuno 1
-                                </div>
-                                <div class="PrecioTien">
-                                    $350.00
+
+                    <br />
+
+                    <div class="row justify-content-center aling-item-center row-cols-1 row-cols-md-4 g-4 ">
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
                                 </div>
                             </div>
-                        </a>
-                        <a href="/Producto">
-                            <div class="ProductoTien">
-                                <div>
-                                    <img class="D1Tien" src={D1} />
-                                </div>
-                                <div class="NombreTien">
-                                    Desayuno 1
-                                </div>
-                                <div class="PrecioTien">
-                                    $350.00
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="ProductosTien">
-                        <a href="/Producto">
-                            <div class="ProductoTien">
-                                <div>
-                                    <img class="D1Tien" src={D1} />
-                                </div>
-                                <div class="NombreTien">
-                                    Desayuno 1
-                                </div>
-                                <div class="PrecioTien">
-                                    $350.00
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
                                 </div>
                             </div>
-                        </a>
-                        <a href="/Producto">
-                            <div class="ProductoTien">
-                                <div>
-                                    <img class="D1Tien" src={D1} />
-                                </div>
-                                <div class="NombreTien">
-                                    Desayuno 1
-                                </div>
-                                <div class="PrecioTien">
-                                    $350.00
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/Producto">
-                            <div class="ProductoTien">
-                                <div>
-                                    <img class="D1Tien" src={D1} />
-                                </div>
-                                <div class="NombreTien">
-                                    Desayuno 1
-                                </div>
-                                <div class="PrecioTien">
-                                    $350.00
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                                <img src={D1} class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Desayuno 1 </h5>
+                                    <p class="card-text">Desayuno complementario para cualquier dia,
+                                        el cual contien, un cuernito, fruta con yogurt,
+                                        jugo y un cuernito preparado</p>
+                                    <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
