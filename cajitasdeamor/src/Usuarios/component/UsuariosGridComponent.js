@@ -1,13 +1,10 @@
 import React from "react";
 import {Utils} from "../../resources/Utils";
 import {withRouter} from "react-router-dom";
-import {ProductosController } from "../controller/ProductosController";
-import ProductosFormComponent from "./ProductosFormComponent";
 
-class ProductosGridComponent extends React.Component {
+class UsuariosGridComponent extends React.Component {
     constructor(props) {
         super(props)
-        this.productosController = new ProductosController();
 
         this.utils = new Utils();
         this.state = {
@@ -21,8 +18,8 @@ class ProductosGridComponent extends React.Component {
                 data : [],
                 total : 0
             },
-            form: [{idProducto:"a", Nombre:"A"}],
-            categories:[{idProducto:" ", Nombre:" ", Precio:" ", Tamanio:" ", Categoria:{Descripcion:" "}}]
+            form: [{idUsuario:"a", Nombre:"A"}],
+            categories:[{idUsuario:" ", Nombre:" ", Apellidos:" ", Correo:" "}]
         }
     }
 
@@ -31,7 +28,7 @@ class ProductosGridComponent extends React.Component {
     }
 
     async loadData(){
-        const respuesta = await fetch(`http://localhost:5000/product/findAll`,{
+        const respuesta = await fetch(`http://localhost:5000/users/findAll`,{
                 'method':'POST',
                  headers : {
                 'Content-Type':'application/json'
@@ -56,30 +53,14 @@ class ProductosGridComponent extends React.Component {
 
     renderBody() {
         return this.state.categories.map(d =>
-            <tr key={d.idProducto}>
+            <tr key={d.idUsuario}>
                  <td>{d.Nombre}</td>
-                 <td>{d.Precio}</td>
-                 <td>{d.Tamanio}</td>
-                 <td>{d.Categoria.Descripcion}</td>
+                 <td>{d.Apellidos}</td>
+                 <td>{d.Correo}</td>
                  <td>
-                    <button onClick={() => this.changeStateFinal(d)} class="btn btn-primary">Editar</button> &nbsp;
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
                  </td>
             </tr>
-        )
-    }
-
-    newBusinessBotton(){
-        return (
-            <div class="d-flex">
-                <div class="ml-auto">
-                    <div className="row justify-content-right" >
-                        <a href="/productosForm" class="btn btn-success me-2">
-                            Agregar
-                        </a>
-                    </div>
-                </div>
-            </div>
         )
     }
 
@@ -93,7 +74,7 @@ class ProductosGridComponent extends React.Component {
                                 <h5 class="modal-title" id="exampleModalLabel">Confirmar eliminacion</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">Desea eliminar este producto?</div>
+                            <div class="modal-body">Desea eliminar este usuario?</div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
@@ -105,11 +86,10 @@ class ProductosGridComponent extends React.Component {
                         <div className="col-lg-12 align-self-center">
                             <div className="card shadow bg-dark text-white" style={{ minHeight: "75%" }}>
                                 <div className="card-header">
-                                    <h1 className="text-center">Productos</h1>
+                                    <h1 className="text-center">Usuarios</h1>
                                 </div>
                                 <div className="card-body">
                                     <div className="container-fluid contProd">
-                                        {this.newBusinessBotton()} 
                                         <br/><br/>
                                         <div className="row justify-content-center mt-3">
                                             <div className="table-responsive">
@@ -119,7 +99,6 @@ class ProductosGridComponent extends React.Component {
                                                             <th>Nombre</th>
                                                             <th>Precio</th>
                                                             <th>Tamaño</th>
-                                                            <th>Categoría</th>
                                                             <th>Editar</th>
                                                         </tr>
                                                     </thead>
@@ -147,10 +126,10 @@ class ProductosGridComponent extends React.Component {
 render() {
     return (
         <>
-            {this.state.cardValue < 1 ? <div>{this.renderCard()}</div> : <div>{<ProductosFormComponent form={this.state.form}/>}</div>}
+            {this.state.cardValue < 1 ? <div>{this.renderCard()}</div> : <div>{}</div>}
         </>
     )
 }
 
 }
-export default withRouter(ProductosGridComponent)
+export default withRouter(UsuariosGridComponent)

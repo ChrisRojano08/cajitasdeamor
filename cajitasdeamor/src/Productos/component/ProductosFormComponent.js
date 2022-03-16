@@ -48,10 +48,18 @@ class ProductosFormComponent extends React.Component{
 
     buttonS(){
         if(this.props.form){
-            return( <input className="btn btn-success btn-block" type="submit" value="Editar producto"/>);
+            return( <center><input className="btn btn-success btn-block btn-lg" type="submit" value="Editar producto"/></center>);
         }else{
-            return( <input className="btn btn-success btn-block" type="submit" value="Registrar producto"/>);
+            return( <center><input className="btn btn-success btn-block btn-lg" type="submit" value="Registrar producto"/></center>);
         }
+    }
+
+    edit(){
+        window.history.back();
+    }
+
+    insert(){
+        this.edit();
     }
 
     formS(){
@@ -82,9 +90,9 @@ class ProductosFormComponent extends React.Component{
         return<table className="table table-dark table-striped">
         <tbody>
             <tr>
-                <div className="form-row">
+                <div className="row">
                     <br/>
-                    <div className="col-md-6 p-2">
+                    <div className="col-md-12 col-lg-4 col-sm-12 p-2">
                         <div className="text-center">
                             <div  className="p-4">
                                 <img id="uploadPreview2"
@@ -103,7 +111,9 @@ class ProductosFormComponent extends React.Component{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 p-2">
+                    <div className="col-md-1 col-lg-2 col-sm-1">
+                    </div>
+                    <div className="col-md-12 col-lg-5 col-sm-12 p-2">
                         <br/>
                         <div className="form-row">
                             <div className="p-2">
@@ -202,7 +212,7 @@ class ProductosFormComponent extends React.Component{
                             <br/><br/>
                             <div className="card-body">
                                 <div className="container-fluid">
-                                    <div className="table-responsive p-2">
+                                    <div className="table-responsive p-4">
                                         {this.formS()}
                                     </div>
                                 </div>
@@ -214,6 +224,11 @@ class ProductosFormComponent extends React.Component{
                                     </div>
                                 </div>
                             </div>
+                                <div className="row">
+                                    <center><div class="col-6"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div></center>
+                                    <br/>
+                                </div>
+                                <br/><br/>
                         </div>
                     </div>
                 </div>
