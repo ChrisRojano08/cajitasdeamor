@@ -1,17 +1,16 @@
 
 .ContenedorCarrito{
   padding: 5px;
-  margin: 30px;
-  width: 90%;
+  margin: 31px;
+  width: 95%;
   display: flex;
 }
 .ProductoCarrito{
   width: 75%;
+  height: 30px;
   background-color: aqua;
 }
-.InfoCarrito{   
-  margin: 15px auto;
-}
+
   
 ul.CarcateristicasCarrito{
   width: 100%;
@@ -21,16 +20,51 @@ ul.CarcateristicasCarrito{
 }
   
 ul.CarcateristicasCarrito li{
-  width: 18%;
+  width: 33%;
   color: #fff;
   text-decoration: none;
   font-size: 16px;
-
   display: block;
   padding: 20px 0px;
 }
 
+.InfoTotalCarrito{
+background-color: #363636;
+color: #fff;
+width: 35%;
+padding: 10px;
+text-align: center;
+}
 .TotalCarrito{
-background-color: blue;
-width: 25%;
+  margin: 20px;
+  font-size: 30Px;
+}
+.PrecioCarrito{
+  margin: 20px;
+  font-size: 25;
+  
+}
+.CompraCarrito{
+  margin: 10px;
+  width: 75%;
+  height: 30px;
+}
+.DedicatoriaCarrito{
+  margin: 10;
+ 
+  width: 75%;
+  height: 30px;
+}
+
+.BtnComprarCarrito{
+  margin: 10px;
+  background-color: rgb(95, 95, 95);
+  width: 75%;
+  height: 30px;
+}
+.BtnDedicatoriaCarrito{
+  margin: 10;
+  background-color: rgb(95, 95, 95);
+  width: 75%;
+  height: 30px;
 }

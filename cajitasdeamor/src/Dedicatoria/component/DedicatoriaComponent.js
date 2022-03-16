@@ -2,13 +2,13 @@ import React from "react";
 import '../../resources/css/producto.css';
 import D1 from '../../resources/images/D1.jpeg';
 import { withRouter } from "react-router";
-import { ProductoController } from "../controller/ProductoController";
+
 
 
 class ProductoComponent extends React.Component {
     constructor() {
         super();
-        this.ProductoController = new ProductoController();
+     
 
         //Almacena datos
         this.state = {
@@ -30,20 +30,14 @@ class ProductoComponent extends React.Component {
                     </div>
                     <div class="InformacionProducto">
                         <div class="DesProducto">
-                            Descripcion:<br/>
+                            Dedicatoria:<br />
                         </div>
-                        <div class="DescripcionProducto">
-                            Desayuno complementario para cualquier dia, <br/>el cual contien, un cuernito, fruta con yogurt, <br/>jugo y un cuernito preparado
-                        </div>
-                        <div class="PrecioProducto">
-                            $350.00
+                        <div class="mb-3">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <div class="BotonesProducto">
                             <div class="btn-1Productos">
-                                <button class="ComprarProducto">COMPRAR</button>
-                            </div>
-                            <div class="btn-1Productos">
-                                <button class="AgregarCarritoProducto">AGREGAR AL CARRITO</button>
+                                <button class="AgregarCarritoProducto">Guardar dedicatoria</button>
                             </div>
                         </div>
                     </div>

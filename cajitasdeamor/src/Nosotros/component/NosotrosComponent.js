@@ -21,8 +21,8 @@ class NosotrosComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid p-8">
-                <h1>Acerca de Nosotros</h1>
+            <div class="container-fluid ">
+                <h1 style={{ color: 'red' }} >Acerca De Nosotros</h1>
 
                 <div class="ContenedorN">
                     <div class="cont">

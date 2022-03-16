@@ -1,5 +1,6 @@
 import React from 'react';
 import bannerlogC from './resources/images/logo003.png';
+import logC from './resources/images/logo001.png';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +13,7 @@ import TiendaComponent from "./Tienda/component/TiendaComponent";
 import NosotrosComponent from "./Nosotros/component/NosotrosComponent";
 import LoginComponent from "./Login/component/LoginComponent";
 import ProductoComponent from "./Producto/component/ProductoComponent";
+import DedicatoriaComponent from "./Dedicatoria/component/DedicatoriaComponent";
 import ProductosGridComponent from "./Productos/component/ProductosGridComponent";
 import ProductosFormComponent from "./Productos/component/ProductosFormComponent";
 import ContactanosComponent from "./Contactanos/component/ContactanosComponent";
@@ -30,27 +32,29 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <div className="App">
-        <div class="logoC">
-          <div class="col my-6 col-sm-8 col-md-10 col-lg-10">
-            <img class="logo" src={bannerlogC} />
-          </div>
+      <div class="container-fluid ">
+
+        <div class="row justify-content-center">
+          <img src={bannerlogC} class="rounded mx-auto d-block" style={{ height: '125px', width: 'auto' }} />
         </div>
-        <div class="wrap">
+
+        <div class="row justify-content-center">
           <ul class="tabs">
-            <li><a href="/"><i class="fi fi-rr-home"></i>Inicio</a></li>
+            <li><a href="/"><i class="fi fi-rr-home"></i><span class="tab-text">Inicio</span></a></li>
             <li><a href="/Tienda"><i class="fi fi-rr-shop"></i><span class="tab-text">Tienda</span></a></li>
             <li><a href="/Nosotros"><i class="fi fi-rr-briefcase"></i><span class="tab-text">Acerca de Nosotros</span></a></li>
             <li><a href="/Contactanos"><i class="fi fi-rr-envelope"></i><span class="tab-text">Contactanos</span></a></li>
             <li><a href="/Carrito"><i class="fi fi-rr-shopping-cart"></i><span class="tab-text">Carrito</span></a></li>
-            <li><a href="/Login"><i class="fi fi-rr-user"></i>Login</a></li>
+            <li><a href="/Login"><i class="fi fi-rr-user"></i><span class="tab-text">Login</span></a></li>
           </ul>
         </div>
-        <div className="container-fluid text-white">
+
+        <div class="row justify-content-center">
           <Router>
-            <div className="content" >
+            <div class="row justify-content-center">
               <Switch>
                 <Route path="/productosForm" component={ProductosFormComponent} />
+                <Route path="/Dedicatoria" component={DedicatoriaComponent} />
                 <Route path="/productosGrid" component={ProductosGridComponent} />
                 <Route path="/menuSuper" component={MenuSuperAdminComponent} />
                 <Route path="/Carrito" component={CarritoComponent} />
@@ -64,8 +68,16 @@ export default class App extends React.Component {
             </div>
           </Router>
         </div>
-        <div class="pie">
-          
+
+
+        <div class="row align-items-end" style={{ background: 'red' }}>
+          <div class="col">
+            One of three columns
+          </div>
+
+          <div class="col">
+            One of three columns
+          </div>
         </div>
       </div>
     )

@@ -21,9 +21,9 @@ class ContactanosComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid p-8">
-                <h1>Contactanos</h1>
-                <h3>Siempre estamos abiertos a nuevas propuestas</h3>
+            <div class="container-fluid ">
+                <h1 style={{ color: 'red' }} >Contactanos</h1>
+                <h3 style={{ color: 'red' }}>Siempre estamos abiertos a nuevas propuestas</h3>
                 <div class="ContenedorN">
                     <div class="ContenedorCon">
                         <div>

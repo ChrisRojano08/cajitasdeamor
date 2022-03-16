@@ -14,21 +14,25 @@
     margin: 5px 5px 5px 35px;
     width:50%;
     height:50%;
+    color: black;
 }
 .DesProducto{
     margin: 15px 15px 15px 5px;
     text-align: left;
     font-size: 30px;
+    
 }
 .DescripcionProducto{
     margin: 5px 5px 5px 5px;
     text-align: left;
     font-size: 20px;
+    
 }
 .PrecioProducto{
     margin: 5px 5px 5px 5px;
     text-align: left;
     font-size: 30px;
+    
 }
 .BotonesProducto{
     display: flex;
