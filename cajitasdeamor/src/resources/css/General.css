@@ -43,11 +43,12 @@ h1,h3{
     text-align: center;
 }
 
-  .menBt{
+.menBt{
     height: 50px;
+    width: 80%;
     margin-bottom: 10px;
     font-size: large;
-  }
+}
 
 .contProd{
   width: 90%;

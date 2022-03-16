@@ -17,6 +17,7 @@ import DedicatoriaComponent from "./Dedicatoria/component/DedicatoriaComponent";
 import ProductosGridComponent from "./Productos/component/ProductosGridComponent";
 import ProductosFormComponent from "./Productos/component/ProductosFormComponent";
 import ContactanosComponent from "./Contactanos/component/ContactanosComponent";
+import UsuariosGridComponent from './Usuarios/component/UsuariosGridComponent';
 import MenuSuperAdminComponent from "./SuperAdminMenu/component/MenuSuperAdminComponent";
 import { event } from 'jquery';
 
@@ -53,6 +54,7 @@ export default class App extends React.Component {
           <Router>
             <div class="row justify-content-center">
               <Switch>
+                <Route path="/usuariosGrid" component={UsuariosGridComponent} />
                 <Route path="/productosForm" component={ProductosFormComponent} />
                 <Route path="/Dedicatoria" component={DedicatoriaComponent} />
                 <Route path="/productosGrid" component={ProductosGridComponent} />
