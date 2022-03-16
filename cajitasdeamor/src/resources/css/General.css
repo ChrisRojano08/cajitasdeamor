@@ -1,63 +1,47 @@
   
   /*Scrollbar*/
   /*Ancho*/
-  ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 10px;
-  }
+}
   /*parte de atras*/
-  ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: #cc0000;
-    border-radius: 50px;
-  }
+    /*border-radius: 50px;*/
+}
   /*pasrte de enfrente*/
-  ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #000000;
     border-radius: 50px;
-  }
-/*Icono*/
-.logoC{
-  text-align: center;
-}
-.logo{
-  height: 125px;
 }
   
-    /*Menu*/
-.wrap{   
-    max-width: 90%;
-    margin: 15px auto;
-  }
-    
-  ul.tabs{
+/*Menu*/    
+ul.tabs{
     width: 100%;
     background: #363636;
     list-style: none;
     display: flex;
-  }
-    
-  ul.tabs li{
+}
+ul.tabs li{
     width: 18%;
-  }
-    
-  ul.tabs li a{
+}
+ul.tabs li a{
     color: #fff;
     text-decoration: none;
     font-size: 16px;
     text-align: center;
     display: block;
     padding: 20px 0px;
-  }
-    
-  .active{
+}
+.active{
     background: #0984CC;
-  }
-    
-  ul.tabs li a .tab-text{
+}
+ul.tabs li a .tab-text{
     margin-left: 8px;
-  }
-  h1,h3{
+}
+h1,h3{
     text-align: center;
-  }
+}
 
   .menBt{
     height: 50px;
@@ -81,7 +65,7 @@
 	}
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 550px){
 	ul.tabs li a{
 		padding: 15px 0px;
 	}
@@ -96,18 +80,18 @@
   color: #fff;
   height: 100px;
   display: flex;
+  font-size: 25px;
 }
 /*pie*/
 .logopie{
   padding: 10px 25px 0px 25px;
-  color: #cc0000;
-  font-size: 25px;
+  
 }
 .logopieimg{
   height: 80px;
 }
 .fi{
-  color: #cc0000;
+  color: #fff;
   font-size: 25px;
   margin: 10px;
   text-decoration: none;

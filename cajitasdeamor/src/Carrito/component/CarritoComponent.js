@@ -21,8 +21,8 @@ class CarritoComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid p-8">
-                <h1>Carrito De Compras</h1>
+            <div class="container-fluid ">
+                <h1 style={{ color: 'red' }} >Carrito</h1>
                 <div class="ContenedorCarrito justify-content-center">
                     <div class="ProductoCarrito">
                         <div class="InfoCarrito">
