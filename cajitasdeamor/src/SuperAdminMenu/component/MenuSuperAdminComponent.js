@@ -36,7 +36,7 @@ class MenuSuperAdminComponent extends React.Component {
             <div class="container-fluid my-6">
                 <div className="cotainer-lg">
                     <div className="container bg-dark text-white">
-                        <br/><br/>
+                        <br/><br/>  
                         <h1>Menu de administrador</h1>
                         <br/><br/>
                         <center>

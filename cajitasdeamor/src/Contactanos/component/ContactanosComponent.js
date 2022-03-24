@@ -23,22 +23,37 @@ class ContactanosComponent extends React.Component {
         return (
             <div class="container-fluid ">
                 <h1 style={{ color: 'red' }} >Contactanos</h1>
-                <h3 style={{ color: 'red' }}>Siempre estamos abiertos a nuevas propuestas</h3>
-                <div class="ContenedorN">
-                    <div class="ContenedorCon">
-                        <div>
-                            <input class="ConteContac" id="NombreCon" type="text" name="Nombre" placeholder="Nombre"></input>
-                            <input class="ConteContac" id="ApellidoCon" type="text" name="Apellidos" placeholder="Apellidos"></input>
-                        </div>
-                        <div>
-                            <input class="ConteContac" id="CorreoCon" type="email" name="Correo" placeholder="Correo"></input>
-                            <input class="ConteContac" id="MotivoCon" type="text" name="Motivo" placeholder="Motivo"></input>
-                        </div>
-                        <div>
-                            <input class="ConteContac_2" id="MensajeCon" type="text" name="Mensjae" placeholder="Escribe Tu mensaje"></input>
-                        </div>
+                <h4 style={{ color: 'black', fontFamily: '10px' }}>Siempre estamos abiertos a nuevas propuestas</h4>
+                <br/>
+
+                <form class="row g-4 needs-validation justify-content-center " novalidate style={{ background: '#dddddd' }}>
+
+                    <div class="col-md-5 position-relative">
+                        <label for="validationTooltip01" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="validationTooltip01" required />
                     </div>
-                </div>
+                    <div class="col-md-5 position-relative">
+                        <label for="validationTooltip02" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="validationTooltip02" required />
+                    </div>
+                    <div class="col-md-5 position-relative">
+                        <label for="validationTooltip03" class="form-label">Motivo</label>
+                        <input type="text" class="form-control" id="validationTooltip03" required />
+                    </div>
+                    <div class="col-md-5 position-relative">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    </div>
+                    <div class="col-md-10 position-relative">
+                        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary" type="submit">Submit form</button>
+                    </div>
+                    <br/>
+                </form>
+                <br/>
             </div>
         )
     }
