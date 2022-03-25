@@ -24,6 +24,7 @@ import MenuSuperAdminComponent from "./SuperAdminMenu/component/MenuSuperAdminCo
 import RecuperarComponent from "./Recuperar/component/RecuperarComponent";
 import PagoComponent from "./Pago/component/PagoComponent";
 import DomicilioComponent from "./Domicilio/component/DomicilioComponent";
+import ComprasGridComponent from "./Compras/component/ComprasGridComponent";
 import { event } from 'jquery';
 
 export default class App extends React.Component {
@@ -79,6 +80,7 @@ export default class App extends React.Component {
                 <Route path="/Producto" component={ProductoComponent} />
                 <Route path="/Pago" component={PagoComponent} />
                 <Route path="/Domicilio" component={DomicilioComponent} />
+                <Route path="/Compras" component={ComprasGridComponent} />
                 <Route path="/" component={HomePageComponent} />
               </Switch>
             </div>

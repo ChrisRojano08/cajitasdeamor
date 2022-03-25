@@ -25,6 +25,7 @@ class MenuSuperAdminComponent extends React.Component {
 
     irCompras = event => {
         event.preventDefault()
+        this.props.history.push('/Compras')
     }
 
     logout = event => {
@@ -34,9 +35,10 @@ class MenuSuperAdminComponent extends React.Component {
     render() {
         return (
             <div class="container-fluid my-6">
+                <br/><br/>
                 <div className="cotainer-lg">
                     <div className="container bg-dark text-white">
-                        <br/><br/>  
+                        
                         <h1>Menu de administrador</h1>
                         <br/><br/>
                         <center>
