@@ -22,6 +22,7 @@ class LoginComponent extends React.Component {
         return (
             <div class="container-fluid ">
                 <h1 style={{ color: 'red' }} >Login</h1>
+
                 <div class="row justify-content-center aling-item-center row-cols-1 row-cols-md-2 g-4 ">
                     <div class="col">
                         <div class="card text-dark bg-light mb-3">
@@ -29,15 +30,22 @@ class LoginComponent extends React.Component {
                                 Inicio Secion
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Correo</h5>
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
-                                </div>
-                                <h5 class="card-title">Contraseña</h5>
-                                <div class="mb-3">
-                                    <input type="pasword" class="form-control" id="exampleFormControlInput1" placeholder="Contraseña" />
-                                </div>
-                                <a href="#" class="btn btn-primary">Iniciar Sesion</a>
+                                <form class="row g-4 needs-validation justify-content-center " novalidate>
+                                    <div class="md-3 position-relative">
+                                        <label for="exampleInputEmail1" class="form-label"><h5>Email</h5></label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                                    </div>
+                                    <div class="md-3 position-relative">
+                                        <h5 class="card-title">Contraseña</h5>
+                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Password" required />
+                                    </div>
+                                    <a href="/Recuperar"><label class="form-label">Recuperar Contraseña</label> </a>
+                                    
+                                    <div class="col-3">
+                                        <button class="btn btn-primary" type="submit">Iniciar Sesion</button>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -47,27 +55,33 @@ class LoginComponent extends React.Component {
                                 Registrarse
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Nombre</h5>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Juanito" />
-                                </div>
-                                <h5 class="card-title">Apellidos</h5>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Bananas Perez" />
-                                </div>
-                                <h5 class="card-title">Correo</h5>
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
-                                </div>
-                                <h5 class="card-title">Contraseña</h5>
-                                <div class="mb-3">
-                                    <input type="pasword" class="form-control" id="exampleFormControlInput1" placeholder="Contraseña" />
-                                </div>
-                                <h5 class="card-title">Confirmar Contraseña</h5>
-                                <div class="mb-3">
-                                    <input type="pasword" class="form-control" id="exampleFormControlInput1" placeholder="Confirmar Contraseña" />
-                                </div>
-                                <a href="#" class="btn btn-primary"> Registrarse</a>
+                                <form class="row g-4 needs-validation justify-content-center " novalidate>
+
+                                    <div class="md-3 position-relative">
+                                        <h5 class="card-title">Nombre</h5>
+                                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Name" required />
+                                    </div>
+                                    <div class="md-3 position-relative">
+                                        <h5 class="card-title">Apellidos</h5>
+                                        <input type="text" class="form-control" id="validationTooltip02" placeholder="lalito" required />
+                                    </div>
+                                    <div class="md-3 position-relative">
+                                        <label for="exampleInputEmail1" class="form-label"><h5>Email</h5></label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                                    </div>
+                                    <div class="md-3 position-relative">
+                                        <h5 class="card-title">Contraseña</h5>
+                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Password" required />
+                                    </div>
+                                    <div class="md-3 position-relative">
+                                        <h5 class="card-title">ConfirmarContraseña</h5>
+                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Password" required />
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-primary" type="submit">Registrarse</button>
+                                    </div>
+                                    <br />
+                                </form>
                             </div>
                         </div>
                     </div>

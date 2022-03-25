@@ -28,32 +28,50 @@ class CarritoComponent extends React.Component {
                         <div class="InfoCarrito">
                             <ul class="CarcateristicasCarrito">
                                 <li>Producto</li>
-                                <li>Cantidad</li>
-                                <li>Precio Unidad</li>
+
                             </ul>
                         </div>
                         <div class="EjemploCarrito">
-                            <div>
+                            <div class="card mb-3" style={{maxwidth: '270px'}}>
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src={D1} class="img-fluid rounded-start" alt="..."/>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Desayuno 1</h5>
+                                            <p class="card-text">$250.00.</p>
+                                            <p class="card-text"><small class="text-muted">Cantidad: 2</small></p>
+                                            <p class="card-text"><small class="text-muted">Subtotal: $500.00</small></p>
 
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-                    <div class= "InfoTotalCarrito">
+
+                    <div class="InfoTotalCarrito">
                         <div class="TotalCarrito">
-                                Total:
+                            Total:
                         </div>
                         <div class="PrecioCarrito">
-                            $.00
+                            $500.00
                         </div>
                         <div class="ComprarCarrito">
-                            <button class="BtnComprarCarrito">Comprar</button>
+                            <a href="/Pago"><button class="BtnComprarCarrito">Comprar</button></a>
+
                         </div>
                         <div class="DediatoriaCarrito">
-                            <button class="BtnDedicatoriaCarrito">Dedicatoria</button>
+                            <a href="/Dedicatoria"><button class="BtnDedicatoriaCarrito" href="/Dediactoria">Dedicatoria</button></a>
+
                         </div>
                     </div>
                 </div>
+
             </div>
+           
         )
     }
 }

@@ -7,7 +7,7 @@
   /*parte de atras*/
 ::-webkit-scrollbar-track {
     background: #cc0000;
-    /*border-radius: 50px;*/
+    
 }
   /*pasrte de enfrente*/
 ::-webkit-scrollbar-thumb {
@@ -16,36 +16,11 @@
 }
   
 /*Menu*/    
-ul.tabs{
-    width: 100%;
-    background: #363636;
-    list-style: none;
-    display: flex;
-}
-ul.tabs li{
-    width: 18%;
-}
-ul.tabs li a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    text-align: center;
-    display: block;
-    padding: 20px 0px;
-}
-.active{
-    background: #0984CC;
-}
-ul.tabs li a .tab-text{
-    margin-left: 8px;
-}
-h1,h3{
+h1,h3,h4{
     text-align: center;
 }
-
 .menBt{
     height: 50px;
-    width: 80%;
     margin-bottom: 10px;
     font-size: large;
 }
@@ -58,43 +33,4 @@ h1,h3{
   height: 200px;
 }
 
-@media screen and (max-width: 700px){
-	ul.tabs li{
-		width: none;
-		flex-basis: 0;
-		flex-grow: 1;
-	}
-}
 
-@media screen and (max-width: 550px){
-	ul.tabs li a{
-		padding: 15px 0px;
-	}
-
-	ul.tabs li a .tab-text{
-		display: none;
-	}
-
-}
-.pie{
-  background: #363636;
-  color: #fff;
-  height: 100px;
-  display: flex;
-  font-size: 25px;
-}
-/*pie*/
-.logopie{
-  padding: 10px 25px 0px 25px;
-  
-}
-.logopieimg{
-  height: 80px;
-}
-.fi{
-  color: #fff;
-  font-size: 25px;
-  margin: 10px;
-  text-decoration: none;
-  
-}

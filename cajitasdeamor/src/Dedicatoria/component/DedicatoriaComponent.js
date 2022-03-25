@@ -29,6 +29,10 @@ class ProductoComponent extends React.Component {
                         <img class="D1Product" src={D1} />
                     </div>
                     <div class="InformacionProducto">
+                    <div class="DesProducto">
+                            Nombre:<br />
+                        </div>
+                        <input type="text" class="form-control" id="validationCustom01"  required/>
                         <div class="DesProducto">
                             Dedicatoria:<br />
                         </div>
