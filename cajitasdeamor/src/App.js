@@ -35,6 +35,15 @@ export default class App extends React.Component {
     }
   }
 
+  validarSesion(){
+    let uss = sessionStorage.getItem("nombre");
+
+    if(uss != null){
+      return (<Nav.Link href="/Login" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />{uss}</Nav.Link>);
+    }else{
+      return (<Nav.Link href="/Login" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />Usuario</Nav.Link>);
+    }
+  }
 
   render() {
 
@@ -56,7 +65,7 @@ export default class App extends React.Component {
                 <Nav.Link href="/Nosotros" style={{ margin: '0px 15px' }}><i class="fi fi-rr-briefcase" style={{ margin: '0px 5px' }} />Acerca de nosotros</Nav.Link>
                 <Nav.Link href="/Contactanos" style={{ margin: '0px 15px' }}><i class="fi fi-rr-envelope" style={{ margin: '0px 5px' }} />Contactanos</Nav.Link>
                 <Nav.Link href="/Carrito" style={{ margin: '0px 15px' }}><i class="fi fi-rr-shopping-cart" style={{ margin: '0px 5px' }} />Carrito</Nav.Link>
-                <Nav.Link href="/Login" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />Usuario</Nav.Link>
+                {this.validarSesion()}
               </Nav>
             </Navbar.Collapse>
           </Container>

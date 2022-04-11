@@ -5,14 +5,15 @@ import { withRouter } from "react-router";
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import {IndexController} from '../controller/IndexController';
 
 class HomePageComponent extends React.Component {
   constructor() {
     super();
-
+    this.indexController = new IndexController();
     //Almacena datos
     this.state = {
-      productos: [{ idProducto: " ", Nombre: " ", Precio: " ", Tamanio: " ", Categoria: { Descripcion: " " }, imagen: "" }],
+      productos: [{ idProducto: " ", Nombre: " ", Precio: " ", Tamanio: " ", Categoria: { Descripcion: " " }, imagen: " " }],
       responsive: {
         superLargeDesktop: {
           breakpoint: { max: 4000, min: 3000 },
@@ -41,23 +42,12 @@ class HomePageComponent extends React.Component {
 
   //Inicializa funciones
   componentDidMount() {
-    this.loadData()
+    this.loadData();
   }
 
   async loadData() {
-    const respuesta = await fetch(`http://127.0.0.1:5000/product/findAll`, {
-      'method': 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-      .then(response => response.json())
-      .catch(error => console.log(error))
-
-    console.log(respuesta)
-
+    let respuesta = await this.indexController.findAll();
     this.setState({ productos: respuesta });
-    console.log(this.state.productos);
   }
 
   render() {

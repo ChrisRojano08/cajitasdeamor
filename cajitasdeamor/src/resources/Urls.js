@@ -8,7 +8,8 @@ const baseApi={
 //this is a exmple data for enpoint api
 export const Urls = {
     usersApi:{
-        findAll:baseApi.users+'findAll'
+        findAll:baseApi.users+'findAll',
+        find:baseApi.users+'find'
     },
     productApi:{
         findAll:baseApi.product+'findAll'
