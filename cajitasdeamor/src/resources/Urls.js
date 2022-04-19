@@ -9,7 +9,8 @@ const baseApi={
 export const Urls = {
     usersApi:{
         findAll:baseApi.users+'findAll',
-        find:baseApi.users+'find'
+        find:baseApi.users+'find',
+        registrar:baseApi.users+'insert'
     },
     productApi:{
         findAll:baseApi.product+'findAll'

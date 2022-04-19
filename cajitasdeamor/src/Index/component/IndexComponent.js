@@ -64,7 +64,7 @@ class HomePageComponent extends React.Component {
                 {this.state.productos.map((x) =>
                   <div className="slide">
                     <div className="card shadow" >
-                      <img className="card-img-top" src={x.Imagen} height="180" width="200" alt="" />
+                      <img className="card-img-top" src={x.Imagen} height="180" width="200" alt="..." />
                     </div>
                   </div>
                 )}

@@ -71,6 +71,8 @@ export default class App extends React.Component {
           </Container>
         </Navbar>
 
+        <br/>
+
         <div class="row justify-content-center">
           <Router>
             <div class="row justify-content-center">
