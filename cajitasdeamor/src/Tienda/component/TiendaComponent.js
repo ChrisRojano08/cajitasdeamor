@@ -3,8 +3,6 @@ import '../../resources/css/tienda.css';
 import { withRouter } from "react-router";
 import { TiendaController } from "../controller/TiendaController";
 
-
-
 class TiendaComponent extends React.Component {
     constructor() {
         super();
@@ -16,7 +14,6 @@ class TiendaComponent extends React.Component {
             prodsFilt: []
         }
     }
-
 
     //Inicializa funciones
     componentDidMount() {

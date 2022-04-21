@@ -1,25 +1,19 @@
 import React from "react";
 import {Utils} from "../../resources/Utils";
 import {withRouter} from "react-router-dom";
+import {UsuariosController} from "../controller/UsuariosController";
 
 class UsuariosGridComponent extends React.Component {
     constructor(props) {
         super(props)
 
         this.utils = new Utils();
+        this.usersController = new UsuariosController();
         this.state = {
-            tableData : {
-                start : 0,
-                limit : 8
-            },
-            page : 1,
             cardValue: 0,
-            data: {
-                data : [],
-                total : 0
-            },
             form: [{idUsuario:"a", Nombre:"A"}],
-            categories:[{idUsuario:" ", Nombre:" ", Apellidos:" ", Correo:" "}]
+            usuarios:[{idUsuario:" ", Nombre:" ", Apellidos:" ", Correo:" "}],
+            idUsuario: -1
         }
     }
 
@@ -28,19 +22,10 @@ class UsuariosGridComponent extends React.Component {
     }
 
     async loadData(){
-        const respuesta = await fetch(`http://localhost:5000/users/findAll`,{
-                'method':'POST',
-                 headers : {
-                'Content-Type':'application/json'
-          },
-        })
-        .then(response => response.json())
-        .catch(error => console.log(error))
+        let resp = await this.usersController.findAll();
 
-        console.log(respuesta)
-
-        this.setState({categories : respuesta});
-        console.log(this.state.categories);
+        this.setState({usuarios : resp});
+        console.log(this.state.usuarios);
     }
 
     changeStateFinal = (data) => {
@@ -51,14 +36,26 @@ class UsuariosGridComponent extends React.Component {
         window.history.back();
     }
 
+    eliminarUsuario = async event =>{
+        let datos={idUsuario:this.state.idUsuario}
+        let resp = await this.usersController.eliminarUsuario(datos);
+
+        if(resp.status==='Ok'){
+            //window.location.reload(true);
+            Utils.swalSuccess(resp.Mensaje);
+        }else{
+            Utils.swalError(resp.exception);
+        }
+    }
+
     renderBody() {
-        return this.state.categories.map(d =>
+        return this.state.usuarios.map(d =>
             <tr key={d.idUsuario}>
                  <td>{d.Nombre}</td>
                  <td>{d.Apellidos}</td>
                  <td>{d.Correo}</td>
                  <td>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={()=>this.setState({idUsuario:d.idUsuario})}>Eliminar</button>
                  </td>
             </tr>
         )
@@ -77,7 +74,7 @@ class UsuariosGridComponent extends React.Component {
                             <div class="modal-body">Desea eliminar este usuario?</div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick={()=>this.eliminarUsuario()}>Eliminar</button>
                             </div>
                         </div>
                     </div>
