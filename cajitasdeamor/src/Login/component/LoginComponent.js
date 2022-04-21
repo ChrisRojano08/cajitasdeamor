@@ -38,8 +38,8 @@ class LoginComponent extends React.Component {
             sessionStorage.setItem("tipo", respuesta[0].Tipo);
             sessionStorage.setItem("idUsuario", respuesta[0].idUsuario);
             sessionStorage.setItem("nombre", respuesta[0].Nombre);
-            this.props.history.push('/');
-            window.location.reload(true);
+            setTimeout(this.props.history.push('/'), 1500);
+            setTimeout(window.location.reload(true), 1700);
         }else{
             Utils.swalError("No se encontró el usuario con esos datos!!");
         }
@@ -65,7 +65,7 @@ class LoginComponent extends React.Component {
                 Utils.swalError("Ya existe un usuario registrado con ese correo!");
             }else if(respuesta.status === 'Ok'){
                 Utils.swalSuccess("Se inserto al usuario correctamente!");
-                window.location.reload(true);
+                setTimeout(window.location.reload(true), 1500);
             }
         }
     }

@@ -49,7 +49,7 @@ class MenuSuperAdminComponent extends React.Component {
                             </div>
                             <div class="row">
                                 <div class="colm-4">
-                                    <button type="button" className="btn btn-info btn-md btn-block menBt" onClick={this.irClientes}>Administrar clientes</button>
+                                    <button type="button" className="btn btn-info btn-md btn-block menBt" onClick={this.irClientes}>Administrar usuarios</button>
                                 </div>
                             </div>
                             <div class="row">
