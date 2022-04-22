@@ -15,7 +15,9 @@ export const Urls = {
         delete:baseApi.users+'delete'
     },
     productApi:{
-        findAll:baseApi.product+'findAll'
+        findAll:baseApi.product+'findAll',
+        update:baseApi.product+'update',
+        insert:baseApi.product+'insert'
     },
     shoppingApi:{
         findAll:baseApi.shopping+'findAll',

@@ -1,14 +1,45 @@
-import {Urls} from '../../resources/Urls'
-import {Client} from "../../resources/Client";
+import {Urls} from '../../resources/Urls';
 
 export class ProductosController {
     async findAll(){
-        let res = await Client.POST({
-            url: Urls.productApi.findAll
-        });
-        console.log('res')
-        console.log(res);
-        return res;
-    } 
+        const respuesta = await fetch(Urls.productApi.findAll, {
+      'method': 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(response => response.json())
+      .catch(error => console.log(error))
+
+      return respuesta;
+    }
+
+    async update(data){
+        const respuesta = await fetch(Urls.productApi.update, {
+      'method': 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .catch(error => console.log(error))
+  
+      return respuesta;
+    }
+
+    async insert(data){
+        const respuesta = await fetch(Urls.productApi.insert, {
+      'method': 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .catch(error => console.log(error))
+  
+      return respuesta;
+    }
 
 }
