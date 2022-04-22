@@ -17,12 +17,12 @@ class ProductosGridComponent extends React.Component {
             },
             page : 1,
             cardValue: 0,
+            form: [],
             data: {
                 data : [],
                 total : 0
             },
-            form: [{idProducto:"a", Nombre:"A"}],
-            categories:[{idProducto:" ", Nombre:" ", Precio:" ", Tamanio:" ", Categoria:{Descripcion:" "}}]
+            products:[{idProducto:" ", Nombre:" ", Precio:" ", Tamanio:" ", Categoria:{Descripcion:" "}}]
         }
     }
 
@@ -31,23 +31,12 @@ class ProductosGridComponent extends React.Component {
     }
 
     async loadData(){
-        const respuesta = await fetch(`http://localhost:5000/product/findAll`,{
-                'method':'POST',
-                 headers : {
-                'Content-Type':'application/json'
-          },
-        })
-        .then(response => response.json())
-        .catch(error => console.log(error))
-
-        console.log(respuesta)
-
-        this.setState({categories : respuesta});
-        console.log(this.state.categories);
+        let respuesta = await this.productosController.findAll();
+        this.setState({ products: respuesta });
     }
 
     changeStateFinal = (data) => {
-        this.setState({cardValue: data.idProducto});
+        this.setState({cardValue: data.idProducto, form: data});
     }
 
     back = _ =>{
@@ -55,7 +44,7 @@ class ProductosGridComponent extends React.Component {
     }
 
     renderBody() {
-        return this.state.categories.map(d =>
+        return this.state.products.map(d =>
             <tr key={d.idProducto}>
                  <td>{d.Nombre}</td>
                  <td>{d.Precio}</td>
