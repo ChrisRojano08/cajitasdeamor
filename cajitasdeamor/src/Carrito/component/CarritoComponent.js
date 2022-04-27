@@ -1,74 +1,162 @@
 import React from "react";
 import '../../resources/css/carrito.css';
-import D1 from '../../resources/images/D1.jpeg';
 import { withRouter } from "react-router";
 import { CarritoController } from "../controller/CarritoController";
+import {Utils} from '../../resources/Utils';
 
 class CarritoComponent extends React.Component {
     constructor() {
         super();
-        this.CarritoController = new CarritoController();
+        this.carritoController = new CarritoController();
 
         //Almacena datos
         this.state = {
+            productos:[{
+                idCarrito: 0,
+                Cantidad: 0,
+                Producto:[{
+                    Categoria:{
+                        Descripcio:' '
+                    },
+                    Nombre:' ',
+                    Imagen:' ',
+                    Precio:' '
+                }],
+                Subtotal: 0
+            }],
+            Total: 0,
+            idCarrito:-1
         }
     }
 
 
     //Inicializa funciones
     componentDidMount() {
+        if(sessionStorage.getItem("nombre")){
+            this.loadData();
+        }
+    }
+    
+    async loadData(){
+        let datos = {idUsuario: sessionStorage.getItem("idUsuario")}
+        let respuesta = await this.carritoController.findByUserId(datos);
+        this.setState({ Total: respuesta[1].Total });
+        this.setState({ productos: respuesta[0] });
+
+        console.log(datos);
+        console.log(respuesta);
+        console.log(this.state.productos);
+        console.log(this.state.Total);
+    }
+
+    delete = () => {
+        this.deleteCart();
+    }
+
+    async deleteCart(){
+        let datos = {idCarrito: this.state.idCarrito};
+        let respuesta = await this.carritoController.delete(datos);
+
+        if(respuesta.status === 'Ok'){
+            Utils.swalSuccess(respuesta.Mensaje);
+            setTimeout(()=> window.location.reload(true), 800);
+        }else{
+            Utils.swalError(respuesta.exception);
+        }
+    }
+
+    renderNoLogeado(){
+        return(
+            <div class="row justify-content-center">
+                <div className="col-lg-11">
+                    <h3>No ha iniciado sesion!</h3>
+                    <h4>Registrese o inicie sesión para poder ver y guardar productos en el carrito de compras.</h4>
+                </div>
+            </div>
+        );
+    }
+    
+    setDatos = (id) =>{
+        this.setState({idCarrito:id});
+    }
+
+    productosCarrito(){
+        return this.state.productos.map((c)=>
+            <div className="col-lg-4 p-2"  key={c.idCarrito}>
+                <div class="card text-center">
+                    <img class="card-img-top" src={c.Producto[0].Imagen} alt="Card image cap"/>
+                    <div class="card-body">
+                        <h5 class="card-title">{c.Producto[0].Nombre}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Precio unitario: ${c.Producto[0].Precio}</li>
+                        <li class="list-group-item">Cantidad: {c.Cantidad}</li>
+                        <li class="list-group-item">Subtotal: ${c.Subtotal}</li>
+                    </ul>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-danger"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal01"
+                            onClick={() => this.setDatos(c.idCarrito)}>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    renderCarrito(){
+        return(
+        <div class="row justify-content-center">
+                    <div className="col-lg-11">
+                        <div className="row">
+                            <div className="col-lg-12 bg-dark text-white p-4">
+                                <h4>Productos</h4>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="card-group col-lg-9 bg-secondary cardCarrito">
+
+                                {this.productosCarrito()}
+
+                            </div>
+                                <div className="col-lg-3 bg-dark p-3 text-white">
+                                        <h3>Total</h3>
+                                        <br/>
+                                        <h3>${this.state.Total}</h3>
+                                        <br/>
+                                        <button className="btn btn-primary" style={{width:'80%', marginLeft:'10%'}}><h5 className="text-white">Dedicatoria</h5></button>
+                                        <br/><br/>
+                                        <button className="btn btn-success" style={{width:'80%', marginLeft:'10%'}}><h5>Comprar</h5></button>
+                                        <br/>
+                                </div> 
+                        </div>
+                    </div>
+                </div>
+        );
     }
 
     render() {
         return (
             <div class="container-fluid ">
-                <h1 style={{ color: 'red' }} >Carrito</h1>
-                <div class="ContenedorCarrito justify-content-center">
-                    <div class="ProductoCarrito">
-                        <div class="InfoCarrito">
-                            <ul class="CarcateristicasCarrito">
-                                <li>Producto</li>
-
-                            </ul>
-                        </div>
-                        <div class="EjemploCarrito">
-                            <div class="card mb-3" style={{maxwidth: '270px'}}>
-                                <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src={D1} class="img-fluid rounded-start" alt="..."/>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Desayuno 1</h5>
-                                            <p class="card-text">$250.00.</p>
-                                            <p class="card-text"><small class="text-muted">Cantidad: 2</small></p>
-                                            <p class="card-text"><small class="text-muted">Subtotal: $500.00</small></p>
-
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmar eliminación</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                        </div>
-
-                    </div>
-
-                    <div class="InfoTotalCarrito">
-                        <div class="TotalCarrito">
-                            Total:
-                        </div>
-                        <div class="PrecioCarrito">
-                            $500.00
-                        </div>
-                        <div class="ComprarCarrito">
-                            <a href="/Pago"><button class="BtnComprarCarrito">Comprar</button></a>
-
-                        </div>
-                        <div class="DediatoriaCarrito">
-                            <a href="/Dedicatoria"><button class="BtnDedicatoriaCarrito" href="/Dediactoria">Dedicatoria</button></a>
-
+                            <div class="modal-body">Desea eliminar este producto?</div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick={() =>this.delete()}>Si</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <h1 style={{ color: 'red' }} >Carrito</h1>
+                <br/>
+                    {sessionStorage.getItem("nombre") ? this.renderCarrito() : this.renderNoLogeado()}
+                <br/><br/>
             </div>
            
         )

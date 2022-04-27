@@ -5,7 +5,8 @@ const baseApi={
     users:baseURl+'users/',
     product:baseURl+'product/',
     shopping:baseURl+'shopping/',
-    home:baseURl+'home/'
+    home:baseURl+'home/',
+    cart:baseURl+'cart/'
 }
 //this is a exmple data for enpoint api
 export const Urls = {
@@ -18,7 +19,8 @@ export const Urls = {
     productApi:{
         findAll:baseApi.product+'findAll',
         update:baseApi.product+'update',
-        insert:baseApi.product+'insert'
+        insert:baseApi.product+'insert',
+        delete:baseApi.product+'delete'
     },
     shoppingApi:{
         findAll:baseApi.shopping+'findAll',
@@ -29,5 +31,11 @@ export const Urls = {
         find:baseApi.home+'find',
         insert:baseApi.home+'insert',
         update:baseApi.home+'update'
+    },
+  
+    cartApi:{
+        findByUserId:baseApi.cart+'findByUserId',
+        delete:baseApi.cart+'delete',
+        insert:baseApi.cart+'insert'
     }
 }

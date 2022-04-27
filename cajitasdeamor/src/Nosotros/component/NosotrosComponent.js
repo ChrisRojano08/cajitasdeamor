@@ -64,8 +64,9 @@ class NosotrosComponent extends React.Component {
                             </small>
                         </div>
                     </div>
+                    
                 </div>
-
+                <br/><br/>
             </div>
         )
     }

@@ -26,6 +26,13 @@ class TiendaComponent extends React.Component {
        this.setState({ prodsFilt: respuesta });
     }
 
+    mostrarProducto = e => {
+        this.props.history.push({
+            pathname: '/Producto',
+            data: e
+        })
+    }
+
     mostrarProds() {
         return this.state.prodsFilt.map((c) =>
                 <div class="col-lg-3 col-md-4 col-sm-4" key={c.id}>
@@ -34,7 +41,7 @@ class TiendaComponent extends React.Component {
                         <div class="card-body">
                             <h5 class="card-title">{c.Nombre}</h5>
                             <p class="card-text">{c.Descripcion}</p>
-                            <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                            <button class="btn btn-primary" onClick={()=>this.mostrarProducto(c)}>Ver Producto</button>
                         </div>
                     </div>
                 </div>

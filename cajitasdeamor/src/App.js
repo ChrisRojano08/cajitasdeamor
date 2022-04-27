@@ -101,7 +101,7 @@ export default class App extends React.Component {
 
 
 
-        <footer class="container align-items-end" style={{ background: '#212429', textAlign: 'center', minWidth: '100%' }}>
+        <footer class="container align-items-end" style={{ background: '#212429', textAlign: 'center', minWidth: '100%'}}>
           <div class="row ">
             <div class="col-12 col-md">
               <img class="logopieimg" src={logC} style={{ height: '60px', width: 'auto' }} />
