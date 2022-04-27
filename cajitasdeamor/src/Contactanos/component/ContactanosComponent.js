@@ -43,7 +43,9 @@ class ContactanosComponent extends React.Component {
                 <h4 style={{ color: 'black', fontFamily: '10px' }}>Siempre estamos abiertos a nuevas propuestas</h4>
                 <br/>
 
-                <form class="row g-4 needs-validation justify-content-center " novalidate style={{ background: '#dddddd' }} onSubmit={this.enviarEmail}>
+            <div className="row  justify-content-center">
+            <div className="col-lg-10">
+                <form class="row g-2 needs-validation justify-content-center p-4" novalidate style={{ background: '#dddddd' }} onSubmit={this.enviarEmail}>
                     <div class="col-md-5 position-relative">
                         <label for="validationTooltip01" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="validationTooltip01" name="nombre" required />
@@ -64,11 +66,13 @@ class ContactanosComponent extends React.Component {
                         <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="mensaje"></textarea>
                     </div>
-                    <div class="col-3">
-                        <button class="btn btn-primary" type="submit">Enviar</button>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary mt-4" type="submit" style={{width:'100%'}}>Enviar</button>
                     </div>
                     <br/>
                 </form>
+            </div>
+            </div>
                 <br/>
             </div>
         )
