@@ -1,10 +1,11 @@
-const baseURl='http://127.0.0.1:5000/';
+const baseURl='http://192.168.1.62:5000/';
 
 //this is a explame data for base url api CAMBIO RANDOM 1.1
 const baseApi={
     users:baseURl+'users/',
     product:baseURl+'product/',
     shopping:baseURl+'shopping/',
+    home:baseURl+'home/',
     cart:baseURl+'cart/'
 }
 //this is a exmple data for enpoint api
@@ -26,6 +27,12 @@ export const Urls = {
         update:baseApi.shopping+'update',
         cancel:baseApi.shopping+'cancel'
     },
+    homeApi:{
+        find:baseApi.home+'find',
+        insert:baseApi.home+'insert',
+        update:baseApi.home+'update'
+    },
+  
     cartApi:{
         findByUserId:baseApi.cart+'findByUserId',
         delete:baseApi.cart+'delete',
