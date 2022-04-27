@@ -65,7 +65,7 @@ class LoginComponent extends React.Component {
                 Utils.swalError("Ya existe un usuario registrado con ese correo!");
             }else if(respuesta.status === 'Ok'){
                 Utils.swalSuccess("Se inserto al usuario correctamente!");
-                setTimeout(window.location.reload(true), 1500);
+                setTimeout(() => {window.location.reload(true)}, 1500);
             }
         }
     }
