@@ -25,6 +25,7 @@ import RecuperarComponent from "./Recuperar/component/RecuperarComponent";
 import PagoComponent from "./Pago/component/PagoComponent";
 import DomicilioComponent from "./Domicilio/component/DomicilioComponent";
 import ComprasGridComponent from "./Compras/component/ComprasGridComponent";
+import MenuUsuarioComponent from "./MenuUsuario/component/MenuUsuarioComponent";
 import { event } from 'jquery';
 
 export default class App extends React.Component {
