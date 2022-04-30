@@ -2,22 +2,32 @@ import React from "react";
 import '../../resources/css/producto.css';
 import D1 from '../../resources/images/D1.jpeg';
 import { withRouter } from "react-router";
-
-
+import {DedicatoriaController} from "../controller/DedicatoriaController";
 
 class ProductoComponent extends React.Component {
-    constructor() {
-        super();
-     
+    constructor(props) {
+        super(props);
+        this.comprasController = new DedicatoriaController();
 
         //Almacena datos
         this.state = {
+            idCompra: -1,
+            compra: [{
+                Dedicatoria: " ",
+                Nombre: " "
+            }]
         }
     }
 
 
     //Inicializa funciones
     componentDidMount() {
+        //this.loadData();
+    }
+
+    async loadData() {
+        let respuesta = await this.DedicatoriaController.findDedicatoria();
+        this.setState({compra: respuesta});
     }
 
     render() {

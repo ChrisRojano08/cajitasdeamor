@@ -1,4 +1,4 @@
-const baseURl='http://192.168.1.62:5000/';
+const baseURl='http://192.168.43.219:5000/';
 
 //this is a explame data for base url api CAMBIO RANDOM 1.1
 const baseApi={
@@ -14,7 +14,9 @@ export const Urls = {
         findAll:baseApi.users+'findAll',
         find:baseApi.users+'find',
         registrar:baseApi.users+'insert',
-        delete:baseApi.users+'delete'
+        delete:baseApi.users+'delete',
+        findEmail:baseApi.users+'findEmail',
+        changePass:baseApi.users+'changePass'
     },
     productApi:{
         findAll:baseApi.product+'findAll',
@@ -25,7 +27,8 @@ export const Urls = {
     shoppingApi:{
         findAll:baseApi.shopping+'findAll',
         update:baseApi.shopping+'update',
-        cancel:baseApi.shopping+'cancel'
+        cancel:baseApi.shopping+'cancel',
+        findDedicatoria:baseApi.shopping+'findDedicatoria'
     },
     homeApi:{
         find:baseApi.home+'find',
