@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container, } from 'react-bootstrap';
+import { Navbar, Nav, Container} from 'react-bootstrap';
 import bannerlogC from './resources/images/logo003.png';
 import logC from './resources/images/logo001.png';
 import {
@@ -36,20 +36,24 @@ export default class App extends React.Component {
     }
   }
 
-  validarSesion(){
-    let uss = sessionStorage.getItem("nombre");
+  validarSesion() {
+    let nom = sessionStorage.getItem("nombre");
+    let tip = sessionStorage.getItem("tipo");
 
-    if(uss != null){
-      return (<Nav.Link href="/Login" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />{uss}</Nav.Link>);
-    }else{
+    if (nom != null) {
+      if (tip === 'admin') {
+        return (<Nav.Link href="/menuSuper" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nom}</Nav.Link>);
+      } else {
+        return (<Nav.Link href="/menuUsuario" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nom}</Nav.Link>);
+      }
+    } else {
       return (<Nav.Link href="/Login" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />Usuario</Nav.Link>);
     }
   }
 
   render() {
-
     return (
-      <div class="container-fluid" >
+      <div class="container-fluid">
 
         <div class="row justify-content-center">
           <img src={bannerlogC} class="rounded mx-auto d-block" style={{ height: '125px', width: 'auto' }} />
@@ -72,8 +76,6 @@ export default class App extends React.Component {
           </Container>
         </Navbar>
 
-        <br/>
-
         <div class="row justify-content-center">
           <Router>
             <div class="row justify-content-center">
@@ -83,6 +85,7 @@ export default class App extends React.Component {
                 <Route path="/Dedicatoria" component={DedicatoriaComponent} />
                 <Route path="/productosGrid" component={ProductosGridComponent} />
                 <Route path="/menuSuper" component={MenuSuperAdminComponent} />
+                <Route path="/menuUsuario" component={MenuUsuarioComponent} />
                 <Route path="/Carrito" component={CarritoComponent} />
                 <Route path="/Recuperar" component={RecuperarComponent} />
                 <Route path="/Tienda" component={TiendaComponent} />
@@ -101,14 +104,14 @@ export default class App extends React.Component {
 
 
 
-        <footer class="container align-items-end" style={{ background: '#212429', textAlign: 'center', minWidth: '100%'}}>
+        <footer class="container align-items-end" style={{ background: '#212429', textAlign: 'center', minWidth: '100%' }}>
           <div class="row ">
             <div class="col-12 col-md">
               <img class="logopieimg" src={logC} style={{ height: '60px', width: 'auto' }} />
               <h5 class="text-white">Cajitas de Amor</h5>
             </div>
             <div class="col-6 col-md">
-              <h5>Resources</h5>
+              <h5 style={{ color: 'red' }}>Redes</h5>
               <ul class="list-unstyled text-small">
                 <li><a class="link-secondary" href="https://www.facebook.com/Cajitas-de-amor-102964458600186"><i class="fi fi-brands-facebook">Facebook</i></a></li>
                 <li><a class="link-secondary" href='https://www.instagram.com/cajitasdeamorj/'><i class="fi fi-brands-instagram">Instagram</i></a></li>

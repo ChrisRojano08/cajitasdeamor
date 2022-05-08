@@ -10,7 +10,7 @@ export class CarritoController {
             body: JSON.stringify(data)
           })
             .then(response => response.json())
-            .catch(error => console.log(error))
+            .catch(error => console.log(error,'Tas mal perro'))
       
             return respuesta;
     }

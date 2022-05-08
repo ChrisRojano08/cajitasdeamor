@@ -38,6 +38,7 @@ class LoginComponent extends React.Component {
             sessionStorage.setItem("tipo", respuesta[0].Tipo);
             sessionStorage.setItem("idUsuario", respuesta[0].idUsuario);
             sessionStorage.setItem("nombre", respuesta[0].Nombre);
+            sessionStorage.setItem("correo", respuesta[0].Correo);
             setTimeout(this.props.history.push('/'), 1500);
             setTimeout(window.location.reload(true), 1700);
         }else{

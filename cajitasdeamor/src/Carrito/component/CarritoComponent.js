@@ -137,6 +137,10 @@ class CarritoComponent extends React.Component {
     render() {
         return (
             <div class="container-fluid ">
+                <h1 style={{ color: 'red' }} >Carrito</h1>
+                <br/>
+                    {sessionStorage.getItem("nombre") ? this.renderCarrito() : this.renderNoLogeado()}
+                <br/><br/>
                 <div class="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
@@ -152,11 +156,6 @@ class CarritoComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <h1 style={{ color: 'red' }} >Carrito</h1>
-                <br/>
-                    {sessionStorage.getItem("nombre") ? this.renderCarrito() : this.renderNoLogeado()}
-                <br/><br/>
             </div>
            
         )
