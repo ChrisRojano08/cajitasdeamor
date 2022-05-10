@@ -2,7 +2,7 @@ import { Urls } from "../../resources/Urls";
 
 export class MenuUsuarioController {
   async findByUserId(data) {
-    const respuesta = await fetch(Urls.MenuUsuarioApi.findByUserId, {
+    const respuesta = await fetch(Urls.shoppingApi.findByUserId, {
       'method': 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -11,7 +11,6 @@ export class MenuUsuarioController {
     })
       .then(response => response.json())
       .catch(error => console.log(error,))
-      console.log(respuesta)
     return respuesta;
   }
 

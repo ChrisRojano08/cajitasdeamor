@@ -1,4 +1,4 @@
-const baseURl='http://192.168.1.77:5000/';
+const baseURl='http://localhost:5000/';
 
 //this is a explame data for base url api CAMBIO RANDOM 1.1
 const baseApi={
@@ -7,8 +7,7 @@ const baseApi={
     shopping:baseURl+'shopping/',
     home:baseURl+'home/',
     cart:baseURl+'cart/',
-    pago:baseURl+'pago/',
-    MenuUsuario:baseURl+'MenuUsuario/'
+    payment:baseURl+'payment/'
 }
 //this is a exmple data for enpoint api
 export const Urls = {
@@ -30,12 +29,14 @@ export const Urls = {
         findAll:baseApi.shopping+'findAll',
         update:baseApi.shopping+'update',
         cancel:baseApi.shopping+'cancel',
-        findDedicatoria:baseApi.shopping+'findDedicatoria'
+        findDedicatoria:baseApi.shopping+'findDedicatoria',
+        findByUserId:baseApi.shopping+'findByUserId'
     },
     homeApi:{
         find:baseApi.home+'find',
         insert:baseApi.home+'insert',
-        update:baseApi.home+'update'
+        update:baseApi.home+'update',
+        findByUserId:baseApi.home+'findByUserId'
     },
   
     cartApi:{
@@ -43,13 +44,10 @@ export const Urls = {
         delete:baseApi.cart+'delete',
         insert:baseApi.cart+'insert'
     },
-    pagoApi:{
-        find:baseApi.pago+'find',
-        insert:baseApi.pago+'insert',
-        update:baseApi.pago+'update'
-    },
-    MenuUsuarioApi:{
-        findByUserId:baseApi.MenuUsuario+'findByUserId',
-        delete:baseApi.MenuUsuario+'delete'
+    paymentApi:{
+        find:baseApi.payment+'find',
+        insert:baseApi.payment+'insert',
+        update:baseApi.payment+'update',
+        findByUserId:baseApi.payment+'findByUserId'
     }
 }

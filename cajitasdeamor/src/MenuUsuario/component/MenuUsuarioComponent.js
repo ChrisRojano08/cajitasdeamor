@@ -14,46 +14,54 @@ class MenuUsuarioComponent extends React.Component {
         this.state = {
             compra: [{
                 idCompra: 0,
-                estado: ' ',
+                Usuario: [{
+                    Nombre: ' ',
+                    Apellido: ' ',
+                    idUsuario: ' '
+                }],
+                Fecha: ' ',
+                Dedicatoria: ' ',
+                Nombre: ' ',
+                Productos: [{
+                    idProducto: 0,
+                    Nombre: ' '
+                }],
+                Estado: ' ',
+                MetodoPago: {},
+                Domicilio: {}
             }],
 
         }
     }
 
-
     //Inicializa funciones
     componentDidMount() {
-        if(sessionStorage.getItem("nombre")){
+        if (sessionStorage.getItem("nombre")) {
             this.loadData();
         }
     }
 
     async loadData() {
-
-        let datos = { idUsuario: sessionStorage.getItem("idUsuario") }
-        console.log('hola xd ');
-        console.log(datos);
+        let datos = { idUsuario: sessionStorage.getItem("idUsuario") };
         let respuesta = await this.MenuUsuarioController.findByUserId(datos);
-        console.log('hola 2');
-        console.log(respuesta);
         this.setState({ compra: respuesta });
-        console.log('hola3');
-        console.log(this.state.productos);
+
+        console.log(this.state.compra);
 
     }
     delete = () => {
         this.deleteCart();
     }
 
-    mostrarProds() {
-        return this.state.prodsFilt.map((c) =>
+    mostrarCompras() {
+        return this.state.compra.map((c) =>
             <ul class="list-group list-group-horizontal-xl">
                 <li class="list-group-item" style={{ width: '20%' }}>{c.idCompra}</li>
-                <li class="list-group-item" style={{ width: '25%' }}>{c.estado}</li>
+                <li class="list-group-item" style={{ width: '25%' }}>{c.Estado}</li>
                 <li class="list-group-item" style={{ width: '25%' }}><button type="button" class="btn btn-primary">Dedicatoria</button> </li>
                 <li class="list-group-item" style={{ width: '25%' }}><button type="button" class="btn btn-primary">Cancelar</button> </li>
             </ul>
-        )
+        );
     }
 
     irPedidos = event => {
@@ -96,42 +104,44 @@ class MenuUsuarioComponent extends React.Component {
 
     render() {
         return (
-            <div class="container">
+            <div class="container col-lg-10 col-md-10 col-sm-10 py-4">
                 <div class="card-header ">
                     <h5 class="card-title ">{this.infoNombre()}</h5>
                     <h6 class="card-subtitle mb-2 text-muted ">{this.infoCorreo()}</h6>
                 </div>
-                <div class="row">
-                    <div class="col-2">
-                        <div class="d-grid gap-2 col">
-                            <button class="btn btn-secondary" type="button" onClick={this.irPedidos}>Pedidos</button>
-                            <button class="btn btn-secondary" type="button" onClick={this.irDomicilio}>Domicilio</button>
-                            <button class="btn btn-secondary" type="button" onClick={this.irPago}>Metodo Pago</button>
-                            <button class="btn btn-danger" type="button" onClick={this.logout}>Cerrar Sesion</button>
-                        </div>
-                    </div>
-                    <div class="col-9">
-                        <div class="card">
-                            <div class="card-body">
-                                <ul class="list-group  list-group-horizontal-xl">
-                                    <li class="list-group-item bg-secondary" aria-current="true" style={{ width: '20%' }}>IDCompra</li>
-                                    <li class="list-group-item bg-secondary" aria-current="true" style={{ width: '25%' }}>Estado</li>
-                                    <li class="list-group-item bg-secondary" aria-current="true" style={{ width: '25%' }}>Dedicatoria</li>
-                                    <li class="list-group-item active" aria-current="true" style={{ width: '25%' }}></li>
-                                </ul>
-                                <ul class="list-group list-group-horizontal-xl">
-                                    <li class="list-group-item" style={{ width: '20%' }}> 01</li>
-                                    <li class="list-group-item" style={{ width: '25%' }}>En reparto</li>
-                                    <li class="list-group-item" style={{ width: '25%' }}><button type="button" class="btn btn-primary">Dedicatoria</button> </li>
-                                    <li class="list-group-item" style={{ width: '25%' }}><button type="button" class="btn btn-primary" >Cancelar</button> </li>
-                                </ul>
-                                {/*<div class="row justify-content-center aling-item-center row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-4 ">
-                                    {this.mostrarProds()}
-                                </div>*/}
+                <div className="card-body">
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="d-flex align-items-start">
+                                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                                    aria-selected="true">Compras</button>
+                                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                                    aria-selected="false">Domicilios</button>
+                                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+                                    aria-selected="false">Tarjetas</button>
+                                </div>
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                    aria-labelledby="v-pills-home-tab">
+                                        {this.mostrarCompras()}
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                                    aria-labelledby="v-pills-profile-tab">
+
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                                    aria-labelledby="v-pills-messages-tab">
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div >
+                    </div >
+                </div>
             </div >
 
 
