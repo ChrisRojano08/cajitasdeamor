@@ -1,8 +1,6 @@
 import React from "react";
 
 const ProdsImgs = props =>{
-    console.log(props)
-
     const prods = props.data;
 
     if(props.data === undefined){

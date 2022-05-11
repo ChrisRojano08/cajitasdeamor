@@ -68,11 +68,15 @@ class ProductoComponent extends React.Component {
     }
 
     irCompra(){
-        this.props.history.push({
-            pathname: '/Compra',
-            data: this.state,
-            anterior: 'producto'
-        })
+        if(sessionStorage.getItem('idUsuario')){
+                this.props.history.push({
+                pathname: '/Compra',
+                data: this.state,
+                anterior: 'producto'
+            })
+        }else{
+            document.getElementById('modalButton').click();
+        }
     }
 
     render() {

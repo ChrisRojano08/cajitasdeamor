@@ -65,17 +65,21 @@ class ProductoComponent extends React.Component {
     modificarDedicatoria = async event =>{
         event.preventDefault();
 
-        const respuesta = await this.dedicatoriaController.actualizarDedicatoria(this.state.Dedicatoria);
+        if(this.state.Dedicatoria.Dedicatoria !== '' || this.state.Dedicatoria.Dedicatoria !== ' '){
+            if(this.state.Dedicatoria.Nombre !== '' || this.state.Dedicatoria.Nombre !== ' '){
+                const respuesta = await this.dedicatoriaController.actualizarDedicatoria(this.state.Dedicatoria);
 
-        if(respuesta.status === 'Ok'){
-            Utils.swalSuccess(respuesta.Mensaje);
-        }else{
-            Utils.swalError(respuesta.exception);
+                if(respuesta.status === 'Ok'){
+                    Utils.swalSuccess(respuesta.Mensaje);
+                }else{
+                    Utils.swalError(respuesta.exception);
+                }
+
+                setTimeout(() => {
+                    this.props.history.push('/menuUsuario');
+                }, 500);
+            }
         }
-
-        setTimeout(() => {
-            this.props.history.push('/menuUsuario');
-        }, 500);
     }
 
     handleChange=e=> {
@@ -87,8 +91,14 @@ class ProductoComponent extends React.Component {
         })
     }
 
-    seleccionarDedicatoria=()=>{
-        this.props.handler(3, this.state.Dedicatoria);
+    seleccionarDedicatoria=event=>{
+        event.preventDefault();
+
+        if(this.state.Dedicatoria.Dedicatoria !== "" && this.state.Dedicatoria.Dedicatoria !== " "){
+            if(this.state.Dedicatoria.Nombre !== "" && this.state.Dedicatoria.Nombre !== " "){
+                this.props.handler(3, this.state.Dedicatoria);
+            }
+        }
     }
 
     mostrarFormUpd=_=>{
@@ -101,7 +111,7 @@ class ProductoComponent extends React.Component {
                 </div>
                 <div className="col-lg-6 col-md-6">
                     <form class="row g-4 needs-validation justify-content-center "
-                        onSubmit={this.modificarDedicatoria} novalidate>
+                        onSubmit={this.modificarDedicatoria}>
                         <div class="md-3 position-relative">
                             <label class="form-label"><h5>Nombre</h5></label>
                             <input type="text"
@@ -132,7 +142,7 @@ class ProductoComponent extends React.Component {
                 <br/>
                 <div className="col-lg-6 col-md-6">
                     <form class="row g-4 needs-validation justify-content-center "
-                        onSubmit={this.seleccionarDedicatoria} novalidate>
+                        onSubmit={this.seleccionarDedicatoria}>
                         <div class="md-3 position-relative">
                             <label class="form-label"><h5>Nombre</h5></label>
                             <input type="text"
@@ -148,7 +158,7 @@ class ProductoComponent extends React.Component {
                             onChange={this.handleChange}  required/>
                         </div>
                         <div class="col-4">
-                            <button class="btn btn-primary" type="submit">Agregar dedicatoria</button>
+                            <button class="btn btn-primary" type="submit">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -162,8 +172,6 @@ class ProductoComponent extends React.Component {
                 <div className="row">
                     {this.props.productos ? <>{this.mostrarFormInsert()}</> : <>{this.mostrarFormUpd()}</>} 
                 </div>
-                
-
             </div>
         )
     }

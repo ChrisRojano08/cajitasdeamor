@@ -129,9 +129,16 @@ class MenuUsuarioComponent extends React.Component {
                                 <div class="card-header">
                                     <div className="row fullWidth">
                                         <div className="col-lg-10 col-md-10"> </div>
-                                        <div className="col-lg-2 col-md-2 pe-auto" onClick={()=>this.editarDedicatoria(c)}>
-                                            <button><i class="fi fi-rr-edit"></i></button>
+
+                                        <div className="col-lg-2 col-md-2 pe-auto" >
+                                            {c.Estado==='En espera' ? 
+                                                <button onClick={()=>this.editarDedicatoria(c)}><i class="fi fi-rr-edit"></i></button>
+                                            :
+                                            <button disabled><i class="fi fi-rr-edit"></i></button>
+                                            }
+                                            
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -140,7 +147,7 @@ class MenuUsuarioComponent extends React.Component {
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-2 col-sm-2 p-1">
-                            <button className="btn btn-success mx-2">  Ver  </button>
+                            {/*<button className="btn btn-success mx-2">  Ver  </button>*/}
                             {c.Estado!=='En espera' ?
                                 <button type="button" class="btn btn-danger" disabled>
                                     Cancelar

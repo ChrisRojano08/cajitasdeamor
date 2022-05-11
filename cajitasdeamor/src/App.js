@@ -103,7 +103,7 @@ export default class App extends React.Component {
           </Router>
         </div>
 
-        <footer class="container align-items-end p-4" style={{ background: '#212429', textAlign: 'center', minWidth: '100%' }}>
+        <footer class="container align-items-end p-2" style={{ background: '#212429', textAlign: 'center', minWidth: '100%' }}>
           <div class="row ">
             <div class="col-12 col-md">
               <img class="logopieimg" src={logC} alt='Logo' style={{ height: '60px', width: 'auto' }} />

@@ -79,9 +79,9 @@ class DomicilioComponent extends React.Component {
                         Ubicacion
                     </div>
                     <div class="card-body">
-                        <form class="row g-3 needs-validation" 
+                        <form class="row g-3 needs-validation justify-content-center" 
                             onSubmit={this.comprobacion} novalidate>
-                            <div class="col-md-4">
+                            <div class="col-xl-4 col-lg-6 col-md-6">
                                 <label for="validationCustom01" class="form-label">Número</label>
                                 <input type="number" 
                                         class="form-control" 
@@ -89,7 +89,7 @@ class DomicilioComponent extends React.Component {
                                         onChange={this.handleChange}
                                         name="Numero"  required/>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-xl-4 col-lg-6 col-md-6">
                                 <label for="validationCustom02" class="form-label">Calle </label>
                                 <input type="text" 
                                         class="form-control" 
@@ -97,7 +97,7 @@ class DomicilioComponent extends React.Component {
                                         onChange={this.handleChange}
                                         name="Calle" required/>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-xl-4 col-lg-6 col-md-6">
                                 <label for="validationCustom02" class="form-label">Colonia</label>
                                 <input type="text" 
                                         class="form-control" 
@@ -105,7 +105,7 @@ class DomicilioComponent extends React.Component {
                                         onChange={this.handleChange} 
                                         name="Colonia"  required/>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-xl-4 col-lg-6 col-md-6">
                                 <label for="validationCustom03" class="form-label">Municipio</label>
                                 <input type="text" 
                                         class="form-control" 
@@ -113,7 +113,7 @@ class DomicilioComponent extends React.Component {
                                         onChange={this.handleChange}
                                         name="Municipio" required/>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-xl-4 col-lg-6 col-md-6">
                                 <label for="validationCustom04" class="form-label">Estado</label>
                                 <input type="text" 
                                         class="form-control" 
@@ -121,7 +121,7 @@ class DomicilioComponent extends React.Component {
                                         onChange={this.handleChange}
                                         name="Estado" required/>
                             </div> 
-                            <div class="col-md-4">
+                            <div class="col-xl-4 col-lg-6 col-md-6">
                                 <label for="validationCustom05" class="form-label">Código postal</label>
                                 <input type="number" 
                                         max="99999" 
@@ -143,7 +143,7 @@ class DomicilioComponent extends React.Component {
 
     domicilios(){
         return this.state.domicilios.map((c)=>
-            <div className="col-lg-12 col-md-12 col-sm-12 my-2" key={c.idDomicilio}>
+            <div className="col-lg-12 col-md-6 col-sm-12 my-2" key={c.idDomicilio}>
                 <div class="card mx-2 p-4 cardDom" onClick={()=>this.seleccionarDomicilio(c)}>
                     <div class="card-body">
                         <div className="row">
@@ -169,12 +169,12 @@ class DomicilioComponent extends React.Component {
         if(this.state.domicilios.length > 0){
             return(
                 <div className="row">
-                    <div className="col-lg-4 col-md-4">
+                    <div className="col-lg-4 col-md-12">
                         <h3 style={{ color: 'red' }} >Seleccionar domicilio</h3>
                         <br/>
                         {this.domicilios()}
                     </div>
-                    <div className="col-lg-8 col-md-8">
+                    <div className="col-lg-8 col-md-12">
                         {this.formulario()}
                     </div>
                 </div>

@@ -176,12 +176,12 @@ class PagoComponent extends React.Component {
         if(this.state.tarjetas.length > 0){
             return(
                 <div className="row">
-                    <div className="col-lg-4 col-md-12 p-2 mb-4">
+                    <div className="col-xl-5 col-lg-12 col-md-12 p-2 mb-4">
                         <h3 style={{ color: 'red' }} >Seleccionar tarjeta</h3>
                         <br/>
                         {this.tarjetas()}
                     </div>
-                    <div className="col-lg-8 col-md-12">
+                    <div className="col-xl-7 col-lg-12 col-md-12">
                         {this.formulario()}
                     </div>
                 </div>

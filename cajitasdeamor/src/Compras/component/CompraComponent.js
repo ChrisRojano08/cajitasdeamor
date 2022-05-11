@@ -5,6 +5,7 @@ import {Utils} from '../../resources/Utils';
 import DomicilioComponent from '../../Domicilio/component/DomicilioComponent';
 import PagoComponent from '../../Pago/component/PagoComponent';
 import DedicatoriaComponent from '../../Dedicatoria/component/DedicatoriaComponent';
+import ImgsProds from '../../MenuUsuario/component/ProdImagesComponent';
 
 class CompraComponent extends React.Component {
     constructor() {
@@ -93,8 +94,6 @@ class CompraComponent extends React.Component {
         this.setState({
             domicilio: state
         });
-
-        setTimeout(()=>console.log(this.state.domicilio), 500);
     }
 
     handlerPay(num, state) {
@@ -105,8 +104,6 @@ class CompraComponent extends React.Component {
         this.setState({
             pago: state
         });
-
-        setTimeout(()=>console.log(this.state.pago), 500);
     }
 
     handlerDed(num, state) {
@@ -117,8 +114,6 @@ class CompraComponent extends React.Component {
         this.setState({
             dedicatoria: state
         });
-
-        setTimeout(()=>console.log(this.state), 500);
     }
 
     mostrarForm(){
@@ -130,8 +125,80 @@ class CompraComponent extends React.Component {
             case 2:
                 return(<DedicatoriaComponent handler={this.handlerDed} productos={this.state.productos}/>)
             case 3:
-                this.confirmandoCompra();
-            break;
+                console.log(this.state);
+                return(
+                    <div className="my-4">
+                        <div className="row justify-content-center p-4">
+                            <div className="col-xl-10 col-lg-10 col-md-10">
+                                <div class="card border-dark mb-3">
+                                    <div class="card-header">
+                                        <div className="row">
+                                            <div className="col-2">
+                                                <i class="fi fi-rr-home"></i>
+                                            </div>
+                                            <div className="col-8">
+                                                <h6 class="card-title">Domicilio</h6>
+                                            </div>
+                                            <div className="col-2"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-dark">
+                                        <h5 class="card-title">{this.state.domicilio.Numero} {this.state.domicilio.Calle}</h5>
+                                        <p class="card-text">Código postal {this.state.domicilio.CodigoPostal} - {this.state.domicilio.Colonia},
+                                            {this.state.domicilio.Municipio}, {this.state.domicilio.Estado}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row justify-content-center p-4">
+                            <div className="col-xl-10 col-lg-10 col-md-10">
+                                <div class="card border-dark mb-3">
+                                    <div class="card-header">
+                                        <div className="row">
+                                            <div className="col-2">
+                                                <i class="fi fi-rr-credit-card"></i>
+                                            </div>
+                                            <div className="col-8">
+                                                <h6 class="card-title">Método de pago</h6>
+                                            </div>
+                                            <div className="col-2"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-dark">
+                                        <h5 class="card-title">{this.state.pago.Nombre}</h5>
+                                        <p class="card-text"> Cuenta: {this.state.pago.Cuenta.substring(0, this.state.pago.Cuenta.length -4)}XXXX
+                                            &nbsp;&nbsp;CVV: *** &nbsp;&nbsp;Vencimiento: {this.state.pago.FechaVencimiento}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row justify-content-center p-4">
+                            <div className="col-xl-10 col-lg-10 col-md-10">
+                                <div class="card border-dark mb-3">
+                                    <div class="card-header">
+                                        <div className="row">
+                                            <div className="col-2">
+                                                <i class="fi fi-rr-envelope"></i>
+                                            </div>
+                                            <div className="col-8">
+                                                <h6 class="card-title">Dedicatoria</h6>
+                                            </div>
+                                            <div className="col-2"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-dark">
+                                        <h5 class="card-title">{this.state.dedicatoria.Nombre}</h5>
+                                        <p class="card-text">{this.state.dedicatoria.Dedicatoria}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                );
             default:
                 return(<p>UnU</p>)
         }
@@ -139,16 +206,108 @@ class CompraComponent extends React.Component {
 
     confirmandoCompra(){
         return(
-            <p>UwU</p>
+            <h1>AAAAA</h1>
         );
+    }
+
+    mostrarNombres=_=>{
+        switch(this.state.productos.length){
+            case 0:
+                return(<h1>ERROR-ERROR-ERROR</h1>)
+            case 1:
+                return(<h5>&nbsp;{this.state.productos[0].Producto[0].Nombre}</h5>)
+            case 2: case 3:
+                let nombs='';
+                this.state.productos.forEach( c=>{
+                    nombs += c.Producto[0].Nombre+", ";
+                })
+                nombs = nombs.substring(0, nombs.length -2);
+                return(
+                    <h6>{nombs}</h6>
+                )
+            default:
+                const nomb=this.state.productos[0].Producto[0].Nombre+','+this.state.productos[1].Producto[0].Nombre+','+
+                    this.state.productos[2].Producto[0].Nombre+', ...';
+                return(
+                    <h6>{nomb}</h6>
+                )
+        }
+    }
+
+    mostrarImgs=_=>{
+        switch(this.state.productos.length){
+            case 0:
+                return(<h1>ERROR-ERROR-ERROR</h1>)
+            case 1:
+                const prodsA =[[
+                    {
+                        Imagen: this.state.productos[0].Producto[0].Imagen
+                    }
+                ]]
+
+                return(<ImgsProds data={prodsA}/>)
+            default:
+                let imgsAr=[];
+                this.state.productos.forEach( c=>{
+                    Array.prototype.push.apply(imgsAr, [c.Producto]);
+                })
+                
+                return(
+                    <div className="col-xl-10 col-lg-10 col-md-4">
+                        <ImgsProds data={imgsAr}/>
+                    </div>
+                    
+                )
+        }
     }
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid my-4">
                 <h1>Compra</h1>
                 <br/>
-                <>{this.mostrarForm()}</>
+                <div className="row justify-content-center">
+                    <div className="col-lg-8 col-md-12">
+                        {this.mostrarForm()}
+                    </div>
+                    <div className="col-lg-4 col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                Resumen de compra
+                            </div>
+                            <div class="card-body">
+                                <div className="row justify-content-center">
+                                    <div className="col-xl-10 col-lg-10 col-md-4">
+                                        {this.mostrarImgs()}
+                                    </div>
+                                </div>
+                                    
+                                <hr class="my-4 mx-4"/>
+                                    {this.mostrarNombres()}
+                                <hr class="my-4 mx-4"/>
+                                <div className="row">
+                                    <div className="col-xl-8 col-lg-8 col-md-8">
+                                        <h5>Total:</h5>
+                                    </div>
+                                    <div className="col-xl-4 col-lg-4 col-md-4">
+                                        <h5>${this.state.Total}</h5>
+                                    </div>
+                                </div>
+                                <hr class="my-4 mx-4"/>
+                                <div className="row justify-content-center">
+                                    <div className="col-xl-10 col-lg-10 col-md-10 p-2 my-4">
+                                        {this.state.progreso===3 ? 
+                                            <button className="btn btn-primary" style={{width:'60%'}}><h5>Comprar</h5></button>
+                                        :
+                                            <button className="btn btn-primary" disabled style={{width:'60%'}}><h5>Comprar</h5></button>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             
         )
