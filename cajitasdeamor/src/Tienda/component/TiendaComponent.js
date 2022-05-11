@@ -40,7 +40,7 @@ class TiendaComponent extends React.Component {
                         <img src={c.Imagen} class="card-img-top" alt="..." />
                         <div class="card-body">
                             <h5 class="card-title">{c.Nombre}</h5>
-                            <p class="card-text">{c.Descripcion}</p>
+                            <p class="card-text">${c.Precio}</p>
                             <button class="btn btn-primary" onClick={()=>this.mostrarProducto(c)}>Ver Producto</button>
                         </div>
                     </div>
@@ -56,11 +56,11 @@ class TiendaComponent extends React.Component {
                 <div class="container-fluid justify-content-center">
                     <div class="SelectorTien">
                         <ul class="CategoriaTien">
-                            <li><a href="#">Todos</a></li>
-                            <li><a href="#">Padre</a></li>
-                            <li><a href="#">Madre</a></li>
-                            <li><a href="#">Felicitaciones</a></li>
-                            <li><a href="#">Graduacion</a></li>
+                            <li>Todos</li>
+                            <li>Padre</li>
+                            <li>Madre</li>
+                            <li>Felicitaciones</li>
+                            <li>Graduacion</li>
                         </ul>
                     </div>
 

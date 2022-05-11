@@ -4,43 +4,58 @@ import { withRouter } from "react-router";
 import { DomicilioController } from "../controller/DomicilioController";
 import {Utils} from '../../resources/Utils'; 
 
-
 class DomicilioComponent extends React.Component {
     constructor() {
         super();
-        this.DomicilioController = new DomicilioController();
+        this.domicilioController = new DomicilioController();
 
         //Almacena datos
         this.state = {
             domicilio:{
-                    Numero:' ',
-                    Calle:' ',
-                    Colonia:' ',
-                    Municipio:' ',
-                    Estado:' ',
-                    CodigoPostal:' ',
-                    idUsuario:sessionStorage.getItem("idUsuario")
-                    
-            }
+                Numero:' ',
+               Calle:' ',
+                Colonia:' ',
+                Municipio:' ',
+                Estado:' ',
+                CodigoPostal:' ',
+                idUsuario:sessionStorage.getItem("idUsuario")
+            },
+            domicilios: [{
+                Calle: ' ',
+                CodigoPostal: ' ',
+                Colonia: ' ',
+                Estado: ' ',
+                Municipio: ' ',
+                Numero: 0,
+                idDomicilio: 0
+            }]
         }
     }
-
 
     //Inicializa funciones
     componentDidMount() {
+        this.loadData();
+    }
+
+    async loadData(){
+        const datos = { idUsuario: sessionStorage.getItem("idUsuario") }; 
+        const respuestaH = await this.domicilioController.findHome(datos);
+
+        this.setState({ domicilios: respuestaH });
     }
 
     comprobacion= async event=>{    
-        event.preventDefault()
+        event.preventDefault();
 
         if(sessionStorage.getItem("idUsuario") === null){
-            Utils.swalError("necesita iniciar sesion para poder agregar una direccion!");
+            Utils.swalError("Necesita iniciar sesion para poder agregar una direccion!");
         }else{
-            let resp = await this.DomicilioController.insert(this.state.domicilio);
+            await this.domicilioController.insert(this.state.domicilio);
             Utils.swalSuccess("El domicilio fue agregado correctamente!");
-            setTimeout(()=>window.location.reload(true), 1500);
+            setTimeout(()=>window.location.reload(true), 1000);
         }
     }
+
     handleChange=e=> {
         this.setState({
             domicilio : {
@@ -50,10 +65,15 @@ class DomicilioComponent extends React.Component {
         })
     }
 
-    render() {
-        return (
-            <div class="container-fluid ">
-                <h1 style={{ color: 'red' }} >Domicilio</h1>
+    seleccionarDomicilio=(c)=>{
+        this.props.handler(1, c);
+    }
+
+    formulario(){
+        return(
+            <div>
+                <h3 style={{ color: 'red' }} >Agregar domicilio</h3>
+                <br/>
                 <div class="card">
                     <div class="card-header">
                         Ubicacion
@@ -62,7 +82,7 @@ class DomicilioComponent extends React.Component {
                         <form class="row g-3 needs-validation" 
                             onSubmit={this.comprobacion} novalidate>
                             <div class="col-md-4">
-                                <label for="validationCustom01" class="form-label">Numero</label>
+                                <label for="validationCustom01" class="form-label">Número</label>
                                 <input type="number" 
                                         class="form-control" 
                                         id="validationCustom01"
@@ -102,7 +122,7 @@ class DomicilioComponent extends React.Component {
                                         name="Estado" required/>
                             </div> 
                             <div class="col-md-4">
-                                <label for="validationCustom05" class="form-label">C.P.</label>
+                                <label for="validationCustom05" class="form-label">Código postal</label>
                                 <input type="number" 
                                         max="99999" 
                                         class="form-control" 
@@ -112,11 +132,68 @@ class DomicilioComponent extends React.Component {
                             </div>
 
                             <div class="col-12">
-                                <button class="btn btn-primary" onClick={()=>this.comprobacion} type="submit"> Enviar Formulario</button>
+                                <button class="btn btn-primary" onClick={()=>this.comprobacion} type="submit"> Agregar domicilio</button>
                             </div>
                         </form>
                     </div>
                 </div>
+            </div>
+        );
+    }
+
+    domicilios(){
+        return this.state.domicilios.map((c)=>
+            <div className="col-lg-12 col-md-12 col-sm-12 my-2" key={c.idDomicilio}>
+                <div class="card mx-2 p-4 cardDom" onClick={()=>this.seleccionarDomicilio(c)}>
+                    <div class="card-body">
+                        <div className="row">
+                            <div className="col-2">
+                                <i class="fi fi-rr-home"></i>
+                            </div>
+                            <div className="col-10">
+                                <h5 class="card-title">{c.Calle} {c.Numero}</h5>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <p class="card-text">Codigo Postal {c.CodigoPostal}</p>
+                            <p class="card-text">{c.Colonia}, {c.Municipio}, {c.Estado}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        )
+    }
+
+    comprobarDomicilios(){
+        if(this.state.domicilios.length > 0){
+            return(
+                <div className="row">
+                    <div className="col-lg-4 col-md-4">
+                        <h3 style={{ color: 'red' }} >Seleccionar domicilio</h3>
+                        <br/>
+                        {this.domicilios()}
+                    </div>
+                    <div className="col-lg-8 col-md-8">
+                        {this.formulario()}
+                    </div>
+                </div>
+            );
+        }else{
+            return(
+                <div className="row">
+                    <div className="col-lg-12 col-md-12">
+                        {this.formulario()}
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    render() {
+        return (
+            <div class="container-fluid my-2 p-4">
+                {this.comprobarDomicilios()}
             </div>
         )
     }

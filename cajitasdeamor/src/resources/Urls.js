@@ -30,7 +30,8 @@ export const Urls = {
         update:baseApi.shopping+'update',
         cancel:baseApi.shopping+'cancel',
         findDedicatoria:baseApi.shopping+'findDedicatoria',
-        findByUserId:baseApi.shopping+'findByUserId'
+        findByUserId:baseApi.shopping+'findByUserId',
+        actualizarDedicatoria:baseApi.shopping+'updateDed'
     },
     homeApi:{
         find:baseApi.home+'find',

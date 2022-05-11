@@ -26,7 +26,7 @@ import PagoComponent from "./Pago/component/PagoComponent";
 import DomicilioComponent from "./Domicilio/component/DomicilioComponent";
 import ComprasGridComponent from "./Compras/component/ComprasGridComponent";
 import MenuUsuarioComponent from "./MenuUsuario/component/MenuUsuarioComponent";
-import { event } from 'jquery';
+import CompraComponent from './Compras/component/CompraComponent';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -56,12 +56,12 @@ export default class App extends React.Component {
       <div class="container-fluid">
 
         <div class="row justify-content-center">
-          <img src={bannerlogC} class="rounded mx-auto d-block" style={{ height: '125px', width: 'auto' }} />
+          <img src={bannerlogC} class="rounded mx-auto d-block" alt='Banner' style={{ height: '125px', width: 'auto' }} />
         </div>
 
         <Navbar bg="dark" variant="dark" expand="lg">
           <Container>
-            <Navbar.Brand href="/"><img class="logopieimg" style={{ height: '60px', width: 'auto' }} src={logC} /></Navbar.Brand>
+            <Navbar.Brand href="/"><img class="logopieimg" alt='Logo' style={{ height: '60px', width: 'auto' }} src={logC} /></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
@@ -96,18 +96,17 @@ export default class App extends React.Component {
                 <Route path="/Pago" component={PagoComponent} />
                 <Route path="/Domicilio" component={DomicilioComponent} />
                 <Route path="/Compras" component={ComprasGridComponent} />
+                <Route path="/Compra" component={CompraComponent} />
                 <Route path="/" component={HomePageComponent} />
               </Switch>
             </div>
           </Router>
         </div>
 
-
-
-        <footer class="container align-items-end" style={{ background: '#212429', textAlign: 'center', minWidth: '100%' }}>
+        <footer class="container align-items-end p-4" style={{ background: '#212429', textAlign: 'center', minWidth: '100%' }}>
           <div class="row ">
             <div class="col-12 col-md">
-              <img class="logopieimg" src={logC} style={{ height: '60px', width: 'auto' }} />
+              <img class="logopieimg" src={logC} alt='Logo' style={{ height: '60px', width: 'auto' }} />
               <h5 class="text-white">Cajitas de Amor</h5>
             </div>
             <div class="col-6 col-md">

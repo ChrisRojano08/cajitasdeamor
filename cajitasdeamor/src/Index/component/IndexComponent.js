@@ -55,17 +55,18 @@ class HomePageComponent extends React.Component {
       <div class="container-fluid">
         <h1 style={{ color: 'red' }} >Inicio</h1>
         <div class="row justify-content-center">
-
-          <div className="card-header">
-            <div className="container-fluid mt-4" >
+          <div className="card-header bg-light">
+            <div className="container-fluid mt-4">
               <Carousel responsive={this.state.responsive} infinite={true}
                 autoPlay={true}
                 autoPlaySpeed={5000}>
                 {this.state.productos.map((x) =>
-                  <div className="slide">
-                    <div className="card shadow" >
-                      <img className="card-img-top" src={x.Imagen} height="50" width="300" alt="..." />
-                    </div>
+                  <div class="content">
+                      <div class="content-overlay"></div>
+                      <img class="content-image card-img-top" src={x.Imagen} height="50" width="300" alt="..." />
+                      <div class="content-details fadeIn-bottom">
+                        <h4 class="content-title">{x.Nombre}</h4>
+                      </div>
                   </div>
                 )}
               </Carousel>

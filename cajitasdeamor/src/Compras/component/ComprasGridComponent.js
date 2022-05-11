@@ -82,7 +82,7 @@ class ComprasGridComponent extends React.Component {
             case 'En construccion':
                 sele.value="1";
                 break;
-            case 'Llevando a paqueteria':
+            case 'Llevando a paquetería':
                 sele.value="2";
                 break;
             case 'En reparto':
@@ -145,8 +145,8 @@ class ComprasGridComponent extends React.Component {
                         name="catId" id={"select"+d.idCompra}
                         required>
                             <option value="0">En espera</option>
-                            <option value="1">En construccion</option>
-                            <option value="2">Llevando a paqueteria</option>
+                            <option value="1">En construcción</option>
+                            <option value="2">Llevando a paquetería</option>
                             <option value="3">En reparto</option>
                             <option value="4">En devolución</option>
                             <option value="5">Entregado</option>

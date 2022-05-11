@@ -1,11 +1,11 @@
 body {
-    /*background: url(https://images2.alphacoders.com/941/thumb-1920-941898.jpg) no-repeat center center fixed;*/
-    background: url("./resources/images/fondoPref.png") no-repeat center center fixed;
+    background: url("./resources/images/papelTapiz.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
+
 footer{
     background: red;
 }

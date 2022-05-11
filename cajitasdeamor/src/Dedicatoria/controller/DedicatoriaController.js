@@ -1,7 +1,7 @@
 import { Urls } from "../../resources/Urls";
 export class DedicatoriaController {
-    async findDedicatoria(data){
-        const respuesta = await fetch(Urls.shoppingApi.findDedicatoria,{
+    async actualizarDedicatoria(data){
+        const respuesta = await fetch(Urls.shoppingApi.actualizarDedicatoria,{
             'method': 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -12,7 +12,7 @@ class ProductoComponent extends React.Component {
 
         //Almacena datos
         this.state = {
-            producto:{
+            productos:{
                 idProducto:0,
                 Categoria:{
                     Descripcion:" "
@@ -20,7 +20,8 @@ class ProductoComponent extends React.Component {
                 Nombre:" ",
                 Precio: " ",
                 Descripcion:" ",
-                Imagen:" "
+                Imagen:" ",
+                Tamanio:' '
             },
             Cantidad:1
         }
@@ -32,11 +33,11 @@ class ProductoComponent extends React.Component {
         if(!this.props.location.data){
             this.props.history.push("/Tienda");
         }else{
-            this.setState({producto : this.props.location.data});
+            this.setState({productos : this.props.location.data});
 
             setTimeout(() => {
-                console.log(this.state.producto);
-                document.getElementById('imgProd').src = this.state.producto.Imagen;
+                console.log(this.state.productos);
+                document.getElementById('imgProd').src = this.state.productos.Imagen;
             }, 300);
         }
     }
@@ -48,7 +49,7 @@ class ProductoComponent extends React.Component {
     async agregarCarrito(){
         if(sessionStorage.getItem('idUsuario')){
             let datos={
-                idProducto: this.state.producto.idProducto,
+                idProducto: this.state.productos.idProducto,
                 idUsuario: sessionStorage.getItem('idUsuario'),
                 Cantidad: this.state.Cantidad
             }
@@ -64,6 +65,14 @@ class ProductoComponent extends React.Component {
         }else{
             document.getElementById('modalButton').click();
         }
+    }
+
+    irCompra(){
+        this.props.history.push({
+            pathname: '/Compra',
+            data: this.state,
+            anterior: 'producto'
+        })
     }
 
     render() {
@@ -91,15 +100,18 @@ class ProductoComponent extends React.Component {
                 <div className="col-lg-10 mt-4 ml-5">
                     <div className="row justify-content-center">
                         <div className="col-lg-4">
-                            <img src={D1} className="img-thumbnail" id="imgProd"></img>
+                            <img src={D1} className="img-thumbnail" alt="Producto" id="imgProd"></img>
                         </div>
                         <div className="col-lg-6">
-                            <h4>{this.state.producto.Nombre}</h4>
+                            <h4>{this.state.productos.Nombre}</h4>
                             <br/>
                             <h5>Descripción:</h5>
-                            <h6>{this.state.producto.Descripcion}</h6>
+                            <h6>{this.state.productos.Descripcion}</h6>
                             <br/>
-                            <h4>${this.state.producto.Precio}</h4>
+                            <h5>Tamaño:</h5>
+                            <h6>{this.state.productos.Tamanio}</h6>
+                            <br/>
+                            <h4>${this.state.productos.Precio}</h4>
                             <br/>
                             <form>
                                 <div class="md-3 position-relative">
@@ -122,7 +134,8 @@ class ProductoComponent extends React.Component {
                             <br/>
                             <div className="row justify-content-center">
                                 <div className="col-lg-10 m-4">
-                                    <button type="button" className="btn btn-primary" style={{width:'40%', height:'60%'}}><h5>Comprar</h5></button>
+                                    <button type="button" className="btn btn-primary" style={{width:'40%', height:'60%'}}
+                                     onClick={()=>this.irCompra()}><h5>Comprar</h5></button>
                                     <button type="button"
                                         className="btn btn-success m-4" style={{width:'40%', height:'60%'}}
                                         onClick={()=>this.agregarCarrito()}><h5>Agregar al carrito</h5></button>
