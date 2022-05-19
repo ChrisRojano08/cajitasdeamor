@@ -1,14 +1,30 @@
 import React from "react";
 import {withRouter} from "react-router-dom";
+import { Utils } from "../../resources/Utils";
+import {ProductosController} from "../controller/ProductosController";
 
 class ProductosFormComponent extends React.Component{
 
     constructor(props) {
         super(props)
+        this.productosController = new ProductosController();
         this.state = {
             productos:{
-                id: " ",
-                name:"",
+                idProducto: " ",
+                Nombre:"",
+                Descripcion:" ",
+                Categoria:{
+                    idCategoria:0,
+                    Descripcion:" "
+                },
+                idCategoria:0,
+                Precio:" ",
+                Tamanio:" ",
+                Imagen:" "
+            },
+            Categoria:{
+                idCategoria:0,
+                Descripcion:" "
             },
             categorias:{
                 descripcion: "",
@@ -18,15 +34,21 @@ class ProductosFormComponent extends React.Component{
     }
 
     componentDidMount() {
-    }
-
-    previewImage = _ =>{
-        var reader = new FileReader();         
-        reader.readAsDataURL(document.getElementById('qrImage').files[0]);   
-        
-        reader.onload = function (e) {             
-            document.getElementById('uploadPreview2').src = e.target.result;         
-        };  
+        if(this.props.form){
+            this.setState({productos:this.props.form});
+            setTimeout(() => {
+                this.setState({productos:this.props.form});
+                this.setState({Categoria:this.props.form.Categoria})
+            }, 500);
+            setTimeout(() => {
+                document.getElementById('uploadPreview').src = this.state.productos.Imagen;
+                document.getElementById('ImagenIn').value = this.state.productos.Imagen;
+                document.getElementById('PrecioIn').value = this.state.productos.Precio;
+                document.getElementById('TamanioIn').value = this.state.productos.Tamanio;
+                document.getElementById('idCategoriaIn').value = this.state.Categoria.idCategoria;
+                document.getElementById('DescripcionIn').value = this.state.productos.Descripcion;
+            }, 800);  
+        }
     }
 
     back = _ =>{
@@ -39,8 +61,17 @@ class ProductosFormComponent extends React.Component{
 
     handleChange=e=> {
         this.setState({
-            bussinesVO : {
-                ...this.state.bussinesVO,
+            productos : {
+                ...this.state.productos,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
+    handleChangeCat=e=> {
+        this.setState({
+            Categoria : {
+                ...this.state.Categoria,
                 [e.target.name]: e.target.value
             }
         })
@@ -48,9 +79,41 @@ class ProductosFormComponent extends React.Component{
 
     buttonS(){
         if(this.props.form){
-            return( <input className="btn btn-success btn-block" type="submit" value="Editar producto"/>);
+            return( <center><input className="btn btn-success btn-block btn-lg" type="submit" value="Editar producto"/></center>);
         }else{
-            return( <input className="btn btn-success btn-block" type="submit" value="Registrar producto"/>);
+            return( <center><input className="btn btn-success btn-block btn-lg" type="submit" value="Registrar producto"/></center>);
+        }
+    }
+
+    edit=async e=>{
+        e.preventDefault();
+
+        this.state.productos.idCategoria = this.state.Categoria.idCategoria
+
+        let resp = await this.productosController.update(this.state.productos);
+
+        console.log(resp[0].status);
+
+        if(resp[0].status==='Ok'){
+            Utils.swalSuccess(resp[0].Mensaje);
+        }else{
+            Utils.swalError(resp.exception);
+        }
+    }
+
+    insert=async e=>{
+        e.preventDefault();
+
+        this.state.productos.idCategoria = this.state.Categoria.idCategoria
+
+        let resp = await this.productosController.insert(this.state.productos);
+
+        console.log(resp);
+
+        if(resp[0].status==='Ok'){
+            Utils.swalSuccess(resp[0].Mensaje);
+        }else{
+            Utils.swalError(resp.exception);
         }
     }
 
@@ -78,32 +141,53 @@ class ProductosFormComponent extends React.Component{
         }
     }
 
+    cargarImagen = () =>{
+        let url = document.getElementById('ImagenIn').value;
+        document.getElementById('uploadPreview').src = url;
+    }
+
     renderForm(){
         return<table className="table table-dark table-striped">
         <tbody>
             <tr>
-                <div className="form-row">
+                <div className="row">
                     <br/>
-                    <div className="col-md-6 p-2">
-                        <div className="text-center">
-                            <div  className="p-4">
-                                <img id="uploadPreview2"
-                                src="https://drive.google.com/uc?export=view&id=1ZZpRLvGV02-M4Kstjy5JI2Z_EirFsj1z"
-                                className="img-thumbnail"
-                                width="75%"
-                                alt="Vista previa"
+                    <div className="col-md-12 col-lg-4 col-sm-12 p-2">
+                    <div className="text-center">
+                            <div className="p-4">
+                                <img id="uploadPreview"
+                                    src="https://drive.google.com/uc?export=view&id=1ZZpRLvGV02-M4Kstjy5JI2Z_EirFsj1z"
+                                    className="img-thumbnail"
+                                    width="100%"
+                                    alt="Vista previa"
                                 />
                             </div>
                         </div>
                         <div>
-                            <div className="custom-file">
-                                <input type="file"  className="form-control" id="qrImage" lang="es"
-                                onChange={(event)=> { this.previewImage() }}
-                                />
+                            <div className="input-group mb-3">
+                                <input type="text"
+                                    name="Imagen"
+                                    id="ImagenIn"
+                                    className="form-control"
+                                    placeholder="Inserte la url..."
+                                    aria-label="Inserte la url..."
+                                    aria-describedby="basic-addon2"
+                                    required
+                                    onChange={this.handleChange}/>
+                                <div className="input-group-append">
+                                    <button className="btn btn-primary"
+                                        type="button"
+                                        onClick={()=> {this.cargarImagen()}}
+                                    >
+                                        Verificar
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 p-2">
+                    <div className="col-md-1 col-lg-2 col-sm-1">
+                    </div>
+                    <div className="col-md-12 col-lg-5 col-sm-12 p-2">
                         <br/>
                         <div className="form-row">
                             <div className="p-2">
@@ -112,7 +196,9 @@ class ProductosFormComponent extends React.Component{
                             <div className="p-2">
                                 <input className="form-control"
                                     type="text"
-                                    name="name"
+                                    name="Nombre"
+                                    defaultValue={this.state.productos.Nombre}
+                                    onChange={this.handleChange}
                                     required
                                 />
                             </div>
@@ -125,8 +211,10 @@ class ProductosFormComponent extends React.Component{
                             <div className="p-2">
                                 <input className="form-control"
                                     type="text"
-                                    name="precio"
+                                    name="Precio"
+                                    id="PrecioIn"
                                     placeholder="$200.00"
+                                    onChange={this.handleChange}
                                     required
                                 />
                             </div>
@@ -139,8 +227,10 @@ class ProductosFormComponent extends React.Component{
                             <div className="p-2">
                                 <input className="form-control"
                                     type="text"
-                                    name="tamm"
+                                    name="Tamanio"
+                                    id="TamanioIn"
                                     placeholder="20x20"
+                                    onChange={this.handleChange}
                                     required
                                 />
                             </div>
@@ -153,7 +243,9 @@ class ProductosFormComponent extends React.Component{
                             <div className="p-2">
                                 <select className="form-control"
                                     aria-label=".form-select-lg example"
-                                    name="catId"
+                                    name="idCategoria"
+                                    id="idCategoriaIn"
+                                    onChange={this.handleChangeCat}
                                     required>
                                     <option value="1">Graduacion</option>
                                     <option value="2">14 de febrero</option>
@@ -174,7 +266,10 @@ class ProductosFormComponent extends React.Component{
                     <textarea className="form-control"
                            type="text"
                            maxLength="200"
-                           name="description"/>
+                           name="Descripcion"
+                           id="DescripcionIn"
+                           onChange={this.handleChange}
+                           />
                 </td>
             </tr>
             <br/>
@@ -202,7 +297,7 @@ class ProductosFormComponent extends React.Component{
                             <br/><br/>
                             <div className="card-body">
                                 <div className="container-fluid">
-                                    <div className="table-responsive p-2">
+                                    <div className="table-responsive p-4">
                                         {this.formS()}
                                     </div>
                                 </div>
@@ -214,6 +309,11 @@ class ProductosFormComponent extends React.Component{
                                     </div>
                                 </div>
                             </div>
+                                <div className="row">
+                                    <center><div class="col-6"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div></center>
+                                    <br/>
+                                </div>
+                                <br/><br/>
                         </div>
                     </div>
                 </div>

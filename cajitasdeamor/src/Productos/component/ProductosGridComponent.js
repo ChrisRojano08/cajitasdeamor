@@ -17,12 +17,13 @@ class ProductosGridComponent extends React.Component {
             },
             page : 1,
             cardValue: 0,
+            form: [],
             data: {
                 data : [],
                 total : 0
             },
-            form: [],
-            categories:[{idProducto:" ", Nombre:" ", Precio:" ", Tamanio:" ", Categoria:{Descripcion:" "}}]
+            products:[{idProducto:" ", Nombre:" ", Precio:" ", Tamanio:" ", Categoria:{Descripcion:" "}}],
+            idProducto: -1
         }
     }
 
@@ -31,29 +32,51 @@ class ProductosGridComponent extends React.Component {
     }
 
     async loadData(){
-        const respuesta = await fetch(`http://localhost:5000/product/findAll`,{
-                'method':'POST',
-                 headers : {
-                'Content-Type':'application/json'
-          },
-        })
-        .then(response => response.json())
-        .catch(error => console.log(error))
+        let respuesta = await this.productosController.findAll();
+        this.setState({ products: respuesta });
+    }
 
-        console.log(respuesta)
+    changeStateFinal = (data) => {
+        this.setState({cardValue: data.idProducto, form: data});
+    }
 
-        this.setState({categories : respuesta});
-        console.log(this.state.categories);
+    back = _ =>{
+        window.history.back();
+    }
+
+    setDatos = (id) =>{
+        this.setState({idProducto:id});
+    }
+
+    delete = () => {
+        this.deleteCart();
+    }
+
+    async deleteCart(){
+        let datos = {idProducto: this.state.idProducto};
+        let respuesta = await this.productosController.delete(datos);
+
+        if(respuesta.status === 'Ok'){
+            Utils.swalSuccess(respuesta.Mensaje);
+            setTimeout(()=> window.location.reload(true), 800);
+        }else{
+            Utils.swalError(respuesta.exception);
+        }
     }
 
     renderBody() {
-        return this.state.categories.map(d =>
+        return this.state.products.map(d =>
             <tr key={d.idProducto}>
                  <td>{d.Nombre}</td>
                  <td>{d.Precio}</td>
                  <td>{d.Tamanio}</td>
                  <td>{d.Categoria.Descripcion}</td>
-                 <td><a href="/productosForm" class="btn btn-primary">Editar</a></td>
+                 <td>
+                    <button onClick={() => this.changeStateFinal(d)} class="btn btn-primary">Editar</button> &nbsp;
+                    <button type="button" class="btn btn-danger"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            onClick={() => this.setDatos(d.idProducto)}>Eliminar</button>
+                 </td>
             </tr>
         )
     }
@@ -63,7 +86,7 @@ class ProductosGridComponent extends React.Component {
             <div class="d-flex">
                 <div class="ml-auto">
                     <div className="row justify-content-right" >
-                        <a href="/productForm" class="btn btn-success me-2">
+                        <a href="/productosForm" class="btn btn-success me-2">
                             Agregar
                         </a>
                     </div>
@@ -74,12 +97,28 @@ class ProductosGridComponent extends React.Component {
 
     renderCard() {
         return <div className="container-fluid py-3 my-6">
+            
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmar eliminacion</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">Desea eliminar este producto?</div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick={() =>this.delete()}>Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                         <div className="col-lg-12 align-self-center">
                             <div className="card shadow bg-dark text-white" style={{ minHeight: "75%" }}>
                                 <div className="card-header">
                                     <h1 className="text-center">Productos</h1>
                                 </div>
-
                                 <div className="card-body">
                                     <div className="container-fluid contProd">
                                         {this.newBusinessBotton()} 
@@ -106,9 +145,15 @@ class ProductosGridComponent extends React.Component {
                                     </div>
                                 </div>
 
+                                <div className="row">
+                                    <center><div class="col-6"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div></center>
+                                    <br/>
+                                </div>
+                                <br/><br/>
                             </div>
                         </div>
                 </div>
+                
     }
 
 render() {
