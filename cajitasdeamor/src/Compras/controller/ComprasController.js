@@ -28,6 +28,20 @@ export class ComprasController {
     return respuesta;
   }
 
+  async insertar(data){
+    const respuesta = await fetch(Urls.shoppingApi.update, {
+  'method': 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data)
+})
+  .then(response => response.json())
+  .catch(error => console.log(error))
+
+  return respuesta;
+}
+
   async cancelarCompra(data){
     const respuesta = await fetch(Urls.shoppingApi.cancel, {
   'method': 'POST',

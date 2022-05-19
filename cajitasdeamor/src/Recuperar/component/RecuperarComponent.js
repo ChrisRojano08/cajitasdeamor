@@ -26,7 +26,7 @@ class RecuperarComponent extends React.Component {
         e.preventDefault();
         console.log(e.target);
         emailjs.sendForm('service_q03spzk', 'template_s65doos', e.target, 'rRgb6F4Wl1gVg9TDY').then(res=>{
-            if(res.text=='OK'){
+            if(res.text==='OK'){
                 Utils.swalSuccess("Codigo de verifiación enviado correctamente");
             }else{
                 Utils.swalError("No se pudo enviar el codigo");
@@ -37,7 +37,7 @@ class RecuperarComponent extends React.Component {
     findEmail = async event => {
         event.preventDefault();
         let respuesta = await this.RecuperarController.findEmail(this.state.email);
-        if (respuesta.status == "Ok") {
+        if (respuesta.status === "Ok") {
             Utils.swalSuccess("Se encontro el correo");
             this.beforeASubmit();
             this.sendEmail(event);
@@ -59,7 +59,7 @@ class RecuperarComponent extends React.Component {
                 Contrasenia: formPass
             }
             let respuesta = await this.RecuperarController.changePass(data);
-            if (respuesta.status == "Ok") {
+            if (respuesta.status === "Ok") {
                 Utils.swalSuccess("Se cambio la contraseña correctamente!");
                 console.log(respuesta);
                 
@@ -99,12 +99,12 @@ class RecuperarComponent extends React.Component {
                 <h1 style={{ color: 'red' }} >Recuperar</h1>
                 <div class="card text-dark bg-light mb-3 col-md-6 mx-auto">
                             <div class="card-header">
-                                Recuperar Contraseña
+                                Cambiar contraseña
                             </div>
                             <div class="card-body">
                                 <form id="formEmail" style={{display: 'block'}} class="row g-4 needs-validation justify-content-center " onSubmit={this.findEmail} novalidate>
                                     <div class="md-3 position-relative" >
-                                        <label for="exampleInputEmail1" class="form-label"><h5>Email</h5></label>
+                                        <label for="exampleInputEmail1" class="form-label"><h5>Correo</h5></label>
                                         <input type="email" class="form-control" id="exampleInputEmail1" name='Correo' onChange={this.handleChange} aria-describedby="emailHelp" required />
                                         <input type="number" id="codeGen" name='codigo'  style={{display: 'none'}}/> 
                                     </div>
@@ -114,8 +114,9 @@ class RecuperarComponent extends React.Component {
                                 </form>
                                 <form id="formPass" style={{display: 'none'}} class="row g-4 needs-validation justify-content-center " onSubmit={this.changePass} novalidate>
                                     <div class="md-3 position-relative">
-                                        <h6>Se ha enviado un codigo al correo para cambiar la contraseña</h6>
-                                        <h5 class="card-title">Codigo</h5>
+                                        <h6>Se ha enviado un código al correo para cambiar la contraseña</h6>
+                                        <br/>
+                                        <h5 class="card-title">Código</h5>
                                         <input type="text" class="form-control" id="codeEmail" required />
                                     </div>
                                     <div class="md-3 position-relative">
@@ -127,7 +128,7 @@ class RecuperarComponent extends React.Component {
                                         <input type="password" class="form-control" id="passConfirm" placeholder="Confirmar contraseña" required />
                                     </div>        
                                     <div class="col-3">
-                                        <button class="btn btn-primary" type="submit">Restablecer</button>
+                                        <button class="btn btn-primary" type="submit">Cambiar</button>
                                     </div>
                                 </form>
                             </div>

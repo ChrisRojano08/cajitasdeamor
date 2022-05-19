@@ -38,7 +38,7 @@ class ContactanosComponent extends React.Component {
     render() {
         return (
             <div class="container-fluid ">
-                <h1 style={{ color: 'red' }} >Contactanos</h1>
+                <h1 style={{ color: 'red' }} >Contáctanos</h1>
                 <br/>
                 <h4 style={{ color: 'black', fontFamily: '10px' }}>Siempre estamos abiertos a nuevas propuestas</h4>
                 <br/>
@@ -47,27 +47,27 @@ class ContactanosComponent extends React.Component {
             <div className="col-lg-10">
                 <form class="row g-2 needs-validation justify-content-center p-4" novalidate style={{ background: '#dddddd' }} onSubmit={this.enviarEmail}>
                     <div class="col-md-5 position-relative">
-                        <label for="validationTooltip01" class="form-label">Nombre</label>
+                        <label for="validationTooltip01" class="form-label"><h5>Nombre</h5></label>
                         <input type="text" class="form-control" id="validationTooltip01" name="nombre" required />
                     </div>
                     <div class="col-md-5 position-relative">
-                        <label for="validationTooltip02" class="form-label">Apellidos</label>
+                        <label for="validationTooltip02" class="form-label"><h5>Apellidos</h5></label>
                         <input type="text" class="form-control" id="validationTooltip02" name="apellidos" required />
                     </div>
                     <div class="col-md-5 position-relative">
-                        <label for="validationTooltip03" class="form-label">Motivo</label>
+                        <label for="validationTooltip03" class="form-label"><h5>Motivo</h5></label>
                         <input type="text" class="form-control" id="validationTooltip03" name="motivo" required />
                     </div>
                     <div class="col-md-5 position-relative">
-                        <label for="exampleInputEmail1" class="form-label">Correo</label>
+                        <label for="exampleInputEmail1" class="form-label"><h5>Correo</h5></label>
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="correo"/>
                     </div>
                     <div class="col-md-10 position-relative">
-                        <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+                        <label for="exampleFormControlTextarea1" class="form-label"><h5>Mensaje</h5></label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="mensaje"></textarea>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-primary mt-4" type="submit" style={{width:'100%'}}>Enviar</button>
+                        <button class="btn btn-primary mt-4" type="submit" style={{width:'100%'}}><h5>Enviar</h5></button>
                     </div>
                     <br/>
                 </form>

@@ -38,6 +38,7 @@ class LoginComponent extends React.Component {
             sessionStorage.setItem("tipo", respuesta[0].Tipo);
             sessionStorage.setItem("idUsuario", respuesta[0].idUsuario);
             sessionStorage.setItem("nombre", respuesta[0].Nombre);
+            sessionStorage.setItem("correo", respuesta[0].Correo);
             setTimeout(this.props.history.push('/'), 1500);
             setTimeout(window.location.reload(true), 1700);
         }else{
@@ -106,19 +107,19 @@ class LoginComponent extends React.Component {
     render() {
         return (
             <div class="container-fluid ">
-                <h1 style={{ color: 'red' }} className="mt-2">Login</h1>
+                <br/>
 
                 <div class="row justify-content-center aling-item-center row-cols-1 row-cols-md-2 g-4 mt-2">
                     <div class="col">
                         <div class="card text-dark bg-light mb-3">
                             <div class="card-header">
-                                Inicio de sesion
+                                Inicio de sesión
                             </div>
                             <div class="card-body">
                                 <form class="row g-4 needs-validation justify-content-center "
                                     onSubmit={this.findUs} novalidate>
                                     <div class="md-3 position-relative">
-                                        <label for="exampleInputEmail1" class="form-label"><h5>Email</h5></label>
+                                        <label for="exampleInputEmail1" class="form-label"><h5>Correo</h5></label>
                                         <input type="email"
                                             class="form-control"
                                             id="exampleInputEmail0"
@@ -135,10 +136,10 @@ class LoginComponent extends React.Component {
                                             onChange={this.handleChange}
                                             placeholder=" " required />
                                     </div>
-                                    <a href="/Recuperar"><label class="form-label">Recuperar Contraseña</label> </a>
+                                    <a href="/Recuperar" className="pe-auto"><label class="form-label">Recuperar Contraseña</label> </a>
                                     
                                     <div class="col-3">
-                                        <button class="btn btn-primary" type="submit">Iniciar Sesion</button>
+                                        <button class="btn btn-primary" type="submit">Iniciar sesión</button>
                                     </div>
                                 </form>
 
@@ -174,7 +175,7 @@ class LoginComponent extends React.Component {
                                         required />
                                     </div>
                                     <div class="md-3 position-relative">
-                                        <label for="exampleInputEmail1" class="form-label"><h5>Email</h5></label>
+                                        <label for="exampleInputEmail1" class="form-label"><h5>Correo</h5></label>
                                         <input type="email"
                                             class="form-control" 
                                             id="exampleInputEmail1"

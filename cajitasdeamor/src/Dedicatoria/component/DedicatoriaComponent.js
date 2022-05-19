@@ -1,60 +1,176 @@
 import React from "react";
 import '../../resources/css/producto.css';
-import D1 from '../../resources/images/D1.jpeg';
 import { withRouter } from "react-router";
 import {DedicatoriaController} from "../controller/DedicatoriaController";
+import ImgsProds from '../../MenuUsuario/component/ProdImagesComponent';
+import { Utils } from "../../resources/Utils";
 
 class ProductoComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.comprasController = new DedicatoriaController();
+        this.dedicatoriaController = new DedicatoriaController();
 
         //Almacena datos
         this.state = {
-            idCompra: -1,
-            compra: [{
-                Dedicatoria: " ",
-                Nombre: " "
-            }]
+            compra: [[{
+                idCompra: 0,
+                Usuario: [{
+                    Nombre: ' ',
+                    Apellido: ' ',
+                    idUsuario: ' '
+                }],
+                Fecha: ' ',
+                Dedicatoria: ' ',
+                Nombre: ' ',
+                Productos: [[{
+                    idProducto: 0,
+                    Nombre: 'a',
+                    Imagen: 's'
+                }],[{
+                        idProducto: 0,
+                        Nombre: 'a',
+                        Imagen: 's' 
+                    }
+                ]],
+                Estado: ' ',
+                MetodoPago: {},
+                Domicilio: {},
+                Imagen: ' '
+            }]],
+            Dedicatoria:{
+                Dedicatoria: ' ',
+                Nombre: ' ',
+                idCompra: ' '
+            }
         }
     }
 
-
     //Inicializa funciones
     componentDidMount() {
-        //this.loadData();
+        if(this.props.location.anterior === 'menuUsuario'){
+            this.setState({compra: this.props.location.data});
+            
+            setTimeout(() => {
+                const datosDed={
+                    Dedicatoria: this.state.compra.Dedicatoria,
+                    Nombre: this.state.compra.Nombre,
+                    idCompra: this.state.compra.idCompra
+                }
+                this.setState({Dedicatoria: datosDed});
+            }, 300);
+            
+        }
     }
 
-    async loadData() {
-        let respuesta = await this.DedicatoriaController.findDedicatoria();
-        this.setState({compra: respuesta});
+    modificarDedicatoria = async event =>{
+        event.preventDefault();
+
+        if(this.state.Dedicatoria.Dedicatoria !== '' || this.state.Dedicatoria.Dedicatoria !== ' '){
+            if(this.state.Dedicatoria.Nombre !== '' || this.state.Dedicatoria.Nombre !== ' '){
+                const respuesta = await this.dedicatoriaController.actualizarDedicatoria(this.state.Dedicatoria);
+
+                if(respuesta.status === 'Ok'){
+                    Utils.swalSuccess(respuesta.Mensaje);
+                }else{
+                    Utils.swalError(respuesta.exception);
+                }
+
+                setTimeout(() => {
+                    this.props.history.push('/menuUsuario');
+                }, 500);
+            }
+        }
+    }
+
+    handleChange=e=> {
+        this.setState({
+            Dedicatoria : {
+                ...this.state.Dedicatoria,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
+    seleccionarDedicatoria=event=>{
+        event.preventDefault();
+
+        if(this.state.Dedicatoria.Dedicatoria !== "" && this.state.Dedicatoria.Dedicatoria !== " "){
+            if(this.state.Dedicatoria.Nombre !== "" && this.state.Dedicatoria.Nombre !== " "){
+                this.props.handler(3, this.state.Dedicatoria);
+            }
+        }
+    }
+
+    mostrarFormUpd=_=>{
+        return(
+            <div className="row p-4">
+                <h1 style={{ color: 'red' }} className="p-4">Modificar dedicatoria</h1>
+                <br/>
+                <div className="col-lg-4 col-md-4">
+                    <ImgsProds data={this.state.compra.Productos} />
+                </div>
+                <div className="col-lg-6 col-md-6">
+                    <form class="row g-4 needs-validation justify-content-center "
+                        onSubmit={this.modificarDedicatoria}>
+                        <div class="md-3 position-relative">
+                            <label class="form-label"><h5>Nombre</h5></label>
+                            <input type="text"
+                                class="form-control"
+                                name='Nombre'
+                                value={this.state.Dedicatoria.Nombre}
+                                onChange={this.handleChange} required />
+                        </div>
+                        <div class="md-3 position-relative">
+                            <h5 class="card-title">Dedicatoria</h5>
+                            <textarea class="form-control" name="Dedicatoria"
+                            rows="3" value={this.state.Dedicatoria.Dedicatoria}
+                            onChange={this.handleChange}  required/>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-primary" type="submit">Modificar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        );
+    }
+
+    mostrarFormInsert=_=>{
+        return(
+            <div className="row p-4 justify-content-center">
+                <h3 style={{ color: 'red' }} className="p-4">Agregar dedicatoria</h3>
+                <br/>
+                <div className="col-lg-6 col-md-6">
+                    <form class="row g-4 needs-validation justify-content-center "
+                        onSubmit={this.seleccionarDedicatoria}>
+                        <div class="md-3 position-relative">
+                            <label class="form-label"><h5>Nombre</h5></label>
+                            <input type="text"
+                                class="form-control"
+                                name='Nombre'
+                                value={this.state.Dedicatoria.Nombre}
+                                onChange={this.handleChange} required />
+                        </div>
+                        <div class="md-3 position-relative">
+                            <h5 class="card-title">Dedicatoria</h5>
+                            <textarea class="form-control" name="Dedicatoria"
+                            rows="3" value={this.state.Dedicatoria.Dedicatoria}
+                            onChange={this.handleChange}  required/>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-primary" type="submit">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        );
     }
 
     render() {
         return (
-            <div class="container-fluid ">
-                <h1 style={{ color: 'red' }} >Desayuno</h1>
-                <div class="ContenedorProducto">
-                    <div class="imgProducto">
-                        <img class="D1Product" src={D1} />
-                    </div>
-                    <div class="InformacionProducto">
-                    <div class="DesProducto">
-                            Nombre:<br />
-                        </div>
-                        <input type="text" class="form-control" id="validationCustom01"  required/>
-                        <div class="DesProducto">
-                            Dedicatoria:<br />
-                        </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <div class="BotonesProducto">
-                            <div class="btn-1Productos">
-                                <button class="AgregarCarritoProducto">Guardar dedicatoria</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container-fluid my-4">
+                <div className="row">
+                    {this.props.productos ? <>{this.mostrarFormInsert()}</> : <>{this.mostrarFormUpd()}</>} 
                 </div>
             </div>
         )

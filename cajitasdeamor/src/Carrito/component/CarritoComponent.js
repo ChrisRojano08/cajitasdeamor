@@ -43,10 +43,7 @@ class CarritoComponent extends React.Component {
         this.setState({ Total: respuesta[1].Total });
         this.setState({ productos: respuesta[0] });
 
-        console.log(datos);
-        console.log(respuesta);
         console.log(this.state.productos);
-        console.log(this.state.Total);
     }
 
     delete = () => {
@@ -76,6 +73,15 @@ class CarritoComponent extends React.Component {
         );
     }
     
+    irCompra(){
+        this.props.history.push({
+            pathname: '/Compra',
+            data: this.state.productos,
+            total: this.state.Total,
+            anterior: 'carrito'
+        })
+    }
+
     setDatos = (id) =>{
         this.setState({idCarrito:id});
     }
@@ -84,7 +90,7 @@ class CarritoComponent extends React.Component {
         return this.state.productos.map((c)=>
             <div className="col-lg-4 p-2"  key={c.idCarrito}>
                 <div class="card text-center">
-                    <img class="card-img-top" src={c.Producto[0].Imagen} alt="Card image cap"/>
+                    <img class="card-img-top" src={c.Producto[0].Imagen} alt="Card"/>
                     <div class="card-body">
                         <h5 class="card-title">{c.Producto[0].Nombre}</h5>
                     </div>
@@ -108,24 +114,24 @@ class CarritoComponent extends React.Component {
         <div class="row justify-content-center">
                     <div className="col-lg-11">
                         <div className="row">
-                            <div className="col-lg-12 bg-dark text-white p-4">
+                            <div className="col-lg-12 bg-light p-4">
                                 <h4>Productos</h4>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="card-group col-lg-9 bg-secondary cardCarrito">
+                            <div className="card-group col-lg-9 bg-light cardCarrito">
 
                                 {this.productosCarrito()}
 
                             </div>
-                                <div className="col-lg-3 bg-dark p-3 text-white">
+                                <div className="col-lg-3  bg-light p-3">
                                         <h3>Total</h3>
                                         <br/>
                                         <h3>${this.state.Total}</h3>
                                         <br/>
-                                        <button className="btn btn-primary" style={{width:'80%', marginLeft:'10%'}}><h5 className="text-white">Dedicatoria</h5></button>
-                                        <br/><br/>
-                                        <button className="btn btn-success" style={{width:'80%', marginLeft:'10%'}}><h5>Comprar</h5></button>
+                                        <button className="btn btn-success" style={{width:'80%', marginLeft:'10%'}}
+                                            onClick={()=>this.irCompra()}>
+                                            <h5>Comprar</h5></button>
                                         <br/>
                                 </div> 
                         </div>
@@ -137,6 +143,10 @@ class CarritoComponent extends React.Component {
     render() {
         return (
             <div class="container-fluid ">
+                <h1 style={{ color: 'red' }} >Carrito</h1>
+                <br/>
+                    {sessionStorage.getItem("nombre") ? this.renderCarrito() : this.renderNoLogeado()}
+                <br/><br/>
                 <div class="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
@@ -152,11 +162,6 @@ class CarritoComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <h1 style={{ color: 'red' }} >Carrito</h1>
-                <br/>
-                    {sessionStorage.getItem("nombre") ? this.renderCarrito() : this.renderNoLogeado()}
-                <br/><br/>
             </div>
            
         )

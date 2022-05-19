@@ -31,7 +31,8 @@ class MenuSuperAdminComponent extends React.Component {
     logout = event => {
         event.preventDefault()
         sessionStorage.clear();
-        this.props.history.push('/Login')
+        this.props.history.push('/login')
+        setTimeout(() => window.location.reload(true), 1500);
     }
 
     render() {
