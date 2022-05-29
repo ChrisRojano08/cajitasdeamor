@@ -1,0 +1,63 @@
+name: Deploy
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: build artifact
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+    - name: Install dependencies
+      run: |
+        if [ -e yarn.lock ]; then
+        yarn install --frozen-lockfile
+        elif [ -e package-lock.json ]; then
+        npm ci
+        else
+        npm i
+        fi
+    - name: Build
+      run: npm run build
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: build
+    - name: Pakage the build
+      run: |
+        cd build
+        listaArchivos=`ls`
+        zip -r ../CA-build.zip $listaArchivos
+    - name: Copy the build to the EC2 instance
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key_path: "devops/cajitasdeamor.pem"
+        source: "CA-build.zip"
+        target: "/home/projects/builds"
+
+  deploy:
+    needs: [ build ]
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy artifact
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key_path: "devops/cajitasdeamor.pem"
+        script: |
+          cd /home/projects/builds
+          sudo mv CA-build.zip /var/www/html/react
+          cd /var/www/html/react
+          sudo unzip -o CA-build.zip
+          sudo rm CA-build.zip
+          systemctl restart nginx
+    
+
+
