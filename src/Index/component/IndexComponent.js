@@ -92,7 +92,7 @@ class HomePageComponent extends React.Component {
               <div className="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
                 <img src={D1} className="card-img-top" alt="..." />
                 <div className="card-body">
-                  <h5 className="card-title">Desayuno 1 </h5>
+                  <h5 className="card-title">Desayuno 2 </h5>
                   <p className="card-text">Desayuno complementario para cualquier dia,
                     el cual contien, un cuernito, fruta con yogurt,
                     jugo y un cuernito preparado</p>
@@ -104,7 +104,7 @@ class HomePageComponent extends React.Component {
               <div className="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
                 <img src={D1} className="card-img-top" alt="..." />
                 <div className="card-body">
-                  <h5 className="card-title">Desayuno 1 </h5>
+                  <h5 className="card-title">Desayuno 3 </h5>
                   <p className="card-text">Desayuno complementario para cualquier dia,
                     el cual contien, un cuernito, fruta con yogurt,
                     jugo y un cuernito preparado</p>
