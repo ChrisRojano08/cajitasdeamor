@@ -52,20 +52,20 @@ class HomePageComponent extends React.Component {
 
   render() {
     return (
-      <div class="container-fluid">
+      <div className="container-fluid">
         <h1 style={{ color: 'red' }} >Inicio</h1>
-        <div class="row justify-content-center">
+        <div className="row justify-content-center">
           <div className="card-header bg-light">
             <div className="container-fluid mt-4">
               <Carousel responsive={this.state.responsive} infinite={true}
                 autoPlay={true}
                 autoPlaySpeed={5000}>
                 {this.state.productos.map((x) =>
-                  <div class="content">
-                      <div class="content-overlay"></div>
-                      <img class="content-image card-img-top" src={x.Imagen} height="50" width="300" alt="..." />
-                      <div class="content-details fadeIn-bottom">
-                        <h4 class="content-title">{x.Nombre}</h4>
+                  <div className="content" key={x.idProducto}>
+                      <div className="content-overlay"></div>
+                      <img className="content-image card-img-top" src={x.Imagen} height="50" width="300" alt="..." />
+                      <div className="content-details fadeIn-bottom">
+                        <h4 className="content-title">{x.Nombre}</h4>
                       </div>
                   </div>
                 )}
@@ -75,40 +75,40 @@ class HomePageComponent extends React.Component {
 
           <br />
 
-          <div class="row justify-content-xxl-center row-cols-1 row-cols-4 g-4 ">
-            <div class="col">
-              <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
-                <img src={D1} class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <h5 class="card-title">Desayuno 1 </h5>
-                  <p class="card-text">Desayuno complementario para cualquier dia,
+          <div className="row justify-content-xxl-center row-cols-1 row-cols-4 g-4 ">
+            <div className="col">
+              <div className="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                <img src={D1} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Desayuno 1 </h5>
+                  <p className="card-text">Desayuno complementario para cualquier dia,
                     el cual contien, un cuernito, fruta con yogurt,
                     jugo y un cuernito preparado</p>
-                  <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                  <a href="/Producto" className="btn btn-primary">Ver Producto</a>
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
-                <img src={D1} class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <h5 class="card-title">Desayuno 1 </h5>
-                  <p class="card-text">Desayuno complementario para cualquier dia,
+            <div className="col">
+              <div className="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                <img src={D1} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Desayuno 1 </h5>
+                  <p className="card-text">Desayuno complementario para cualquier dia,
                     el cual contien, un cuernito, fruta con yogurt,
                     jugo y un cuernito preparado</p>
-                  <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                  <a href="/Producto" className="btn btn-primary">Ver Producto</a>
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
-                <img src={D1} class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <h5 class="card-title">Desayuno 1 </h5>
-                  <p class="card-text">Desayuno complementario para cualquier dia,
+            <div className="col">
+              <div className="card text-dark bg-light mb-3" style={{ width: '18rem' }}>
+                <img src={D1} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Desayuno 1 </h5>
+                  <p className="card-text">Desayuno complementario para cualquier dia,
                     el cual contien, un cuernito, fruta con yogurt,
                     jugo y un cuernito preparado</p>
-                  <a href="/Producto" class="btn btn-primary">Ver Producto</a>
+                  <a href="/Producto" className="btn btn-primary">Ver Producto</a>
                 </div>
               </div>
             </div>
