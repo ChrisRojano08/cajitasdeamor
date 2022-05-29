@@ -42,43 +42,43 @@ export default class App extends React.Component {
 
     if (nom != null) {
       if (tip === 'admin') {
-        return (<Nav.Link href="/menuSuper" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nom}</Nav.Link>);
+        return (<Nav.Link href="/menuSuper" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nom}</Nav.Link>);
       } else {
-        return (<Nav.Link href="/menuUsuario" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nom}</Nav.Link>);
+        return (<Nav.Link href="/menuUsuario" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nom}</Nav.Link>);
       }
     } else {
-      return (<Nav.Link href="/Login" style={{ margin: '0px 15px' }}><i class="fi fi-rr-user" style={{ margin: '0px 5px' }} />Usuario</Nav.Link>);
+      return (<Nav.Link href="/Login" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />Usuario</Nav.Link>);
     }
   }
 
   render() {
     return (
-      <div class="container-fluid">
+      <div className="container-fluid">
 
-        <div class="row justify-content-center">
-          <img src={bannerlogC} class="rounded mx-auto d-block" alt='Banner' style={{ height: '125px', width: 'auto' }} />
+        <div className="row justify-content-center">
+          <img src={bannerlogC} className="rounded mx-auto d-block" alt='Banner' style={{ height: '125px', width: 'auto' }} />
         </div>
 
         <Navbar bg="dark" variant="dark" expand="lg">
           <Container>
-            <Navbar.Brand href="/"><img class="logopieimg" alt='Logo' style={{ height: '60px', width: 'auto' }} src={logC} /></Navbar.Brand>
+            <Navbar.Brand href="/"><img className="logopieimg" alt='Logo' style={{ height: '60px', width: 'auto' }} src={logC} /></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="/" style={{ margin: '0px 15px' }}><i class="fi fi-rr-home" style={{ margin: '0px 5px' }} />Inicio</Nav.Link>
-                <Nav.Link href="/Tienda" style={{ margin: '0px 15px' }}><i class="fi fi-rr-shop" style={{ margin: '0px 5px' }} />Tienda</Nav.Link>
-                <Nav.Link href="/Nosotros" style={{ margin: '0px 15px' }}><i class="fi fi-rr-briefcase" style={{ margin: '0px 5px' }} />Acerca de nosotros</Nav.Link>
-                <Nav.Link href="/Contactanos" style={{ margin: '0px 15px' }}><i class="fi fi-rr-envelope" style={{ margin: '0px 5px' }} />Contactanos</Nav.Link>
-                <Nav.Link href="/Carrito" style={{ margin: '0px 15px' }}><i class="fi fi-rr-shopping-cart" style={{ margin: '0px 5px' }} />Carrito</Nav.Link>
+                <Nav.Link href="/" style={{ margin: '0px 15px' }}><i className="fi fi-rr-home" style={{ margin: '0px 5px' }} />Inicio</Nav.Link>
+                <Nav.Link href="/Tienda" style={{ margin: '0px 15px' }}><i className="fi fi-rr-shop" style={{ margin: '0px 5px' }} />Tienda</Nav.Link>
+                <Nav.Link href="/Nosotros" style={{ margin: '0px 15px' }}><i className="fi fi-rr-briefcase" style={{ margin: '0px 5px' }} />Acerca de nosotros</Nav.Link>
+                <Nav.Link href="/Contactanos" style={{ margin: '0px 15px' }}><i className="fi fi-rr-envelope" style={{ margin: '0px 5px' }} />Contactanos</Nav.Link>
+                <Nav.Link href="/Carrito" style={{ margin: '0px 15px' }}><i className="fi fi-rr-shopping-cart" style={{ margin: '0px 5px' }} />Carrito</Nav.Link>
                 {this.validarSesion()}
               </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>
 
-        <div class="row justify-content-center">
+        <div className="row justify-content-center">
           <Router>
-            <div class="row justify-content-center">
+            <div className="row justify-content-center">
               <Switch>
                 <Route path="/usuariosGrid" component={UsuariosGridComponent} />
                 <Route path="/productosForm" component={ProductosFormComponent} />
@@ -103,17 +103,17 @@ export default class App extends React.Component {
           </Router>
         </div>
 
-        <footer class="container align-items-end p-2" style={{ background: '#212429', textAlign: 'center', minWidth: '100%' }}>
-          <div class="row ">
-            <div class="col-12 col-md">
-              <img class="logopieimg" src={logC} alt='Logo' style={{ height: '60px', width: 'auto' }} />
-              <h5 class="text-white">Cajitas de Amor</h5>
+        <footer className="container align-items-end p-2" style={{ background: '#212429', textAlign: 'center', minWidth: '100%' }}>
+          <div className="row ">
+            <div className="col-12 col-md">
+              <img className="logopieimg" src={logC} alt='Logo' style={{ height: '60px', width: 'auto' }} />
+              <h5 className="text-white">Cajitas de Amor</h5>
             </div>
-            <div class="col-6 col-md">
+            <div className="col-6 col-md">
               <h5 style={{ color: 'red' }}>Redes</h5>
-              <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="https://www.facebook.com/Cajitas-de-amor-102964458600186"><i class="fi fi-brands-facebook">Facebook</i></a></li>
-                <li><a class="link-secondary" href='https://www.instagram.com/cajitasdeamorj/'><i class="fi fi-brands-instagram">Instagram</i></a></li>
+              <ul className="list-unstyled text-small">
+                <li><a className="link-secondary" href="https://www.facebook.com/Cajitas-de-amor-102964458600186"><i className="fi fi-brands-facebook">Facebook</i></a></li>
+                <li><a className="link-secondary" href='https://www.instagram.com/cajitasdeamorj/'><i className="fi fi-brands-instagram">Instagram</i></a></li>
               </ul>
             </div>
           </div>

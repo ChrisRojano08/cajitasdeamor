@@ -26,15 +26,12 @@ class LoginComponent extends React.Component {
 
     findUs =async event => {
         event.preventDefault()
-        console.log(this.state.user);
         
         let respuesta = await this.loginController.loguear(this.state.user);
         
         if(respuesta.length === 1){
             Utils.swalSuccess("Se encontró el usuario!!");
-
-            console.log(respuesta);
-
+            
             sessionStorage.setItem("tipo", respuesta[0].Tipo);
             sessionStorage.setItem("idUsuario", respuesta[0].idUsuario);
             sessionStorage.setItem("nombre", respuesta[0].Nombre);
@@ -42,7 +39,7 @@ class LoginComponent extends React.Component {
             setTimeout(this.props.history.push('/'), 1500);
             setTimeout(window.location.reload(true), 1700);
         }else{
-            Utils.swalError("No se encontró el usuario con esos datos!!");
+            Utils.swalError("No se encontró el usuario, asegurese de estar logueado!!");
         }
         console.log(respuesta.length);
     }
