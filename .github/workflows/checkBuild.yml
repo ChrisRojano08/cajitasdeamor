@@ -12,6 +12,7 @@ jobs:
       with:
         node-version: 14.x
         cache: 'npm'
+        cache-dependency-path: './cajitasdeamor/package-lock.json'
     - name: Install dependencies
       run: npm ci
     - name: Build
