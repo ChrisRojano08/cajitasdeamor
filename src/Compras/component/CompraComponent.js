@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { ComprasController } from "../controller/ComprasController";
-import {Utils} from '../../resources/Utils';
 import DomicilioComponent from '../../Domicilio/component/DomicilioComponent';
 import PagoComponent from '../../Pago/component/PagoComponent';
 import DedicatoriaComponent from '../../Dedicatoria/component/DedicatoriaComponent';
