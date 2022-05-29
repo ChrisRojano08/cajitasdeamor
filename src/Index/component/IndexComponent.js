@@ -84,7 +84,7 @@ class HomePageComponent extends React.Component {
                   <p className="card-text">Desayuno complementario para cualquier dia,
                     el cual contien, un cuernito, fruta con yogurt,
                     jugo y un cuernito preparado</p>
-                  <a href="/Producto" className="btn btn-primary">Ver Producto</a>
+                  <a href="/Tienda" className="btn btn-primary">Ver Producto</a>
                 </div>
               </div>
             </div>
