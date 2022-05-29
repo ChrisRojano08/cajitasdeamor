@@ -12,13 +12,6 @@ jobs:
       with:
         node-version: 14.x
         cache: 'npm'
-        cache-dependency-path: './cajitasdeamor/package-lock.json'
-    - name: Move to directory 1
-      run: cd cajitasdeamor
-    - name: Move to directory 2
-      run: cd cajitasdeamor
-    - name: Comprobar
-      run: ls
     - name: Install dependencies
       run: npm ci
     - name: Build
