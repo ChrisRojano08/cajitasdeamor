@@ -56,7 +56,7 @@ export default class App extends React.Component {
       <div class="container-fluid">
 
         <div class="row justify-content-center">
-          <img src={bannerlogC} class="rounded mx-auto d-block" alt='Banner' style={{ height: '125px', width: 'auto' }} />
+          <img src={bannerlogC} className="rounded mx-auto d-block" alt='Banner' style={{ height: '125px', width: 'auto' }} />
         </div>
 
         <Navbar bg="dark" variant="dark" expand="lg">

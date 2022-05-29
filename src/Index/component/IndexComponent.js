@@ -61,7 +61,7 @@ class HomePageComponent extends React.Component {
                 autoPlay={true}
                 autoPlaySpeed={5000}>
                 {this.state.productos.map((x) =>
-                  <div class="content">
+                  <div class="content" key={x.idProducto}>
                       <div class="content-overlay"></div>
                       <img class="content-image card-img-top" src={x.Imagen} height="50" width="300" alt="..." />
                       <div class="content-details fadeIn-bottom">
