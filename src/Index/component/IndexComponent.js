@@ -46,13 +46,14 @@ class HomePageComponent extends React.Component {
   }
 
   async loadData() {
-    let respuesta = await this.indexController.findAll();
+    const respuesta = await this.indexController.findAll();
     this.setState({ productos: respuesta });
   }
 
   render() {
     return (
       <div className="container-fluid">
+        <br/>
         <h1 style={{ color: 'red' }} >Inicio</h1>
         <div className="row justify-content-center">
           <div className="card-header bg-light">
@@ -106,8 +107,7 @@ class HomePageComponent extends React.Component {
                 <div className="card-body">
                   <h5 className="card-title">Desayuno 3 </h5>
                   <p className="card-text">Desayuno complementario para cualquier dia,
-                    el cual contien, un cuernito, fruta con yogurt,
-                    jugo y un cuernito preparado</p>
+                    el cual contien, un cuernito</p>
                   <a href="/Producto" className="btn btn-primary">Ver Producto</a>
                 </div>
               </div>

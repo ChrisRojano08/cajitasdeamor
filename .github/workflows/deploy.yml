@@ -57,7 +57,7 @@ jobs:
           cd /var/www/html/react
           sudo unzip -o CA-build.zip
           sudo rm CA-build.zip
-          systemctl restart nginx
+          sudo systemctl restart nginx
     
 
 
