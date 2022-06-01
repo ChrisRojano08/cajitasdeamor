@@ -90,7 +90,7 @@ class HomePageComponent extends React.Component {
                   <p className="card-text">Desayuno complementario para cualquier dia,
                     el cual contien, un cuernito, fruta con yogurt,
                     jugo y un cuernito preparado</p>
-                  <a href="/Tienda" className="btn btn-primary">Ver Producto</a>
+                  <a href="/Tienda" className="btn btn-primary">Ver más productos</a>
                 </div>
               </div>
             </div>
@@ -102,7 +102,7 @@ class HomePageComponent extends React.Component {
                   <p className="card-text">Desayuno complementario para cualquier dia,
                     el cual contien, un cuernito, fruta con yogurt,
                     jugo y un cuernito preparado</p>
-                  <a href="/Tienda" className="btn btn-primary">Ver Producto</a>
+                  <a href="/Tienda" className="btn btn-primary">Ver más productos</a>
                 </div>
               </div>
             </div>
@@ -113,7 +113,7 @@ class HomePageComponent extends React.Component {
                   <h5 className="card-title">Desayuno 3 </h5>
                   <p className="card-text">Desayuno complementario para cualquier dia,
                     el cual contien, un cuernito</p>
-                  <a href="/Producto" className="btn btn-primary">Ver Producto</a>
+                  <a href="/Producto" className="btn btn-primary">Ver más productos</a>
                 </div>
               </div>
             </div>

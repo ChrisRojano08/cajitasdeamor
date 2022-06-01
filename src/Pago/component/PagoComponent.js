@@ -179,7 +179,7 @@ class PagoComponent extends React.Component {
                     <div className="col-xl-5 col-lg-12 col-md-12 p-2 mb-4">
                         <h3 style={{ color: 'red' }} >Seleccionar tarjeta</h3>
                         <br/>
-                        {this.tarjetas()}
+                        { this.state.tarjetas[0].status === "Vacio" ? <p></p> : this.tarjetas()}
                     </div>
                     <div className="col-xl-7 col-lg-12 col-md-12">
                         {this.formulario()}
