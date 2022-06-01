@@ -47,6 +47,11 @@ class HomePageComponent extends React.Component {
 
   async loadData() {
     const respuesta = await this.indexController.findAll();
+
+    if(!respuesta){
+      this.props.history.push('/ErrorDelServidor');
+    }
+
     this.setState({ productos: respuesta });
   }
 
