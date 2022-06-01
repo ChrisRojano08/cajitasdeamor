@@ -39,7 +39,7 @@ class LoginComponent extends React.Component {
             setTimeout(this.props.history.push('/'), 1500);
             setTimeout(window.location.reload(true), 1700);
         }else{
-            Utils.swalError("No se encontró el usuario, asegurese de estar logueado!!");
+            Utils.swalError("No se encontró el usuario, asegurese de estar registrado!!");
         }
         console.log(respuesta.length);
     }

@@ -6,6 +6,7 @@ import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import {Utils} from '../../resources/Utils';
 import ImgsProds from './ProdImagesComponent';
+import vacio from '../../resources/images/vacio.png';
 
 class MenuUsuarioComponent extends React.Component {
     constructor() {
@@ -30,7 +31,8 @@ class MenuUsuarioComponent extends React.Component {
                 }]],
                 Estado: ' ',
                 MetodoPago: {},
-                Domicilio: {}
+                Domicilio: {},
+                status: 'oks'
             }],
             domicilios: [{
                 Calle: ' ',
@@ -39,7 +41,8 @@ class MenuUsuarioComponent extends React.Component {
                 Estado: ' ',
                 Municipio: ' ',
                 Numero: 0,
-                idDomicilio: 0
+                idDomicilio: 0,
+                status: 'oks'
             }],
             tarjetas:[{
                 Banco: ' ',
@@ -47,7 +50,8 @@ class MenuUsuarioComponent extends React.Component {
                 Cuenta: '5555444433332222',
                 FechaVencimiento: '12-12-2022',
                 Nombre: 'uwu',
-                idMetodoPago: ' '
+                idMetodoPago: ' ',
+                status: 'oks'
             }],
             idCompra: -1
         }
@@ -61,16 +65,39 @@ class MenuUsuarioComponent extends React.Component {
     }
 
     async loadData() {
+        console.log("Webos");
         const datos = { idUsuario: sessionStorage.getItem("idUsuario") }; 
 
         const respuesta = await this.MenuUsuarioController.findByUserId(datos);
-        this.setState({ compra: respuesta });
-
         const respuestaH = await this.MenuUsuarioController.findHome(datos);
-        this.setState({ domicilios: respuestaH });
-
         const respuestaP = await this.MenuUsuarioController.findPay(datos);
+        
+
         this.setState({ tarjetas: respuestaP });
+        this.setState({ domicilios: respuestaH });
+        this.setState({ compra: respuesta });
+    }
+
+    datosVacios = msg =>{
+        return(
+            <div className="container-fluid">
+                <div className="row justify-content-center">
+                    <div className="col-lg-10 col-md-10 col-sm-10">
+                        <img src={vacio} alt="Vacio" className="rounded mx-auto d-block p-1 my-4" style={{ width: '15%' }}/>
+                    </div>
+                </div>
+                <div className="row justify-content-center">
+                    <div className="col-lg-10 col-md-10 col-sm-10 my-4">
+                        <h1>Parece que no hay nada por aqui...</h1>
+                    </div>
+                </div>
+                <div className="row justify-content-center">
+                    <div className="col-lg-10 col-md-10 col-sm-10 my-4">
+                        <h1>Porque no {msg} y regresa despues</h1>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     nombreProds= prods =>{ 
@@ -251,7 +278,7 @@ class MenuUsuarioComponent extends React.Component {
                         </div>
                         
                     </div>
-                    <div className="col-lg-2 col-md-2">
+                    <div className="col-lg-2 col-md-2 my-4">
                         <button className="btn btn-danger" onClick={this.cerrarSesion}> Cerrar sesión </button>
                     </div>
                 </div>
@@ -275,18 +302,18 @@ class MenuUsuarioComponent extends React.Component {
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div className="col-lg-12 col-md-12 p-4">
-                                {this.mostrarCompras()}
+                                { this.state.compra[0].status === "Vacio" ? this.datosVacios("realiza una compra") : this.mostrarCompras()}
                             </div>
                         </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div className="card-group p-4 row">
-                                {this.mostrarDomicilios()}
+                            { this.state.domicilios[0].status === "Vacio" ? this.datosVacios("agrega un nuevo domicilio") : this.mostrarDomicilios()}
                             </div>
                             
                         </div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                             <div className="row p-4">
-                                {this.mostrarTarjetas()}
+                                { this.state.tarjetas[0].status === "Vacio" ? this.datosVacios("agrega una nueva tarjeta") : this.mostrarTarjetas()}
                             </div>
                         </div>
                     </div>
