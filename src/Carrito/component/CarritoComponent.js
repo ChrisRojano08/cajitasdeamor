@@ -75,7 +75,7 @@ class CarritoComponent extends React.Component {
     
     irCompra(){
         window.localStorage.setItem("productosCompra", JSON.stringify(this.state.productos));
-        window.localStorage.setItem("totalCompra", this.state.Total);
+        sessionStorage.setItem("totalCompra", this.state.Total);
 
         this.props.history.push({
             pathname: '/Compra',

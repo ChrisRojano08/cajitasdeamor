@@ -72,7 +72,12 @@ class ProductoComponent extends React.Component {
                 if(respuesta.status === 'Ok'){
                     Utils.swalSuccess(respuesta.Mensaje);
                 }else{
-                    Utils.swalError(respuesta.exception);
+                    if(respuesta.exception){
+                        Utils.swalError(respuesta.exception);
+                    }else{
+                        Utils.swalError(respuesta.status);
+                    }
+                    
                 }
 
                 setTimeout(() => {

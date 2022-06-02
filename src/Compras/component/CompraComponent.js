@@ -39,20 +39,20 @@ class CompraComponent extends React.Component {
                 Nombre: ' ',
                 idCompra: ' '
             },
-            productos: JSON.parse(localStorage.getItem('productosCompra')) || [{
-                idCarrito: 0,
-                Cantidad: 0,
-                Producto:[{
-                    Categoria:{
-                        Descripcio:' '
-                    },
-                    Nombre:' ',
-                    Imagen:' ',
-                    Precio:' '
+            productos: JSON.parse( window.localStorage.getItem('productosCompra')) || [{
+                    idCarrito: 0,
+                    Cantidad: 0,
+                    Producto:[{
+                        Categoria:{
+                            Descripcio:' '
+                        },
+                        Nombre:' ',
+                        Imagen:' ',
+                        Precio:' '
+                    }],
+                    Subtotal: 0
                 }],
-                Subtotal: 0
-            }],
-            Total: 0
+            Total: localStorage.getItem('totalCompra') || 0
         }
 
         this.handlerDom = this.handlerDom.bind(this);
@@ -62,21 +62,11 @@ class CompraComponent extends React.Component {
 
     //Inicializa funciones
     componentDidMount(){
-    }
-
-    async componentWillUnmount(){
-        console.log("webos");
-        if(this.props.location.anterior === 'producto'){
-            setTimeout(()=>{
-                this.setState({productos: JSON.parse(window.localStorage.getItem('productosCompra')) });
-                this.setState({Total: JSON.parse(window.localStorage.getItem('totalCompra'))});
-            }, 200);
-        }else if(this.props.location.anterior === 'carrito'){
-            setTimeout(()=>{
-                this.setState({productos: JSON.parse(window.localStorage.getItem('productosCompra')) });
-                this.setState({Total: JSON.parse(window.localStorage.getItem('totalCompra'))});
-            }, 200);
-        }
+        console.log(this.state);
+        setTimeout(()=>{
+            this.setState({productos: JSON.parse(window.localStorage.getItem('productosCompra')) });
+            this.setState({Total: sessionStorage.getItem('totalCompra')});
+        }, 100);
     }
 
     handlerDom(num, state) {
@@ -110,47 +100,42 @@ class CompraComponent extends React.Component {
     }
 
     async comprar(){
-        /*idUs = request_data['idUsuario']
-            fecha = datetime.today().strftime('%Y-%m-%d')
-            dedicatoria = request_data['Dedicatoria']
-            nombre = request_data['Nombre']
-            ids = request_data['idsProductos']
-            estado = "En espera"
-            idMetodo = request_data['idMetodoPago']
-            idDomicilio = request_data['idDomicilio']
-            total = request_data['Monto']*/
-
-        const webos = JSON.parse(sessionStorage.getItem("productosCompra"));
-        console.log(webos);
-        console.log(sessionStorage.getItem("totalCompra"));
-
-        const comprasData = {
-            idUs: sessionStorage.getItem("idUsuario"),
-            dedicatoria: this.state.dedicatoria.Dedicatoria,
-            nombre: this.state.dedicatoria.Nombre,
-            ids: this.state,
-            idMetodo: this.state.pago.idMetodoPago,
-            idDomicilio: this.state.domicilio.idDomicilio,
-            total: sessionStorage.getItem("totalCompra")
+        let idsStr='';
+        if(this.state.productos.length===1){
+            idsStr = this.state.productos[0].idProducto;
+        }else{
+            this.state.productos.forEach( c=>{
+                idsStr += c.Producto[0].idProducto+",";
+            })
         }
 
-        /*const resp = await this.compraController.insertar();
+        const comprasData = {
+            idUsuario: parseInt(sessionStorage.getItem("idUsuario")),
+            Dedicatoria: this.state.dedicatoria.Dedicatoria,
+            Nombre: this.state.dedicatoria.Nombre,
+            idsProductos: idsStr,
+            idMetodoPago: this.state.pago.idMetodoPago,
+            idDomicilio: this.state.domicilio.idDomicilio,
+            Monto: parseInt(this.state.Total)
+        }
+
+        const resp = await this.compraController.insertar(comprasData);
 
         if(resp.status==="Ok"){
             Utils.swalSuccess("Compra realizada con exito!");
             setTimeout(this.props.history.push('/menuUsuario'), 1500);
         }else{
-            Utils.swalError("Ah ocurrido un error al realizar la compra! UnU");
-        }*/
+            Utils.swalError(resp.status);
+        }
 
     }
 
     mostrarForm(){
         switch(this.state.progreso){
             case 0:
-                return(<DomicilioComponent handler={this.handlerDom}/>)
-            case 1:
                 return(<PagoComponent handler={this.handlerPay}/>)
+            case 1:
+                return(<DomicilioComponent handler={this.handlerDom}/>)
             case 2:
                 return(<DedicatoriaComponent handler={this.handlerDed} productos={this.state.productos}/>)
             case 3:
@@ -244,7 +229,7 @@ class CompraComponent extends React.Component {
             case 0:
                 return(<h1>ERROR-ERROR-ERROR</h1>)
             case 1:
-                return(<h5>&nbsp;{this.state.productos[0].Producto[0].Nombre}</h5>)
+                return(<h5>&nbsp;{this.state.productos[0].Nombre}</h5>)
             case 2: case 3:
                 let nombs='';
                 this.state.productos.forEach( c=>{
@@ -270,7 +255,7 @@ class CompraComponent extends React.Component {
             case 1:
                 const prodsA =[[
                     {
-                        Imagen: this.state.productos[0].Producto[0].Imagen
+                        Imagen: this.state.productos[0].Imagen
                     }
                 ]]
 
@@ -283,7 +268,7 @@ class CompraComponent extends React.Component {
                 
                 return(
                     <div className="col-xl-10 col-lg-10 col-md-4">
-                        <ImgsProds data={imgsAr}/>
+                        {<ImgsProds data={imgsAr}/>}
                     </div>
                     
                 )

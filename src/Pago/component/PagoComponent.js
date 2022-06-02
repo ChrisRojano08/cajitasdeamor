@@ -73,7 +73,7 @@ class PagoComponent extends React.Component {
     }
 
     seleccionarMetodo=(c)=>{
-        this.props.handler(2, c);
+        this.props.handler(1, c);
     }
 
     formulario(){

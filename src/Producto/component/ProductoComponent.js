@@ -36,7 +36,7 @@ class ProductoComponent extends React.Component {
             this.setState({productos : this.props.location.data});
 
             setTimeout(() => {
-                console.log(this.state.productos);
+                console.log(this.state);
                 document.getElementById('imgProd').src = this.state.productos.Imagen;
             }, 300);
         }
@@ -69,10 +69,14 @@ class ProductoComponent extends React.Component {
 
     irCompra(){
         if(sessionStorage.getItem('idUsuario')){
-                sessionStorage.setItem("productosCompra", this.state);
-                sessionStorage.setItem("totalCompra", parseInt(this.state.Precio)*this.state.Cantidad);
+            const totalE = this.state.productos.Precio*this.state.Cantidad;
+            console.log(totalE);
 
-                this.props.history.push({
+            window.localStorage.setItem("productosCompra", JSON.stringify([this.state.productos]));
+            sessionStorage.setItem("totalCompra", totalE);
+            sessionStorage.setItem("cantidadCom", this.state.Cantidad);
+
+            this.props.history.push({
                 pathname: '/Compra',
                 data: this.state,
                 anterior: 'producto'
