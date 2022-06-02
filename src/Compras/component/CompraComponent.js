@@ -5,6 +5,7 @@ import DomicilioComponent from '../../Domicilio/component/DomicilioComponent';
 import PagoComponent from '../../Pago/component/PagoComponent';
 import DedicatoriaComponent from '../../Dedicatoria/component/DedicatoriaComponent';
 import ImgsProds from '../../MenuUsuario/component/ProdImagesComponent';
+import { Utils } from "../../resources/Utils";
 
 class CompraComponent extends React.Component {
     constructor() {
@@ -15,8 +16,9 @@ class CompraComponent extends React.Component {
         this.state = {
             progreso: 0,
             domicilio:{
+                idDomicilio: 0,
                 Numero:' ',
-               Calle:' ',
+                Calle:' ',
                 Colonia:' ',
                 Municipio:' ',
                 Estado:' ',
@@ -24,6 +26,7 @@ class CompraComponent extends React.Component {
                 idUsuario:sessionStorage.getItem("idUsuario")
             },
             pago: {
+                idMetodoPago: 0,
                 Nombre: ' ',
                 Banco: ' ',
                 Cuenta: ' ',
@@ -36,20 +39,20 @@ class CompraComponent extends React.Component {
                 Nombre: ' ',
                 idCompra: ' '
             },
-            productos:[{
-                idCarrito: 0,
-                Cantidad: 0,
-                Producto:[{
-                    Categoria:{
-                        Descripcio:' '
-                    },
-                    Nombre:' ',
-                    Imagen:' ',
-                    Precio:' '
+            productos: JSON.parse( window.localStorage.getItem('productosCompra')) || [{
+                    idCarrito: 0,
+                    Cantidad: 0,
+                    Producto:[{
+                        Categoria:{
+                            Descripcio:' '
+                        },
+                        Nombre:' ',
+                        Imagen:' ',
+                        Precio:' '
+                    }],
+                    Subtotal: 0
                 }],
-                Subtotal: 0
-            }],
-            Total: 0
+            Total: localStorage.getItem('totalCompra') || 0
         }
 
         this.handlerDom = this.handlerDom.bind(this);
@@ -59,30 +62,11 @@ class CompraComponent extends React.Component {
 
     //Inicializa funciones
     componentDidMount(){
-        if(this.props.location.anterior === 'producto'){
-            setTimeout(()=>{
-                const productoss = [{
-                    Cantidad: this.props.location.data.Cantidad,
-                    Producto:[{
-                        Categoria:{
-                            Descripcio:' '
-                        },
-                        Nombre:this.props.location.data.productos.Nombre,
-                        Imagen:this.props.location.data.productos.Imagen,
-                        Precio:this.props.location.data.productos.Precio
-                    }],
-                    Subtotal: this.props.location.data.Cantidad*this.props.location.data.productos.Precio
-                }]
-
-                this.setState({productos: productoss});
-                this.setState({Total: productoss[0].Subtotal});
-            }, 200);
-        }else if(this.props.location.anterior === 'carrito'){
-            setTimeout(()=>{
-                this.setState({productos: this.props.location.data});
-                this.setState({Total: this.props.location.total});
-            }, 200);
-        }
+        console.log(this.state);
+        setTimeout(()=>{
+            this.setState({productos: JSON.parse(window.localStorage.getItem('productosCompra')) });
+            this.setState({Total: sessionStorage.getItem('totalCompra')});
+        }, 100);
     }
 
     handlerDom(num, state) {
@@ -115,12 +99,43 @@ class CompraComponent extends React.Component {
         });
     }
 
+    async comprar(){
+        let idsStr='';
+        if(this.state.productos.length===1){
+            idsStr = this.state.productos[0].idProducto;
+        }else{
+            this.state.productos.forEach( c=>{
+                idsStr += c.Producto[0].idProducto+",";
+            })
+        }
+
+        const comprasData = {
+            idUsuario: parseInt(sessionStorage.getItem("idUsuario")),
+            Dedicatoria: this.state.dedicatoria.Dedicatoria,
+            Nombre: this.state.dedicatoria.Nombre,
+            idsProductos: idsStr,
+            idMetodoPago: this.state.pago.idMetodoPago,
+            idDomicilio: this.state.domicilio.idDomicilio,
+            Monto: parseInt(this.state.Total)
+        }
+
+        const resp = await this.compraController.insertar(comprasData);
+
+        if(resp.status==="Ok"){
+            Utils.swalSuccess("Compra realizada con exito!");
+            setTimeout(this.props.history.push('/menuUsuario'), 1500);
+        }else{
+            Utils.swalError(resp.status);
+        }
+
+    }
+
     mostrarForm(){
         switch(this.state.progreso){
             case 0:
-                return(<DomicilioComponent handler={this.handlerDom}/>)
-            case 1:
                 return(<PagoComponent handler={this.handlerPay}/>)
+            case 1:
+                return(<DomicilioComponent handler={this.handlerDom}/>)
             case 2:
                 return(<DedicatoriaComponent handler={this.handlerDed} productos={this.state.productos}/>)
             case 3:
@@ -214,7 +229,7 @@ class CompraComponent extends React.Component {
             case 0:
                 return(<h1>ERROR-ERROR-ERROR</h1>)
             case 1:
-                return(<h5>&nbsp;{this.state.productos[0].Producto[0].Nombre}</h5>)
+                return(<h5>&nbsp;{this.state.productos[0].Nombre}</h5>)
             case 2: case 3:
                 let nombs='';
                 this.state.productos.forEach( c=>{
@@ -240,7 +255,7 @@ class CompraComponent extends React.Component {
             case 1:
                 const prodsA =[[
                     {
-                        Imagen: this.state.productos[0].Producto[0].Imagen
+                        Imagen: this.state.productos[0].Imagen
                     }
                 ]]
 
@@ -253,7 +268,7 @@ class CompraComponent extends React.Component {
                 
                 return(
                     <div className="col-xl-10 col-lg-10 col-md-4">
-                        <ImgsProds data={imgsAr}/>
+                        {<ImgsProds data={imgsAr}/>}
                     </div>
                     
                 )
@@ -296,7 +311,7 @@ class CompraComponent extends React.Component {
                                 <div className="row justify-content-center">
                                     <div className="col-xl-10 col-lg-10 col-md-10 p-2 my-4">
                                         {this.state.progreso===3 ? 
-                                            <button className="btn btn-primary" style={{width:'60%'}}><h5>Comprar</h5></button>
+                                            <button className="btn btn-primary" onClick={()=>this.comprar()} style={{width:'60%'}}><h5>Comprar</h5></button>
                                         :
                                             <button className="btn btn-primary" disabled style={{width:'60%'}}><h5>Comprar</h5></button>
                                         }

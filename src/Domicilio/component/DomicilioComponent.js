@@ -50,9 +50,18 @@ class DomicilioComponent extends React.Component {
         if(sessionStorage.getItem("idUsuario") === null){
             Utils.swalError("Necesita iniciar sesion para poder agregar una direccion!");
         }else{
-            await this.domicilioController.insert(this.state.domicilio);
-            Utils.swalSuccess("El domicilio fue agregado correctamente!");
-            setTimeout(()=>window.location.reload(true), 1000);
+            const respuesta = await this.domicilioController.insert(this.state.domicilio);
+
+            if(respuesta.status==='Ok'){
+                Utils.swalSuccess("El domicilio fue agregado correctamente!");
+                setTimeout(()=>window.location.reload(true), 1000);
+            }else if (respuesta.status==='Error'){
+                Utils.swalError("Ocurrió un error al insertar al usuario!");
+            }else{
+                Utils.swalError(respuesta.status);
+            }
+
+                
         }
     }
 
@@ -66,7 +75,7 @@ class DomicilioComponent extends React.Component {
     }
 
     seleccionarDomicilio=(c)=>{
-        this.props.handler(1, c);
+        this.props.handler(2, c);
     }
 
     formulario(){

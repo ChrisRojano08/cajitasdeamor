@@ -66,6 +66,8 @@ class MenuUsuarioComponent extends React.Component {
 
     async loadData() {
         console.log("Webos");
+        console.log(this.state);
+
         const datos = { idUsuario: sessionStorage.getItem("idUsuario") }; 
 
         const respuesta = await this.MenuUsuarioController.findByUserId(datos);
@@ -102,7 +104,7 @@ class MenuUsuarioComponent extends React.Component {
 
     nombreProds= prods =>{ 
         return prods.map((c) =>
-            <p>{c[0].Nombre}</p>
+            <p>{c.Nombre}</p>
         );
     }
 
