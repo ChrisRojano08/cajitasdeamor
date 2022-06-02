@@ -69,6 +69,9 @@ class ProductoComponent extends React.Component {
 
     irCompra(){
         if(sessionStorage.getItem('idUsuario')){
+                sessionStorage.setItem("productosCompra", this.state);
+                sessionStorage.setItem("totalCompra", parseInt(this.state.Precio)*this.state.Cantidad);
+
                 this.props.history.push({
                 pathname: '/Compra',
                 data: this.state,

@@ -5,6 +5,7 @@ import DomicilioComponent from '../../Domicilio/component/DomicilioComponent';
 import PagoComponent from '../../Pago/component/PagoComponent';
 import DedicatoriaComponent from '../../Dedicatoria/component/DedicatoriaComponent';
 import ImgsProds from '../../MenuUsuario/component/ProdImagesComponent';
+import { Utils } from "../../resources/Utils";
 
 class CompraComponent extends React.Component {
     constructor() {
@@ -15,8 +16,9 @@ class CompraComponent extends React.Component {
         this.state = {
             progreso: 0,
             domicilio:{
+                idDomicilio: 0,
                 Numero:' ',
-               Calle:' ',
+                Calle:' ',
                 Colonia:' ',
                 Municipio:' ',
                 Estado:' ',
@@ -24,6 +26,7 @@ class CompraComponent extends React.Component {
                 idUsuario:sessionStorage.getItem("idUsuario")
             },
             pago: {
+                idMetodoPago: 0,
                 Nombre: ' ',
                 Banco: ' ',
                 Cuenta: ' ',
@@ -36,7 +39,7 @@ class CompraComponent extends React.Component {
                 Nombre: ' ',
                 idCompra: ' '
             },
-            productos:[{
+            productos: JSON.parse(localStorage.getItem('productosCompra')) || [{
                 idCarrito: 0,
                 Cantidad: 0,
                 Producto:[{
@@ -59,28 +62,19 @@ class CompraComponent extends React.Component {
 
     //Inicializa funciones
     componentDidMount(){
+    }
+
+    async componentWillUnmount(){
+        console.log("webos");
         if(this.props.location.anterior === 'producto'){
             setTimeout(()=>{
-                const productoss = [{
-                    Cantidad: this.props.location.data.Cantidad,
-                    Producto:[{
-                        Categoria:{
-                            Descripcio:' '
-                        },
-                        Nombre:this.props.location.data.productos.Nombre,
-                        Imagen:this.props.location.data.productos.Imagen,
-                        Precio:this.props.location.data.productos.Precio
-                    }],
-                    Subtotal: this.props.location.data.Cantidad*this.props.location.data.productos.Precio
-                }]
-
-                this.setState({productos: productoss});
-                this.setState({Total: productoss[0].Subtotal});
+                this.setState({productos: JSON.parse(window.localStorage.getItem('productosCompra')) });
+                this.setState({Total: JSON.parse(window.localStorage.getItem('totalCompra'))});
             }, 200);
         }else if(this.props.location.anterior === 'carrito'){
             setTimeout(()=>{
-                this.setState({productos: this.props.location.data});
-                this.setState({Total: this.props.location.total});
+                this.setState({productos: JSON.parse(window.localStorage.getItem('productosCompra')) });
+                this.setState({Total: JSON.parse(window.localStorage.getItem('totalCompra'))});
             }, 200);
         }
     }
@@ -113,6 +107,42 @@ class CompraComponent extends React.Component {
         this.setState({
             dedicatoria: state
         });
+    }
+
+    async comprar(){
+        /*idUs = request_data['idUsuario']
+            fecha = datetime.today().strftime('%Y-%m-%d')
+            dedicatoria = request_data['Dedicatoria']
+            nombre = request_data['Nombre']
+            ids = request_data['idsProductos']
+            estado = "En espera"
+            idMetodo = request_data['idMetodoPago']
+            idDomicilio = request_data['idDomicilio']
+            total = request_data['Monto']*/
+
+        const webos = JSON.parse(sessionStorage.getItem("productosCompra"));
+        console.log(webos);
+        console.log(sessionStorage.getItem("totalCompra"));
+
+        const comprasData = {
+            idUs: sessionStorage.getItem("idUsuario"),
+            dedicatoria: this.state.dedicatoria.Dedicatoria,
+            nombre: this.state.dedicatoria.Nombre,
+            ids: this.state,
+            idMetodo: this.state.pago.idMetodoPago,
+            idDomicilio: this.state.domicilio.idDomicilio,
+            total: sessionStorage.getItem("totalCompra")
+        }
+
+        /*const resp = await this.compraController.insertar();
+
+        if(resp.status==="Ok"){
+            Utils.swalSuccess("Compra realizada con exito!");
+            setTimeout(this.props.history.push('/menuUsuario'), 1500);
+        }else{
+            Utils.swalError("Ah ocurrido un error al realizar la compra! UnU");
+        }*/
+
     }
 
     mostrarForm(){
@@ -296,7 +326,7 @@ class CompraComponent extends React.Component {
                                 <div className="row justify-content-center">
                                     <div className="col-xl-10 col-lg-10 col-md-10 p-2 my-4">
                                         {this.state.progreso===3 ? 
-                                            <button className="btn btn-primary" style={{width:'60%'}}><h5>Comprar</h5></button>
+                                            <button className="btn btn-primary" onClick={()=>this.comprar()} style={{width:'60%'}}><h5>Comprar</h5></button>
                                         :
                                             <button className="btn btn-primary" disabled style={{width:'60%'}}><h5>Comprar</h5></button>
                                         }
