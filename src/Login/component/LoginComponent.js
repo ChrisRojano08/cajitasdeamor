@@ -64,6 +64,8 @@ class LoginComponent extends React.Component {
             }else if(respuesta.status === 'Ok'){
                 Utils.swalSuccess("Se inserto al usuario correctamente!");
                 setTimeout(() => {window.location.reload(true)}, 1500);
+            }else{
+                Utils.swalError(respuesta.status);
             }
         }
     }
