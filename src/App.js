@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Container} from 'react-bootstrap';
 import bannerlogC from './resources/images/logo003.png';
 import logC from './resources/images/logo001.png';
+import './resources/css/General.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -52,17 +53,20 @@ export default class App extends React.Component {
     }
   }
 
-  render() {
-    return (
+  navRnd(){
+    return(
       <div className="container-fluid">
-
         <div className="row justify-content-center">
-          <img src={bannerlogC} className="rounded mx-auto d-block" alt='Banner' style={{ height: '125px', width: 'auto' }} />
+          <img src={bannerlogC} className="rounded mx-auto d-block" alt='Banner'
+          style={{ height: '125px', width: 'auto' }} />
         </div>
 
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="/"><img className="logopieimg" alt='Logo' style={{ height: '60px', width: 'auto' }} src={logC} /></Navbar.Brand>
+            <Navbar.Brand href="/">
+              <img className="logopieimg" alt='Logo'
+                  style={{ height: '60px'}} src={logC} />
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
@@ -76,7 +80,13 @@ export default class App extends React.Component {
             </Navbar.Collapse>
           </Container>
         </Navbar>
+      </div>
+    );
+  }
 
+  bodyRnd(){
+    return(
+      <div className="container-fluid">
         <div className="row justify-content-center">
           <Router>
             <div className="row justify-content-center">
@@ -104,14 +114,21 @@ export default class App extends React.Component {
             </div>
           </Router>
         </div>
+      </div>
+    );
+  }
 
-        <footer className="container align-items-end p-2" style={{ background: '#212429', textAlign: 'center', minWidth: '100%' }}>
+  footerRnd(){
+    return(
+      <div>
+        <footer className="container-fluid align-items-end footCA">
           <div className="row ">
-            <div className="col-12 col-md">
-              <img className="logopieimg" src={logC} alt='Logo' style={{ height: '60px', width: 'auto' }} />
+            <div className="col-6">
+              <img className="logopieimg" src={logC} alt='Logo'
+                style={{ height: '60px', width: 'auto' }} />
               <h5 className="text-white">Cajitas de Amor</h5>
             </div>
-            <div className="col-6 col-md">
+            <div className="col-6">
               <h5 style={{ color: 'red' }}>Redes</h5>
               <ul className="list-unstyled text-small">
                 <li><a className="link-secondary" href="https://www.facebook.com/Cajitas-de-amor-102964458600186"><i className="fi fi-brands-facebook">Facebook</i></a></li>
@@ -120,6 +137,23 @@ export default class App extends React.Component {
             </div>
           </div>
         </footer>
+      </div>
+    );
+  }
+  
+
+  render() {
+    return (
+      <div>
+        <div className="container-fluid navHole">
+          {this.navRnd()}
+        </div>
+        <div className="container-fluid bodyHole">
+          {this.bodyRnd()}
+        </div>
+        <div className="container-fluid footHole">
+          {this.footerRnd()}
+        </div>
       </div>
     )
   }

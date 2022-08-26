@@ -124,3 +124,33 @@ h1,h3,h4{
 }
 
 
+.footCA{
+  background: #212429;
+  text-align: center;
+
+  width: 80%;
+}
+
+.navHole{
+  min-width: 100%;
+  max-width: 100%;
+
+  min-height: 30vh;
+}
+
+.bodyHole{
+  min-width: 100%;
+  max-width: 100%;
+
+  min-height: 45vh;
+}
+
+.footHole{
+  min-width: 95%;
+  max-width: 95%;
+
+  min-height: 20vh;
+
+  background: #212429;
+}
+
