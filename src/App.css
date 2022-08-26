@@ -1,7 +1,12 @@
 .App {
   text-align: center;
-  height: 40vmin;
+  height: 100vh;
 }
+
+#root {
+  height: 100vh;
+}
+
 
 .App-logo {
   height: 40vmin;
