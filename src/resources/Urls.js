@@ -7,7 +7,8 @@ const baseApi={
     shopping:baseURl+'shopping/',
     home:baseURl+'home/',
     cart:baseURl+'cart/',
-    payment:baseURl+'payment/'
+    payment:baseURl+'payment/',
+    categories:baseURl+'categories/'
 }
 //this is a exmple data for enpoint api
 export const Urls = {
@@ -24,6 +25,9 @@ export const Urls = {
         update:baseApi.product+'update',
         insert:baseApi.product+'insert',
         delete:baseApi.product+'delete'
+    },
+    categorieApi:{
+        findAll:baseApi.categories+'findAll'
     },
     shoppingApi:{
         findAll:baseApi.shopping+'findAll',
