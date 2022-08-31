@@ -3,7 +3,7 @@ import '../../resources/css/producto.css';
 import D1 from '../../resources/images/D1.jpeg';
 import { withRouter } from "react-router";
 import { ProductoController } from "../controller/ProductoController";
-import {Utils} from '../../resources/Utils';
+import { Utils } from '../../resources/Utils';
 
 class ProductoComponent extends React.Component {
     constructor() {
@@ -12,28 +12,28 @@ class ProductoComponent extends React.Component {
 
         //Almacena datos
         this.state = {
-            productos:{
-                idProducto:0,
-                Categoria:{
-                    Descripcion:" "
+            productos: {
+                idProducto: 0,
+                Categoria: {
+                    Descripcion: " "
                 },
-                Nombre:" ",
+                Nombre: " ",
                 Precio: " ",
-                Descripcion:" ",
-                Imagen:" ",
-                Tamanio:' '
+                Descripcion: " ",
+                Imagen: " ",
+                Tamanio: ' '
             },
-            Cantidad:1
+            Cantidad: 1
         }
     }
 
 
     //Inicializa funciones
-    componentDidMount(){
-        if(!this.props.location.data){
+    componentDidMount() {
+        if (!this.props.location.data) {
             this.props.history.push("/Tienda");
-        }else{
-            this.setState({productos : this.props.location.data});
+        } else {
+            this.setState({ productos: this.props.location.data });
 
             setTimeout(() => {
                 console.log(this.state);
@@ -42,13 +42,13 @@ class ProductoComponent extends React.Component {
         }
     }
 
-    changeAmount=()=>{
-        this.setState({Cantidad : document.getElementById('cantidadIn').value});
+    changeAmount = () => {
+        this.setState({ Cantidad: document.getElementById('cantidadIn').value });
     }
 
-    async agregarCarrito(){
-        if(sessionStorage.getItem('idUsuario')){
-            let datos={
+    async agregarCarrito() {
+        if (sessionStorage.getItem('idUsuario')) {
+            let datos = {
                 idProducto: this.state.productos.idProducto,
                 idUsuario: sessionStorage.getItem('idUsuario'),
                 Cantidad: this.state.Cantidad
@@ -56,13 +56,13 @@ class ProductoComponent extends React.Component {
 
             let respuesta = await this.productoController.addCart(datos);
 
-            if(respuesta[0].status === 'Ok'){
+            if (respuesta[0].status === 'Ok') {
                 Utils.swalSuccess(respuesta[0].Mensaje);
-                setTimeout(() => {this.props.history.push("/Carrito")}, 1500);
-            }else{
+                setTimeout(() => { this.props.history.push("/Carrito") }, 1500);
+            } else {
                 Utils.swalError(respuesta[0].exception);
             }
-        }else{
+        } else {
             document.getElementById('modalButton').click();
         }
     }
@@ -81,7 +81,7 @@ class ProductoComponent extends React.Component {
                 data: this.state,
                 anterior: 'producto'
             })
-        }else{
+        } else {
             document.getElementById('modalButton').click();
         }
     }
@@ -89,8 +89,9 @@ class ProductoComponent extends React.Component {
     render() {
         return (
             <div class="container-fluid ">
+                <br />
                 <button type="button" class="btn btn-danger"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal" id="modalButton" style={{display:'none'}}>Eliminar</button>
+                    data-bs-toggle="modal" data-bs-target="#exampleModal" id="modalButton" style={{ display: 'none' }}>Eliminar</button>
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -102,62 +103,91 @@ class ProductoComponent extends React.Component {
                             <div class="modal-body">Debe estar registrado e iniciar sesión para comprar productos o agregarlos al carrito.</div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onClick={() =>this.props.history.push("/Login")}>Iniciar sesion</button>
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onClick={() => this.props.history.push("/Login")}>Iniciar sesion</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="col-lg-10 mt-4 ml-5">
-                    <div className="row justify-content-center">
-                        <div className="col-lg-4">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-5"  >
                             <img src={D1} className="img-thumbnail" alt="Producto" id="imgProd"></img>
                         </div>
-                        <div className="col-lg-6">
-                            <h4>{this.state.productos.Nombre}</h4>
-                            <br/>
-                            <h5>Descripción:</h5>
-                            <h6>{this.state.productos.Descripcion}</h6>
-                            <br/>
-                            <h5>Tamaño:</h5>
-                            <h6>{this.state.productos.Tamanio}</h6>
-                            <br/>
-                            <h4>${this.state.productos.Precio}</h4>
-                            <br/>
-                            <form>
-                                <div class="md-3 position-relative">
-                                    <h5 class="card-title">Cantidad:</h5>
-                                    <div className="col-lg-5">
-                                        <input type="number"
+                        <div class="col">
+                            <div>
+                                <button type="button" class="btn btn-primary position-relative">
+                                   <h1>{this.state.productos.Nombre}
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">New
+                                    </span>
+                                </h1>
+                                </button>
+                                
+                            </div>
+                            <br /><br />
+
+
+
+
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <h5>Descripcion</h5>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            {this.state.productos.Descripcion}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <h5>Tamaño</h5>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            {this.state.productos.Tamanio}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <br /><br />
+                            <h3>${this.state.productos.Precio}</h3>
+
+                        </div>
+                        <div class="col-3"  >
+
+                            <div class="d-grid gap-2 col-5 mx-auto">
+                                <h5 >Cantidad:</h5>
+                                <div className="col-lg-5">
+                                    <input type="number"
                                         class="form-control"
                                         id="cantidadIn"
                                         placeholder=" "
                                         name='Cantidad'
                                         min="1"
-                                        onChange={()=>this.changeAmount()}
+                                        onChange={() => this.changeAmount()}
                                         defaultValue={1}
-                                    required />
-                                    </div>
-                                    
-                                </div>
-                            </form>
-
-                            <br/>
-                            <div className="row justify-content-center">
-                                <div className="col-lg-10 m-4">
-                                    <button type="button" className="btn btn-primary" style={{width:'40%', height:'60%'}}
-                                     onClick={()=>this.irCompra()}><h5>Comprar</h5></button>
-                                    <button type="button"
-                                        className="btn btn-success m-4" style={{width:'40%', height:'60%'}}
-                                        onClick={()=>this.agregarCarrito()}><h5>Agregar al carrito</h5></button>
+                                        required />
                                 </div>
                             </div>
-                            
-                            
+                            <br />
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button class="btn btn-primary" type="button" onClick={() => this.irCompra()}><i class="fi fi-rr-shopping-bag"></i> Comprar</button>
+                                <button class="btn btn-success" type="button" onClick={() => this.agregarCarrito()}><i class="fi fi-rr-shopping-cart"></i> Agregar al carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <br/><br/>
+
+
             </div>
         )
     }
