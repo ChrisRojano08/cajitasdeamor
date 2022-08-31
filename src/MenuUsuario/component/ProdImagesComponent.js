@@ -1,4 +1,5 @@
 import React from "react";
+import '../../resources/css/carrito.css';
 
 const ProdsImgs = props =>{
     const prods = props.data;
@@ -15,7 +16,7 @@ const ProdsImgs = props =>{
             case 1:
                 return(
                     <div className="row justify-content-center">
-                        <div className="col-lg-6">
+                        <div className="col-lg-8">
                             <img src={prods[0][0].Imagen} alt="prod1" class="img-thumbnail"></img>
                         </div>
                     </div>
