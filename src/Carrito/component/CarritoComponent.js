@@ -3,6 +3,7 @@ import '../../resources/css/carrito.css';
 import { withRouter } from "react-router";
 import { CarritoController } from "../controller/CarritoController";
 import {Utils} from '../../resources/Utils';
+import ImgsProds from '../../MenuUsuario/component/ProdImagesComponent';
 
 class CarritoComponent extends React.Component {
     constructor() {
@@ -89,11 +90,38 @@ class CarritoComponent extends React.Component {
         this.setState({idCarrito:id});
     }
 
+    mostrarImgs=_=>{
+        switch(this.state.productos.length){
+            case 0:
+                return(<h1>ERROR-ERROR-ERROR</h1>)
+            case 1:
+                const prodsA =[[
+                    {
+                        Imagen: this.state.productos[0].Imagen
+                    }
+                ]]
+
+                return(<ImgsProds data={prodsA}/>)
+            default:
+                let imgsAr=[];
+                this.state.productos.forEach( c=>{
+                    Array.prototype.push.apply(imgsAr, [c.Producto]);
+                })
+                
+                return(
+                    <div className="col-xl-10 col-lg-10 col-md-4">
+                        {<ImgsProds data={imgsAr}/>}
+                    </div>
+                    
+                )
+        }
+    }
+
     productosCarrito(){
         return this.state.productos.map((c)=>
             <div className="col-lg-4 p-2"  key={c.idCarrito}>
                 <div class="card text-center">
-                    <img class="card-img-top" src={c.Producto[0].Imagen} alt="Card"/>
+                    {this.mostrarImgs()}
                     <div class="card-body">
                         <h5 class="card-title">{c.Producto[0].Nombre}</h5>
                     </div>

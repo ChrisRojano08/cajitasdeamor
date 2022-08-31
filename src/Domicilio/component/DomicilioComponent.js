@@ -54,7 +54,11 @@ class DomicilioComponent extends React.Component {
 
             if(respuesta.status==='Ok'){
                 Utils.swalSuccess("El domicilio fue agregado correctamente!");
-                setTimeout(()=>window.location.reload(true), 1000);
+
+                this.loadData();
+                Array.prototype.forEach.call(document.getElementsByClassName("form-control"), function(el) {
+                    el.value = "webos";
+                });
             }else if (respuesta.status==='Error'){
                 Utils.swalError("Ocurrió un error al insertar al usuario!");
             }else{
@@ -91,26 +95,26 @@ class DomicilioComponent extends React.Component {
                         <form class="row g-3 needs-validation justify-content-center" 
                             onSubmit={this.comprobacion} novalidate>
                             <div class="col-xl-4 col-lg-6 col-md-6">
-                                <label for="validationCustom01" class="form-label">Número</label>
+                                <label for="numeroDom" class="form-label">Número</label>
                                 <input type="number" 
                                         class="form-control" 
-                                        id="validationCustom01"
+                                        id="domTextIn"
                                         onChange={this.handleChange}
                                         name="Numero"  required/>
                             </div>
                             <div class="col-xl-4 col-lg-6 col-md-6">
-                                <label for="validationCustom02" class="form-label">Calle </label>
+                                <label for="calleDom" class="form-label">Calle </label>
                                 <input type="text" 
                                         class="form-control" 
-                                        id="validationCustom02" 
+                                        id="calleDom" 
                                         onChange={this.handleChange}
                                         name="Calle" required/>
                             </div>
                             <div class="col-xl-4 col-lg-6 col-md-6">
-                                <label for="validationCustom02" class="form-label">Colonia</label>
+                                <label for="coloniaDom" class="form-label">Colonia</label>
                                 <input type="text" 
                                         class="form-control" 
-                                        id="validationCustom02"
+                                        id="coloniaDom"
                                         onChange={this.handleChange} 
                                         name="Colonia"  required/>
                             </div>
@@ -118,7 +122,7 @@ class DomicilioComponent extends React.Component {
                                 <label for="validationCustom03" class="form-label">Municipio</label>
                                 <input type="text" 
                                         class="form-control" 
-                                        id="validationCustom03" 
+                                        id="municipoDom" 
                                         onChange={this.handleChange}
                                         name="Municipio" required/>
                             </div>
