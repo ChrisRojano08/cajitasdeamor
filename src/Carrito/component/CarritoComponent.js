@@ -17,7 +17,7 @@ class CarritoComponent extends React.Component {
                 Cantidad: 0,
                 Producto:[{
                     Categoria:{
-                        Descripcio:' '
+                        Descripcion:' '
                     },
                     Nombre:' ',
                     Imagen:' ',
@@ -90,21 +90,21 @@ class CarritoComponent extends React.Component {
         this.setState({idCarrito:id});
     }
 
-    mostrarImgs=_=>{
-        switch(this.state.productos.length){
+    mostrarImgs= cI =>{
+        switch(cI.Producto.length){
             case 0:
                 return(<h1>ERROR-ERROR-ERROR</h1>)
             case 1:
                 const prodsA =[[
                     {
-                        Imagen: this.state.productos[0].Imagen
+                        Imagen: cI.Producto[0].Imagen
                     }
                 ]]
 
                 return(<ImgsProds data={prodsA}/>)
             default:
                 let imgsAr=[];
-                this.state.productos.forEach( c=>{
+                cI.Producto.forEach( c=>{
                     Array.prototype.push.apply(imgsAr, [c.Producto]);
                 })
                 
@@ -121,7 +121,7 @@ class CarritoComponent extends React.Component {
         return this.state.productos.map((c)=>
             <div className="col-lg-4 p-2"  key={c.idCarrito}>
                 <div class="card text-center">
-                    {this.mostrarImgs()}
+                    {this.mostrarImgs(c)}
                     <div class="card-body">
                         <h5 class="card-title">{c.Producto[0].Nombre}</h5>
                     </div>
