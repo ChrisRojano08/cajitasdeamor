@@ -15,6 +15,7 @@ export class TiendaController {
     }
     
 
+
     async addCart(data){
       const respuesta = await fetch(Urls.cartApi.insert, {
     'method': 'POST',
@@ -28,6 +29,7 @@ export class TiendaController {
 
     return respuesta;
   }
+
 
     async findCats(){
         const respuesta = await fetch(Urls.categorieApi.findAll, {

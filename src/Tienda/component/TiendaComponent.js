@@ -20,6 +20,7 @@ class TiendaComponent extends React.Component {
             actCat: -1,
              Cantidad:1
 
+
         }
     }
 
@@ -41,6 +42,7 @@ class TiendaComponent extends React.Component {
 
        this.updateButtons(this.state.productos)
        this.paginateProds(1);
+
     }
 
     async agregarCarrito(e){
@@ -65,6 +67,7 @@ class TiendaComponent extends React.Component {
         }else{
             document.getElementById('modalButton').click();
         }
+
     }
 
     mostrarProducto = e => {
