@@ -67,12 +67,12 @@ class ProductoComponent extends React.Component {
         }
     }
 
-    irCompra() {
-        if (sessionStorage.getItem('idUsuario')) {
-            const totalE = this.state.productos.Precio * this.state.Cantidad;
-            console.log(totalE);
+    irCompra(){
+        if(sessionStorage.getItem('idUsuario')){
+            const totalE = this.state.productos.Precio*this.state.Cantidad;
 
             window.localStorage.setItem("productosCompra", JSON.stringify([this.state.productos]));
+            window.localStorage.setItem("progresoCompra", 0);
             sessionStorage.setItem("totalCompra", totalE);
             sessionStorage.setItem("cantidadCom", this.state.Cantidad);
 

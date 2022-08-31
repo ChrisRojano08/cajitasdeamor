@@ -14,8 +14,8 @@ class CompraComponent extends React.Component {
 
         //Almacena datos
         this.state = {
-            progreso: 0,
-            domicilio:{
+            progreso: JSON.parse( window.localStorage.getItem('progresoCompra')) ||0,
+            domicilio: JSON.parse( window.localStorage.getItem('domCompra')) || {
                 idDomicilio: 0,
                 Numero:' ',
                 Calle:' ',
@@ -25,7 +25,7 @@ class CompraComponent extends React.Component {
                 CodigoPostal:' ',
                 idUsuario:sessionStorage.getItem("idUsuario")
             },
-            pago: {
+            pago: JSON.parse( window.localStorage.getItem('pagoCompra')) || {
                 idMetodoPago: 0,
                 Nombre: ' ',
                 Banco: ' ',
@@ -34,7 +34,7 @@ class CompraComponent extends React.Component {
                 CVV: ' ',
                 FechaVencimiento: ' '
             },
-            dedicatoria:{
+            dedicatoria: JSON.parse( window.localStorage.getItem('dedCompra')) || {
                 Dedicatoria: ' ',
                 Nombre: ' ',
                 idCompra: ' '
@@ -62,7 +62,6 @@ class CompraComponent extends React.Component {
 
     //Inicializa funciones
     componentDidMount(){
-        console.log(this.state);
         setTimeout(()=>{
             this.setState({productos: JSON.parse(window.localStorage.getItem('productosCompra')) });
             this.setState({Total: sessionStorage.getItem('totalCompra')});
@@ -76,6 +75,9 @@ class CompraComponent extends React.Component {
 
         this.setState({
             domicilio: state
+        },()=>{
+            window.localStorage.setItem("domCompra", JSON.stringify(this.state.domicilio));
+            window.localStorage.setItem("progresoCompra", num);
         });
     }
 
@@ -86,6 +88,9 @@ class CompraComponent extends React.Component {
 
         this.setState({
             pago: state
+        },()=>{
+            window.localStorage.setItem("pagoCompra", JSON.stringify(this.state.pago));
+            window.localStorage.setItem("progresoCompra", num);
         });
     }
 
@@ -96,6 +101,9 @@ class CompraComponent extends React.Component {
 
         this.setState({
             dedicatoria: state
+        },()=>{
+            window.localStorage.setItem("dedCompra", JSON.stringify(this.state.dedicatoria));
+            window.localStorage.setItem("progresoCompra", num);
         });
     }
 
@@ -123,11 +131,12 @@ class CompraComponent extends React.Component {
 
         if(resp.status==="Ok"){
             Utils.swalSuccess("Compra realizada con exito!");
+            window.localStorage.setItem("progresoCompra", 0);
+
             setTimeout(this.props.history.push('/menuUsuario'), 1500);
         }else{
             Utils.swalError(resp.status);
         }
-
     }
 
     mostrarForm(){
@@ -139,7 +148,6 @@ class CompraComponent extends React.Component {
             case 2:
                 return(<DedicatoriaComponent handler={this.handlerDed} productos={this.state.productos}/>)
             case 3:
-                console.log(this.state);
                 return(
                     <div className="my-4">
                         <div className="row justify-content-center p-4">
