@@ -140,20 +140,18 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarCompras() {
         return this.state.compra.map((c) =>
+            <div className="col-12 col-xl-6">
             <div class="card my-2">
                 <h5 class="card-header">{c.Fecha}</h5>
                 <div class="card-body">
-                    <div className="row align-items-center">
-                        <div className="col-lg-3 col-md-3 col-sm-2 ">
+                    <div className="row align-items-center justify-content-center">
+                        <div className="col-xl-6 col-lg-4 col-md-4 col-sm-12 mt-4">
                             <ImgsProds data={c.Productos} />
                         </div>
-                        <div className="col-lg-2 col-md-2 col-sm-2 ">
-                            {this.nombreProds(c.Productos)}
-                        </div>
-                        <div className="col-lg-1 col-md-1 col-sm-1 ">
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12 mt-4">
                             {this.mostrarEstado(c.Estado)}
                         </div>
-                        <div className="col-lg-3 col-md-3 col-sm-2 ">
+                        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mt-4">
                             <div class="card">
                                 <div class="card-header">
                                     <div className="row fullWidth">
@@ -175,7 +173,7 @@ class MenuUsuarioComponent extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-2 col-sm-2 p-1">
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12 p-2 mt-4" style={{'left':'5px'}}>
                             {/*<button className="btn btn-success mx-2">  Ver  </button>*/}
                             {c.Estado!=='En espera' ?
                                 <button type="button" class="btn btn-danger" disabled>
@@ -191,6 +189,7 @@ class MenuUsuarioComponent extends React.Component {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         );
     }
@@ -304,7 +303,9 @@ class MenuUsuarioComponent extends React.Component {
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div className="col-lg-12 col-md-12 p-4">
-                                { this.state.compra[0].status === "Vacio" ? this.datosVacios("realiza una compra") : this.mostrarCompras()}
+                                <div className="row">
+                                    { this.state.compra[0].status === "Vacio" ? this.datosVacios("realiza una compra") : this.mostrarCompras()}
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

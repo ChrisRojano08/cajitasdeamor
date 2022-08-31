@@ -25,7 +25,8 @@ class PagoComponent extends React.Component {
                 Cuenta: '5555444433332222',
                 FechaVencimiento: '12-12-2022',
                 Nombre: 'uwu',
-                idMetodoPago: ' '
+                idMetodoPago: ' ',
+                status: 'Vacio'
             }]
         }
     }
@@ -40,7 +41,6 @@ class PagoComponent extends React.Component {
         const respuestaH = await this.pagoController.findPay(datos);
 
         this.setState({ tarjetas: respuestaH });
-        console.log(this.state.tarjetas);
     }
 
     comprobacion = async event => {
@@ -56,11 +56,11 @@ class PagoComponent extends React.Component {
             const respuesta = await this.pagoController.insert(this.state.pago);
             if(respuesta.status === 'Ok'){
                 Utils.swalSuccess("El método de pago fue agregado correctamente!");
+
+                setTimeout(() => window.location.reload(true), 1000);
             }else{
                 Utils.swalError(respuesta.exception);
             }
-            
-            setTimeout(() => window.location.reload(true), 1000);
         }
     }
     handleChange = e => {
@@ -174,18 +174,28 @@ class PagoComponent extends React.Component {
 
     comprobarMetodos(){
         if(this.state.tarjetas.length > 0){
-            return(
-                <div className="row">
-                    <div className="col-xl-5 col-lg-12 col-md-12 p-2 mb-4">
-                        <h3 style={{ color: 'red' }} >Seleccionar tarjeta</h3>
-                        <br/>
-                        { this.state.tarjetas[0].status === "Vacio" ? <p></p> : this.tarjetas()}
+            if(this.state.tarjetas[0].status === 'Vacio'){
+                return(
+                    <div className="row">
+                        <div className="col-lg-12 col-md-12">
+                            {this.formulario()}
+                        </div>
                     </div>
-                    <div className="col-xl-7 col-lg-12 col-md-12">
-                        {this.formulario()}
+                );
+            }else{
+                return(
+                    <div className="row">
+                        <div className="col-xl-5 col-lg-12 col-md-12 p-2 mb-4">
+                            <h3 style={{ color: 'red' }} >Seleccionar tarjeta</h3>
+                            <br/>
+                            {this.tarjetas()}
+                        </div>
+                        <div className="col-xl-7 col-lg-12 col-md-12">
+                            {this.formulario()}
+                        </div>
                     </div>
-                </div>
-            );
+                );
+            }
         }else{
             return(
                 <div className="row">
