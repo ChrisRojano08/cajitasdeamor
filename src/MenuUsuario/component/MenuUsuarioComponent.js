@@ -65,15 +65,11 @@ class MenuUsuarioComponent extends React.Component {
     }
 
     async loadData() {
-        console.log("Webos");
-        console.log(this.state);
-
         const datos = { idUsuario: sessionStorage.getItem("idUsuario") }; 
 
         const respuesta = await this.MenuUsuarioController.findByUserId(datos);
         const respuestaH = await this.MenuUsuarioController.findHome(datos);
         const respuestaP = await this.MenuUsuarioController.findPay(datos);
-        
 
         this.setState({ tarjetas: respuestaP });
         this.setState({ domicilios: respuestaH });
@@ -114,7 +110,6 @@ class MenuUsuarioComponent extends React.Component {
 
     cancelarCompra = async event =>{
         let datos={idCompra: this.state.idCompra}
-
         let resp = await this.MenuUsuarioController.cancelarCompra(datos);
 
         if(resp[0].status==='Ok'){
@@ -220,7 +215,7 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarTarjetas(){
         return this.state.tarjetas.map((c)=>
-            <div className="col-lg-4 col-md-4 p-2 mx-2">
+            <div className="col-lg-4 col-md-6 p-2">
                 <Cards
                     cvc={c.CVV}
                     expiry={c.FechaVencimiento}
@@ -315,7 +310,7 @@ class MenuUsuarioComponent extends React.Component {
                             
                         </div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                            <div className="row p-4">
+                            <div className="row">
                                 { this.state.tarjetas[0].status === "Vacio" ? this.datosVacios("agrega una nueva tarjeta") : this.mostrarTarjetas()}
                             </div>
                         </div>
