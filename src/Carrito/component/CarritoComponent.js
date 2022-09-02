@@ -17,7 +17,7 @@ class CarritoComponent extends React.Component {
                 Cantidad: 0,
                 Producto:[{
                     Categoria:{
-                        Descripcio:' '
+                        Descripcion:' '
                     },
                     Nombre:' ',
                     Imagen:' ',
@@ -25,7 +25,7 @@ class CarritoComponent extends React.Component {
                 }],
                 Subtotal: 0
             }],
-            Total: 0,
+            Total: -1,
             idCarrito:-1
         }
     }
@@ -41,10 +41,15 @@ class CarritoComponent extends React.Component {
     async loadData(){
         let datos = {idUsuario: sessionStorage.getItem("idUsuario")}
         let respuesta = await this.carritoController.findByUserId(datos);
-        this.setState({ Total: respuesta[1].Total });
-        this.setState({ productos: respuesta[0] });
 
-        console.log(this.state.productos);
+        if(respuesta.status === 'Vacio'){
+            this.setState({ Total: respuesta[1].Total });
+            this.setState({ productos: respuesta[0] });
+        }else{
+            this.setState({ Total: -1 });
+        }
+
+        
     }
 
     delete = () => {
@@ -73,6 +78,17 @@ class CarritoComponent extends React.Component {
             </div>
         );
     }
+
+    renderVacio(){
+        return(
+            <div class="row justify-content-center mt-4">
+                <div className="col-lg-11">
+                    <h3>El carrito está vacio!</h3>
+                    <h4>Visite la tienda y revise nuestros productos.</h4>
+                </div>
+            </div>
+        );
+    }
     
     irCompra(){
         window.localStorage.setItem("productosCompra", JSON.stringify(this.state.productos));
@@ -90,21 +106,21 @@ class CarritoComponent extends React.Component {
         this.setState({idCarrito:id});
     }
 
-    mostrarImgs=_=>{
-        switch(this.state.productos.length){
+    mostrarImgs= cI =>{
+        switch(cI.Producto.length){
             case 0:
                 return(<h1>ERROR-ERROR-ERROR</h1>)
             case 1:
                 const prodsA =[[
                     {
-                        Imagen: this.state.productos[0].Imagen
+                        Imagen: cI.Producto[0].Imagen
                     }
                 ]]
 
                 return(<ImgsProds data={prodsA}/>)
             default:
                 let imgsAr=[];
-                this.state.productos.forEach( c=>{
+                cI.Producto.forEach( c=>{
                     Array.prototype.push.apply(imgsAr, [c.Producto]);
                 })
                 
@@ -121,7 +137,7 @@ class CarritoComponent extends React.Component {
         return this.state.productos.map((c)=>
             <div className="col-lg-4 p-2"  key={c.idCarrito}>
                 <div class="card text-center">
-                    {this.mostrarImgs()}
+                    {this.mostrarImgs(c)}
                     <div class="card-body">
                         <h5 class="card-title">{c.Producto[0].Nombre}</h5>
                     </div>
@@ -171,12 +187,24 @@ class CarritoComponent extends React.Component {
         );
     }
 
+    validarProd(){
+        if(this.state.Total === -1){
+            return this.renderVacio()
+        }else{
+            if(sessionStorage.getItem("nombre")){
+                return this.renderCarrito()
+            }else{
+                return this.renderNoLogeado()
+            }
+        }
+    }
+
     render() {
         return (
             <div class="container-fluid ">
                 <h1 style={{ color: 'red' }} >Carrito</h1>
                 <br/>
-                    {sessionStorage.getItem("nombre") ? this.renderCarrito() : this.renderNoLogeado()}
+                    {this.validarProd()}
                 <br/><br/>
                 <div class="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">

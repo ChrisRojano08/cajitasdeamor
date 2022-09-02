@@ -133,6 +133,11 @@ class CompraComponent extends React.Component {
             Utils.swalSuccess("Compra realizada con exito!");
             window.localStorage.setItem("progresoCompra", 0);
 
+            const data = {
+                idUsuario: parseInt(sessionStorage.getItem("idUsuario"))
+            }
+            this.compraController.vaciarCarrito(data)
+
             setTimeout(this.props.history.push('/menuUsuario'), 1500);
         }else{
             Utils.swalError(resp.status);
