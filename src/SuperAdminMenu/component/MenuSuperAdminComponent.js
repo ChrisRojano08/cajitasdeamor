@@ -41,30 +41,51 @@ class MenuSuperAdminComponent extends React.Component {
                 <br/><br/>
                 <div className="cotainer-lg">
                     <div className="container bg-dark text-white">
-                        
+                    <br/>
                         <h1>Menu de administrador</h1>
                         <br/><br/>
                         <center>
-                            <div class="row">
-                                <div class="colm-4">
-                                    <button type="button" className="btn btn-warning btn-md btn-block menBt" onClick={this.irProductos}>Administrar productos</button>
+                            <div class="row justify-content-center">
+                                <div class="col-6 col-lg-4">
+                                    <button type="button" className="btn btn-warning btn-lg menBt" 
+                                    onClick={this.irProductos}
+                                    style={{'width':'60%', 'height': '90%'}}>
+                                        <i class="fi fi-rr-boxes"/>
+                                        <br/>
+                                        Administrar productos
+                                    </button>
+                                </div>
+                                <div class="col-6 col-lg-4">
+                                    <button type="button" className="btn btn-info btn-lg menBt" 
+                                    onClick={this.irClientes}
+                                    style={{'width':'60%', 'height': '90%'}}>
+                                        <i class="fi fi-rr-users-alt"/>
+                                        <br/>
+                                        Administrar usuarios
+                                    </button>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="colm-4">
-                                    <button type="button" className="btn btn-info btn-md btn-block menBt" onClick={this.irClientes}>Administrar usuarios</button>
+                            <br/>
+                            <div class="row justify-content-center">
+                                <div class="col-6 col-lg-4">
+                                    <button type="button" className="btn btn-primary btn-lg menBt" 
+                                    onClick={this.irCompras}
+                                    style={{'width':'60%', 'height': '90%'}}>
+                                        <i class="fi fi-rr-bags-shopping"/>
+                                        <br/>
+                                        Administrar compras
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="colm-4">
-                                    <button type="button" className="btn btn-primary btn-md btn-block menBt" onClick={this.irCompras}>Administrar compras</button>
+                                <div class="col-6 col-lg-4">
+                                    <button type="button" className="btn btn-danger btn-lg menBt" 
+                                    onClick={this.logout}
+                                    style={{'width':'60%', 'height': '90%'}}>
+                                        <i class="fi fi-rr-sign-out-alt"/>
+                                        <br/>
+                                        Cerrar Sesión
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="row mt-4 mb-4">
-                                <div class="colm-4">
-                                    <button type="button" className="btn btn-danger btn-md btn-block menBt" onClick={this.logout}>Cerrar Sesión</button>
-                                </div>
-                            </div>
+                            </div><br/><br/>
                         </center>
                     </div>
                 </div>
