@@ -236,9 +236,7 @@ class TiendaComponent extends React.Component {
                     aux[i] = aux2[i];
                 }
 
-                this.setState({ prodsFilt: aux }, () => {
-                    console.log(this.state)
-                });
+                this.setState({ prodsFilt: aux });
             });
         }, 100);
 
