@@ -30,6 +30,7 @@ class LoginComponent extends React.Component {
         let respuesta = await this.loginController.loguear(this.state.user);
         
         if(respuesta.length === 1){
+            window.localStorage.clear();
             Utils.swalSuccess("Se encontró el usuario!!");
             
             sessionStorage.setItem("tipo", respuesta[0].Tipo);

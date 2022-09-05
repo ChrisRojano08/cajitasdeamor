@@ -227,6 +227,7 @@ class MenuUsuarioComponent extends React.Component {
 
     cerrarSesion = event => {
         event.preventDefault();
+        window.localStorage.clear();
         sessionStorage.clear();
         
         Utils.swalSuccess("Hasta pronto!");
