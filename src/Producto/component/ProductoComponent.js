@@ -1,5 +1,4 @@
 import React from "react";
-import '../../resources/css/producto.css';
 import D1 from '../../resources/images/D1.jpeg';
 import { withRouter } from "react-router";
 import { ProductoController } from "../controller/ProductoController";
@@ -27,7 +26,6 @@ class ProductoComponent extends React.Component {
         }
     }
 
-
     //Inicializa funciones
     componentDidMount() {
         if (!this.props.location.data) {
@@ -36,7 +34,6 @@ class ProductoComponent extends React.Component {
             this.setState({ productos: this.props.location.data });
 
             setTimeout(() => {
-                console.log(this.state);
                 document.getElementById('imgProd').src = this.state.productos.Imagen;
             }, 300);
         }
@@ -54,7 +51,9 @@ class ProductoComponent extends React.Component {
                 Cantidad: this.state.Cantidad
             }
 
-            let respuesta = await this.productoController.addCart(datos);
+            const respuesta = await this.productoController.addCart(datos);
+
+            console.log(respuesta)
 
             if (respuesta[0].status === 'Ok') {
                 Utils.swalSuccess(respuesta[0].Mensaje);
@@ -109,13 +108,12 @@ class ProductoComponent extends React.Component {
                     </div>
                 </div>
 
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-5"  >
-                            <img src={D1} className="img-thumbnail" alt="Producto" id="imgProd"></img>
+                <div class="container" style={{'padding':'2%'}}>
+                    <div class="row justify-content-center">
+                        <div class="my-4 mt-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-8"  >
+                            <img src={D1} className="imgProdt" alt="Producto" id="imgProd" />
                         </div>
-                        <div class="col">
+                        <div class="my-4 mt-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                             <div>
                                 <button type="button" class="btn btn-primary position-relative">
                                    <h1>{this.state.productos.Nombre}
@@ -126,14 +124,11 @@ class ProductoComponent extends React.Component {
                                 
                             </div>
                             <br /><br />
-
-
-
-
                             <div class="accordion" id="accordionExample">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <button class="accordion-button" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             <h5>Descripcion</h5>
                                         </button>
                                     </h2>
@@ -145,24 +140,34 @@ class ProductoComponent extends React.Component {
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                             <h5>Tamaño</h5>
                                         </button>
                                     </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
                                             {this.state.productos.Tamanio}
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <h5>Precio</h5>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            ${this.state.productos.Precio}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                            <br /><br />
-                            <h3>${this.state.productos.Precio}</h3>
-
                         </div>
-                        <div class="col-3"  >
+                        <div class="my-4 mt-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12"  >
 
                             <div class="d-grid gap-2 col-5 mx-auto">
                                 <h5 >Cantidad:</h5>
@@ -186,8 +191,6 @@ class ProductoComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-
-
             </div>
         )
     }

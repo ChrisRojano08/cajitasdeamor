@@ -284,7 +284,7 @@ class TiendaComponent extends React.Component {
     render() {
         return (
             <div style={{ 'paddingLeft': '5%', 'paddingRight': '5%', 'marginBottom': '30px' }}>
-                <h1 style={{ color: 'red', 'marginTop': '30px', 'marginBottom': '5%' }} >Productos</h1>
+                <h1 style={{ color: 'red', 'marginTop': '30px', 'marginBottom': '5%' }}  className="text-center">Productos</h1>
 
                 <div class="row justify-content-center">
                     <div className="col-lg-2 col-md-4 col-sm-12 col-xs-12">
