@@ -14,22 +14,22 @@ class MenuSuperAdminComponent extends React.Component {
     }
 
     irProductos = event => {
-        event.preventDefault()
-        this.props.history.push('/productosGrid')
+        event.preventDefault();
+        this.props.history.push('/productosGrid');
     }
 
     irClientes = event => {
-        event.preventDefault()
-        this.props.history.push('/usuariosGrid')
+        event.preventDefault();
+        this.props.history.push('/usuariosGrid');
     }
 
     irCompras = event => {
-        event.preventDefault()
-        this.props.history.push('/Compras')
+        event.preventDefault();
+        this.props.history.push('/Compras');
     }
 
     logout = event => {
-        event.preventDefault()
+        event.preventDefault();
         sessionStorage.clear();
         this.props.history.push('/login')
         setTimeout(() => window.location.reload(true), 1500);
@@ -37,7 +37,7 @@ class MenuSuperAdminComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid my-6">
+            <div className="container-fluid my-6">
                 <br/><br/>
                 <div className="cotainer-lg">
                     <div className="container bg-dark text-white">
@@ -45,42 +45,42 @@ class MenuSuperAdminComponent extends React.Component {
                         <h1>Menu de administrador</h1>
                         <br/><br/>
                         <center>
-                            <div class="row justify-content-center">
-                                <div class="col-6 col-lg-4">
+                            <div className="row justify-content-center">
+                                <div className="col-6 col-lg-4">
                                     <button type="button" className="btn btn-warning btn-lg menBt" 
                                     onClick={this.irProductos}
                                     style={{'width':'60%', 'height': '90%'}}>
-                                        <i class="fi fi-rr-boxes"/>
+                                        <i className="fi fi-rr-boxes"/>
                                         <br/>
                                         Administrar productos
                                     </button>
                                 </div>
-                                <div class="col-6 col-lg-4">
+                                <div className="col-6 col-lg-4">
                                     <button type="button" className="btn btn-info btn-lg menBt" 
                                     onClick={this.irClientes}
                                     style={{'width':'60%', 'height': '90%'}}>
-                                        <i class="fi fi-rr-users-alt"/>
+                                        <i className="fi fi-rr-users-alt"/>
                                         <br/>
                                         Administrar usuarios
                                     </button>
                                 </div>
                             </div>
                             <br/>
-                            <div class="row justify-content-center">
-                                <div class="col-6 col-lg-4">
+                            <div className="row justify-content-center">
+                                <div className="col-6 col-lg-4">
                                     <button type="button" className="btn btn-primary btn-lg menBt" 
                                     onClick={this.irCompras}
                                     style={{'width':'60%', 'height': '90%'}}>
-                                        <i class="fi fi-rr-bags-shopping"/>
+                                        <i className="fi fi-rr-bags-shopping"/>
                                         <br/>
                                         Administrar compras
                                     </button>
                                 </div>
-                                <div class="col-6 col-lg-4">
+                                <div className="col-6 col-lg-4">
                                     <button type="button" className="btn btn-danger btn-lg menBt" 
                                     onClick={this.logout}
                                     style={{'width':'60%', 'height': '90%'}}>
-                                        <i class="fi fi-rr-sign-out-alt"/>
+                                        <i className="fi fi-rr-sign-out-alt"/>
                                         <br/>
                                         Cerrar Sesión
                                     </button>

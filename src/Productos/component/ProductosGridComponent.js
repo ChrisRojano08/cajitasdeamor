@@ -121,7 +121,10 @@ class ProductosGridComponent extends React.Component {
                                 </div>
                                 <div className="card-body">
                                     <div className="container-fluid contProd">
-                                        {this.newBusinessBotton()} 
+                                        <div className="row justify-content-start">
+                                            <div className="col-1"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div>
+                                            <div className="col-2">{this.newBusinessBotton()}</div>
+                                        </div>
                                         <br/><br/>
                                         <div className="row justify-content-center mt-3">
                                             <div className="table-responsive">
@@ -143,11 +146,6 @@ class ProductosGridComponent extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div className="row">
-                                    <center><div class="col-6"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div></center>
-                                    <br/>
                                 </div>
                                 <br/><br/>
                             </div>
