@@ -1,8 +1,8 @@
 import { Urls } from "../../resources/Urls";
 
 export class UsuariosController {
-    async findAll(){
-        const respuesta = await fetch(Urls.usersApi.findAll, {
+  async findAll() {
+    const respuesta = await fetch(Urls.usersApi.findAll, {
       'method': 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -11,21 +11,35 @@ export class UsuariosController {
       .then(response => response.json())
       .catch(error => console.log(error))
 
-      return respuesta;
-    }
+    return respuesta;
+  }
 
-  async eliminarUsuario(data){
+  async eliminarUsuario(data) {
     const respuesta = await fetch(Urls.usersApi.delete, {
-  'method': 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(data)
-})
-  .then(response => response.json())
-  .catch(error => console.log(error))
+      'method': 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .catch(error => console.log(error))
 
-  return respuesta;
-}
- 
+    return respuesta;
+  }
+
+  async updateUser(data) {
+    const respuesta = await fetch(Urls.usersApi.update, {
+      'method': 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .catch(error => console.log(error))
+
+    return respuesta;
+  }
+
 }

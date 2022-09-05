@@ -38,7 +38,7 @@ class ContactanosComponent extends React.Component {
     render() {
         return (
             <div class="container-fluid ">
-                <h1 style={{ color: 'red' }} >Contáctanos</h1>
+                <h1 style={{ color: 'red' }} className="text-center">Contáctanos</h1>
                 <br/>
                 <h4 style={{ color: 'black', fontFamily: '10px' }}>Siempre estamos abiertos a nuevas propuestas</h4>
                 <br/>

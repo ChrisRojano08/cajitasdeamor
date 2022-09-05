@@ -59,7 +59,7 @@ class HomePageComponent extends React.Component {
     return (
       <div className="container-fluid">
         <br/>
-        <h1 style={{ color: 'red' }} >Inicio</h1>
+        <h1 style={{ color: 'red' }} className="text-center">Inicio</h1>
         <div className="row justify-content-center">
           <div className="card-header bg-light">
             <div className="container-fluid mt-4">
