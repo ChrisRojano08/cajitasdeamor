@@ -169,7 +169,6 @@ class MenuUsuarioComponent extends React.Component {
                             </div>
                         </div>
                         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12 p-2 mt-4" style={{'left':'5px'}}>
-                            {/*<button className="btn btn-success mx-2">  Ver  </button>*/}
                             {c.Estado!=='En espera' ?
                                 <button type="button" class="btn btn-danger" disabled>
                                     Cancelar
@@ -244,6 +243,51 @@ class MenuUsuarioComponent extends React.Component {
         })
     }
 
+    irMenuSuper = e => {
+        this.props.history.push('/menuSuper')
+    }
+
+    verificarUser(){
+        if(sessionStorage.getItem("tipo")==='admin' || sessionStorage.getItem("tipo")==="sudosu"){
+            return(
+                <>
+                    <div className="col-xl-8 col-lg-8 col-md-8">
+                        <div className="row align-self-start">
+                            <p className="fs-2">Bienvenido {sessionStorage.getItem('nombre')}.</p>
+                        </div>
+                        <div className="row">
+                            <h6>{sessionStorage.getItem('correo')}</h6>
+                        </div>
+                        
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 my-4">
+                            <button className="btn btn-primary" onClick={this.irMenuSuper}> Modo administrador </button>
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 my-4">
+                        <button className="btn btn-danger" onClick={this.cerrarSesion}> Cerrar sesión </button>
+                    </div>
+                </>
+            );
+        }else{
+            return(
+                <>
+                    <div className="col-xl-10 col-lg-10 col-md-10">
+                        <div className="row align-self-start">
+                            <p className="fs-2">Bienvenido {sessionStorage.getItem('nombre')}.</p>
+                        </div>
+                        <div className="row">
+                            <h6>{sessionStorage.getItem('correo')}</h6>
+                        </div>
+                        
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 my-4">
+                        <button className="btn btn-danger" onClick={this.cerrarSesion}> Cerrar sesión </button>
+                    </div>
+                </>
+            );
+        }
+    }
+
     render() {
         return (
             <div class="container col-lg-12 col-md-12 col-sm-12 p-4">
@@ -265,18 +309,7 @@ class MenuUsuarioComponent extends React.Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-lg-10 col-md-10">
-                        <div className="row align-self-start">
-                            <p className="fs-2">Bienvenido {sessionStorage.getItem('nombre')}.</p>
-                        </div>
-                        <div className="row">
-                            <h6>{sessionStorage.getItem('correo')}</h6>
-                        </div>
-                        
-                    </div>
-                    <div className="col-lg-2 col-md-2 my-4">
-                        <button className="btn btn-danger" onClick={this.cerrarSesion}> Cerrar sesión </button>
-                    </div>
+                    {this.verificarUser()}
                 </div>
 
                 <br/>

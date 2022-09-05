@@ -1,7 +1,8 @@
 import React from 'react';
-import { Navbar, Nav, Container} from 'react-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import bannerlogC from './resources/images/logo003.png';
 import logC from './resources/images/logo001.png';
+import backCA from './resources/images/papelTapiz.png';
 import './resources/css/General.css';
 import {
   BrowserRouter as Router,
@@ -53,19 +54,19 @@ export default class App extends React.Component {
     }
   }
 
-  navRnd(){
-    return(
+  navRnd() {
+    return (
       <div className="container-fluid">
         <div className="row justify-content-center">
           <img src={bannerlogC} className="rounded mx-auto d-block" alt='Banner'
-          style={{ height: '125px', width: 'auto' }} />
+            style={{ height: '125px', width: 'auto' }} />
         </div>
 
         <Navbar bg="dark" variant="dark">
           <Container>
             <Navbar.Brand href="/">
               <img className="logopieimg" alt='Logo'
-                  style={{ height: '60px'}} src={logC} />
+                style={{ height: '60px' }} src={logC} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -84,8 +85,8 @@ export default class App extends React.Component {
     );
   }
 
-  bodyRnd(){
-    return(
+  bodyRnd() {
+    return (
       <div className="container-fluid">
         <div className="row justify-content-center">
           <Router>
@@ -118,8 +119,8 @@ export default class App extends React.Component {
     );
   }
 
-  footerRnd(){
-    return(
+  footerRnd() {
+    return (
       <div>
         <footer className="container-fluid align-items-end footCA">
           <div className="row ">
@@ -140,18 +141,18 @@ export default class App extends React.Component {
       </div>
     );
   }
-  
+
 
   render() {
     return (
       <div>
-        <div className="container-fluid navHole">
+        <div className="navHole">
           {this.navRnd()}
         </div>
-        <div className="container-fluid bodyHole">
+        <div className="bodyHole">
           {this.bodyRnd()}
         </div>
-        <div className="container-fluid footHole">
+        <div className="footHole">
           {this.footerRnd()}
         </div>
       </div>
