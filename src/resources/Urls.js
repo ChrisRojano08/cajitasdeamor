@@ -18,7 +18,8 @@ export const Urls = {
         registrar:baseApi.users+'insert',
         delete:baseApi.users+'delete',
         findEmail:baseApi.users+'findEmail',
-        changePass:baseApi.users+'changePass'
+        changePass:baseApi.users+'changePass',
+        update:baseApi.users+'update',
     },
     productApi:{
         findAll:baseApi.product+'findAll',

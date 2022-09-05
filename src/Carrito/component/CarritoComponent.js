@@ -42,14 +42,12 @@ class CarritoComponent extends React.Component {
         let datos = {idUsuario: sessionStorage.getItem("idUsuario")}
         let respuesta = await this.carritoController.findByUserId(datos);
 
-        if(respuesta.status === 'Vacio'){
+        if(respuesta.status !== 'Vacio'){
             this.setState({ Total: respuesta[1].Total });
             this.setState({ productos: respuesta[0] });
         }else{
             this.setState({ Total: -1 });
         }
-
-        
     }
 
     delete = () => {
@@ -135,7 +133,7 @@ class CarritoComponent extends React.Component {
 
     productosCarrito(){
         return this.state.productos.map((c)=>
-            <div className="col-lg-4 p-2"  key={c.idCarrito}>
+            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 p-2"  key={c.idCarrito}>
                 <div class="card text-center">
                     {this.mostrarImgs(c)}
                     <div class="card-body">
@@ -165,16 +163,16 @@ class CarritoComponent extends React.Component {
                                 <h4>Productos</h4>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row justify-content-center">
                             <div className="card-group col-lg-9 bg-light cardCarrito">
 
                                 {this.productosCarrito()}
 
                             </div>
-                                <div className="col-lg-3  bg-light p-3">
-                                        <h3>Total</h3>
+                                <div className="col-lg-3 bg-light p-3 ">
+                                        <h4 className="text-center">Total</h4>
                                         <br/>
-                                        <h3>${this.state.Total}</h3>
+                                        <h3 className="text-center">${this.state.Total}</h3>
                                         <br/>
                                         <button className="btn btn-success" style={{width:'80%', marginLeft:'10%'}}
                                             onClick={()=>this.irCompra()}>
@@ -188,21 +186,21 @@ class CarritoComponent extends React.Component {
     }
 
     validarProd(){
-        if(this.state.Total === -1){
-            return this.renderVacio()
-        }else{
-            if(sessionStorage.getItem("nombre")){
-                return this.renderCarrito()
+        if(sessionStorage.getItem("nombre")){
+            if(this.state.Total === -1){
+                return this.renderVacio()
             }else{
-                return this.renderNoLogeado()
+                return this.renderCarrito()
             }
+        }else{
+            return this.renderNoLogeado()
         }
     }
 
     render() {
         return (
             <div class="container-fluid ">
-                <h1 style={{ color: 'red' }} >Carrito</h1>
+                <h1 style={{ color: 'red' }}  className="text-center">Carrito</h1>
                 <br/>
                     {this.validarProd()}
                 <br/><br/>

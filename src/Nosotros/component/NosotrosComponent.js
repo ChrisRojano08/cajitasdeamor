@@ -27,7 +27,7 @@ class NosotrosComponent extends React.Component {
     render() {
         return (
             <div class="container-fluid row justify-content-md-center">
-                <h1 style={{ color: 'red' }} >Acerca De Nosotros</h1>
+                <h1 style={{ color: 'red' }} className="text-center">Acerca De Nosotros</h1>
 
                 <div class="card mb-3" style={{width: '75%'}}>
                     <div class="row g-0">
