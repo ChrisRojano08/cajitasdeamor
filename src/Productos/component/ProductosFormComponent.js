@@ -52,7 +52,11 @@ class ProductosFormComponent extends React.Component{
     }
 
     back = _ =>{
-        window.history.back();
+        if (this.props.form){
+            window.history.go();
+        }else{
+            window.history.back();
+        }
     }
 
     menu = _ => {

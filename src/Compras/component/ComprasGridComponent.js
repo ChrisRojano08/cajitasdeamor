@@ -204,6 +204,10 @@ class ComprasGridComponent extends React.Component {
                                 </div>
                                 <div className="card-body">
                                     <div className="container-fluid contProd">
+                                        <div className="row">
+                                            <div class="col-6"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div>
+                                            <br/>
+                                        </div>
                                         <br/><br/>
                                         <div className="row justify-content-center mt-3">
                                             <div className="table-responsive">
@@ -225,11 +229,6 @@ class ComprasGridComponent extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div className="row">
-                                    <center><div class="col-6"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div></center>
-                                    <br/>
                                 </div>
                                 <br/><br/>
                             </div>

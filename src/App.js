@@ -37,16 +37,23 @@ export default class App extends React.Component {
       view: 0
     }
   }
+  sessionAdmin(){
+    const nameUser = sessionStorage.getItem("nombre");
+    const typeUser = sessionStorage.getItem("tipo");
+    if (nameUser != null && typeUser === 'sudosu') {
+      return (<Route path="/menuSuper" component={MenuSuperAdminComponent} />);  
+    }
+}
 
   validarSesion() {
-    let nom = sessionStorage.getItem("nombre");
-    let tip = sessionStorage.getItem("tipo");
+    let nameUser = sessionStorage.getItem("nombre");
+    let typeUser = sessionStorage.getItem("tipo");
 
-    if (nom != null) {
-      if (tip === 'admin') {
-        return (<Nav.Link href="/menuSuper" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nom}</Nav.Link>);
+    if (nameUser != null) {
+      if (typeUser === 'admin') {
+        return (<Nav.Link href="/menuSuper" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nameUser}</Nav.Link>);
       } else {
-        return (<Nav.Link href="/menuUsuario" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nom}</Nav.Link>);
+        return (<Nav.Link href="/menuUsuario" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nameUser}</Nav.Link>);
       }
     } else {
       return (<Nav.Link href="/Login" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />Usuario</Nav.Link>);
@@ -91,11 +98,11 @@ export default class App extends React.Component {
           <Router>
             <div className="row justify-content-center">
               <Switch>
+                {this.sessionAdmin()}
                 <Route path="/usuariosGrid" component={UsuariosGridComponent} />
                 <Route path="/productosForm" component={ProductosFormComponent} />
                 <Route path="/Dedicatoria" component={DedicatoriaComponent} />
                 <Route path="/productosGrid" component={ProductosGridComponent} />
-                <Route path="/menuSuper" component={MenuSuperAdminComponent} />
                 <Route path="/menuUsuario" component={MenuUsuarioComponent} />
                 <Route path="/Carrito" component={CarritoComponent} />
                 <Route path="/Recuperar" component={RecuperarComponent} />
