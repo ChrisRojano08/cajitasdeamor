@@ -126,7 +126,7 @@ class CarritoComponent extends React.Component {
         }
     }
 
-    mostrarImgs=_=>{
+    mostrarImgs=cI=>{
         switch(cI.Producto.length){
             case 0:
                 return(<h1>ERROR-ERROR-ERROR</h1>)
