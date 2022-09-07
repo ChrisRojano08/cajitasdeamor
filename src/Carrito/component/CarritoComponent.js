@@ -17,7 +17,7 @@ class CarritoComponent extends React.Component {
                 Cantidad: 0,
                 Producto:[{
                     Categoria:{
-                        Descripcio:' '
+                        Descripcion:' '
                     },
                     Nombre:' ',
                     Imagen:' ',
@@ -25,7 +25,7 @@ class CarritoComponent extends React.Component {
                 }],
                 Subtotal: 0
             }],
-            Total: 0,
+            Total: -1,
             idCarrito:-1
         }
     }
@@ -127,20 +127,20 @@ class CarritoComponent extends React.Component {
     }
 
     mostrarImgs=_=>{
-        switch(this.state.productos.length){
+        switch(cI.Producto.length){
             case 0:
                 return(<h1>ERROR-ERROR-ERROR</h1>)
             case 1:
                 const prodsA =[[
                     {
-                        Imagen: this.state.productos[0].Imagen
+                        Imagen: cI.Producto[0].Imagen
                     }
                 ]]
 
                 return(<ImgsProds data={prodsA}/>)
             default:
                 let imgsAr=[];
-                this.state.productos.forEach( c=>{
+                cI.Producto.forEach( c=>{
                     Array.prototype.push.apply(imgsAr, [c.Producto]);
                 })
                 
