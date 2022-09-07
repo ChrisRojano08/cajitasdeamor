@@ -43,8 +43,13 @@ class CarritoComponent extends React.Component {
         let respuesta = await this.carritoController.findByUserId(datos);
         this.setState({ Total: respuesta[1].Total });
         this.setState({ productos: respuesta[0] });
-
-        console.log(this.state.productos);
+        
+        if(respuesta.status !== 'Vacio'){
+            this.setState({ Total: respuesta[1].Total });
+            this.setState({ productos: respuesta[0] });
+        }else{
+            this.setState({ Total: -1 });
+        }
     }
 
     delete = () => {
@@ -67,11 +72,8 @@ class CarritoComponent extends React.Component {
         let data = {
             idCarrito: c.idCarrito, cantidad:document.getElementById(c.idCarrito).value
         };
-        console.log(data);
-        let respuesta =  await this.carritoController.updateCart(data);
-
-        console.log(respuesta)
         
+        let respuesta =  await this.carritoController.updateCart(data);
     }
 
     renderNoLogeado(){
@@ -80,6 +82,17 @@ class CarritoComponent extends React.Component {
                 <div className="col-lg-11 text-center">
                     <h3>No ha iniciado sesion!</h3>
                     <h4>Registrese o inicie sesión para poder ver y guardar productos en el carrito de compras.</h4>
+                </div>
+            </div>
+        );
+    }
+    
+    renderVacio(){
+        return(
+            <div class="row justify-content-center mt-4">
+                <div className="col-lg-11">
+                    <h3>El carrito está vacio!</h3>
+                    <h4>Visite la tienda y revise nuestros productos.</h4>
                 </div>
             </div>
         );
@@ -99,6 +112,18 @@ class CarritoComponent extends React.Component {
 
     setDatos = (id) =>{
         this.setState({idCarrito:id});
+    }
+    
+    validarProd(){
+        if(sessionStorage.getItem("nombre")){
+            if(this.state.Total === -1){
+                return this.renderVacio()
+            }else{
+                return this.renderCarrito()
+            }
+        }else{
+            return this.renderNoLogeado()
+        }
     }
 
     mostrarImgs=_=>{
@@ -198,7 +223,7 @@ class CarritoComponent extends React.Component {
                 </div>
                 
                 <br/>
-                    {sessionStorage.getItem("nombre") ? this.renderCarrito() : this.renderNoLogeado()}
+                    {this.validarProd()}
                 <br/><br/>
                 <div class="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
