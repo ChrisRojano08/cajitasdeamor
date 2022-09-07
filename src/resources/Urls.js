@@ -1,4 +1,5 @@
-const baseURl='http://35.171.25.92:5000/';
+const baseURl='http://localhost:5000/';
+// const baseURl='http://35.171.25.92:5000/';
 
 //this is a explame data for base url api CAMBIO RANDOM 1.1
 const baseApi={
@@ -18,8 +19,7 @@ export const Urls = {
         registrar:baseApi.users+'insert',
         delete:baseApi.users+'delete',
         findEmail:baseApi.users+'findEmail',
-        changePass:baseApi.users+'changePass',
-        update:baseApi.users+'update',
+        changePass:baseApi.users+'changePass'
     },
     productApi:{
         findAll:baseApi.product+'findAll',
@@ -50,7 +50,7 @@ export const Urls = {
         findByUserId:baseApi.cart+'findByUserId',
         delete:baseApi.cart+'delete',
         insert:baseApi.cart+'insert',
-        deleteAll:baseApi.cart+'deleteAll'
+        updateCart:baseApi.cart+'updateCart'
     },
     paymentApi:{
         find:baseApi.payment+'find',
