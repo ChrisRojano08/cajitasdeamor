@@ -50,7 +50,8 @@ export const Urls = {
         findByUserId:baseApi.cart+'findByUserId',
         delete:baseApi.cart+'delete',
         insert:baseApi.cart+'insert',
-        deleteAll:baseApi.cart+'deleteAll'
+        deleteAll:baseApi.cart+'deleteAll',
+        updateCart:baseApi.cart+'updateCart'
     },
     paymentApi:{
         find:baseApi.payment+'find',

@@ -41,7 +41,9 @@ class CarritoComponent extends React.Component {
     async loadData(){
         let datos = {idUsuario: sessionStorage.getItem("idUsuario")}
         let respuesta = await this.carritoController.findByUserId(datos);
-
+        this.setState({ Total: respuesta[1].Total });
+        this.setState({ productos: respuesta[0] });
+        
         if(respuesta.status !== 'Vacio'){
             this.setState({ Total: respuesta[1].Total });
             this.setState({ productos: respuesta[0] });
@@ -66,17 +68,25 @@ class CarritoComponent extends React.Component {
         }
     }
 
+    async changeAmount(c){
+        let data = {
+            idCarrito: c.idCarrito, cantidad:document.getElementById(c.idCarrito).value
+        };
+        
+        let respuesta =  await this.carritoController.updateCart(data);
+    }
+
     renderNoLogeado(){
         return(
             <div class="row justify-content-center">
-                <div className="col-lg-11">
+                <div className="col-lg-11 text-center">
                     <h3>No ha iniciado sesion!</h3>
                     <h4>Registrese o inicie sesión para poder ver y guardar productos en el carrito de compras.</h4>
                 </div>
             </div>
         );
     }
-
+    
     renderVacio(){
         return(
             <div class="row justify-content-center mt-4">
@@ -103,8 +113,20 @@ class CarritoComponent extends React.Component {
     setDatos = (id) =>{
         this.setState({idCarrito:id});
     }
+    
+    validarProd(){
+        if(sessionStorage.getItem("nombre")){
+            if(this.state.Total === -1){
+                return this.renderVacio()
+            }else{
+                return this.renderCarrito()
+            }
+        }else{
+            return this.renderNoLogeado()
+        }
+    }
 
-    mostrarImgs= cI =>{
+    mostrarImgs=_=>{
         switch(cI.Producto.length){
             case 0:
                 return(<h1>ERROR-ERROR-ERROR</h1>)
@@ -133,15 +155,23 @@ class CarritoComponent extends React.Component {
 
     productosCarrito(){
         return this.state.productos.map((c)=>
-            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 p-2"  key={c.idCarrito}>
+            <div className="col-lg-4 p-2 "  key={c.idCarrito}>
                 <div class="card text-center">
-                    {this.mostrarImgs(c)}
+                    {this.mostrarImgs()}
                     <div class="card-body">
                         <h5 class="card-title">{c.Producto[0].Nombre}</h5>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Precio unitario: ${c.Producto[0].Precio}</li>
-                        <li class="list-group-item">Cantidad: {c.Cantidad}</li>
+                        <li class="list-group-item">Cantidad:  <input type="number"
+                                        class="col-2"
+                                        id={c.idCarrito}
+                                        placeholder=" "
+                                        name='Cantidad'
+                                        min="1"
+                                        onChange={() => this.changeAmount(c)}
+                                        defaultValue={c.Cantidad}
+                                        required /></li>
                         <li class="list-group-item">Subtotal: ${c.Subtotal}</li>
                     </ul>
                     <div class="card-body">
@@ -159,20 +189,20 @@ class CarritoComponent extends React.Component {
         <div class="row justify-content-center">
                     <div className="col-lg-11">
                         <div className="row">
-                            <div className="col-lg-12 bg-light p-4">
+                            <div className="col-lg-12 bg-light p-4 text-center">
                                 <h4>Productos</h4>
                             </div>
                         </div>
-                        <div className="row justify-content-center">
+                        <div className="row">
                             <div className="card-group col-lg-9 bg-light cardCarrito">
 
                                 {this.productosCarrito()}
 
                             </div>
-                                <div className="col-lg-3 bg-light p-3 ">
-                                        <h4 className="text-center">Total</h4>
+                                <div className="col-lg-3  bg-light p-3">
+                                        <h3>Total</h3>
                                         <br/>
-                                        <h3 className="text-center">${this.state.Total}</h3>
+                                        <h3>${this.state.Total}</h3>
                                         <br/>
                                         <button className="btn btn-success" style={{width:'80%', marginLeft:'10%'}}
                                             onClick={()=>this.irCompra()}>
@@ -185,22 +215,13 @@ class CarritoComponent extends React.Component {
         );
     }
 
-    validarProd(){
-        if(sessionStorage.getItem("nombre")){
-            if(this.state.Total === -1){
-                return this.renderVacio()
-            }else{
-                return this.renderCarrito()
-            }
-        }else{
-            return this.renderNoLogeado()
-        }
-    }
-
     render() {
         return (
             <div class="container-fluid ">
-                <h1 style={{ color: 'red' }}  className="text-center">Carrito</h1>
+                <div class="text-center">
+                  <h1 style={{ color: 'red' }} >Carrito</h1>
+                </div>
+                
                 <br/>
                     {this.validarProd()}
                 <br/><br/>
