@@ -73,12 +73,12 @@ class CarritoComponent extends React.Component {
             idCarrito: c.idCarrito, cantidad:document.getElementById(c.idCarrito).value
         };
         
-        let respuesta =  await this.carritoController.updateCart(data);
+        await this.carritoController.updateCart(data);
     }
 
     renderNoLogeado(){
         return(
-            <div class="row justify-content-center">
+            <div className="row justify-content-center">
                 <div className="col-lg-11 text-center">
                     <h3>No ha iniciado sesion!</h3>
                     <h4>Registrese o inicie sesión para poder ver y guardar productos en el carrito de compras.</h4>
@@ -89,7 +89,7 @@ class CarritoComponent extends React.Component {
     
     renderVacio(){
         return(
-            <div class="row justify-content-center mt-4">
+            <div className="row justify-content-center mt-4">
                 <div className="col-lg-11">
                     <h3>El carrito está vacio!</h3>
                     <h4>Visite la tienda y revise nuestros productos.</h4>
@@ -126,7 +126,7 @@ class CarritoComponent extends React.Component {
         }
     }
 
-    mostrarImgs=_=>{
+    mostrarImgs=cI=>{
         switch(cI.Producto.length){
             case 0:
                 return(<h1>ERROR-ERROR-ERROR</h1>)
@@ -156,26 +156,29 @@ class CarritoComponent extends React.Component {
     productosCarrito(){
         return this.state.productos.map((c)=>
             <div className="col-lg-4 p-2 "  key={c.idCarrito}>
-                <div class="card text-center">
-                    {this.mostrarImgs()}
-                    <div class="card-body">
-                        <h5 class="card-title">{c.Producto[0].Nombre}</h5>
+                <div className="card text-center">
+                    {this.mostrarImgs(c)}
+                    <div className="card-body">
+                        <h5 className="card-title">{c.Producto[0].Nombre}</h5>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Precio unitario: ${c.Producto[0].Precio}</li>
-                        <li class="list-group-item">Cantidad:  <input type="number"
-                                        class="col-2"
-                                        id={c.idCarrito}
-                                        placeholder=" "
-                                        name='Cantidad'
-                                        min="1"
-                                        onChange={() => this.changeAmount(c)}
-                                        defaultValue={c.Cantidad}
-                                        required /></li>
-                        <li class="list-group-item">Subtotal: ${c.Subtotal}</li>
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item">Precio unitario: ${c.Producto[0].Precio}</li>
+                        <li className="list-group-item col-12">Cantidad:  
+                            <input type="number"
+                                    className="col-12 p-1 text-center"
+                                    id={c.idCarrito}
+                                    placeholder=" "
+                                    name='Cantidad'
+                                    min="1"
+                                    max="30"
+                                    onChange={() => this.changeAmount(c)}
+                                    defaultValue={c.Cantidad}
+                                    required />
+                        </li>
+                        <li className="list-group-item">Subtotal: ${c.Subtotal}</li>
                     </ul>
-                    <div class="card-body">
-                        <button type="button" class="btn btn-danger"
+                    <div className="card-body">
+                        <button type="button" className="btn btn-danger"
                             data-bs-toggle="modal" data-bs-target="#exampleModal01"
                             onClick={() => this.setDatos(c.idCarrito)}>Eliminar</button>
                     </div>
@@ -186,7 +189,7 @@ class CarritoComponent extends React.Component {
 
     renderCarrito(){
         return(
-        <div class="row justify-content-center">
+        <div className="row justify-content-center">
                     <div className="col-lg-11">
                         <div className="row">
                             <div className="col-lg-12 bg-light p-4 text-center">
@@ -217,25 +220,25 @@ class CarritoComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid ">
-                <div class="text-center">
+            <div className="container-fluid ">
+                <div className="text-center">
                   <h1 style={{ color: 'red' }} >Carrito</h1>
                 </div>
                 
                 <br/>
                     {this.validarProd()}
                 <br/><br/>
-                <div class="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmar eliminación</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div className="modal fade" id="exampleModal01" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Confirmar eliminación</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">Desea eliminar este producto?</div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick={() =>this.delete()}>Si</button>
+                            <div className="modal-body">Desea eliminar este producto?</div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={() =>this.delete()}>Si</button>
                             </div>
                         </div>
                     </div>
