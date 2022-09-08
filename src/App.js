@@ -2,7 +2,6 @@ import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import bannerlogC from './resources/images/logo003.png';
 import logC from './resources/images/logo001.png';
-import backCA from './resources/images/papelTapiz.png';
 import './resources/css/General.css';
 import {
   BrowserRouter as Router,
@@ -29,7 +28,6 @@ import DomicilioComponent from "./Domicilio/component/DomicilioComponent";
 import ComprasGridComponent from "./Compras/component/ComprasGridComponent";
 import MenuUsuarioComponent from "./MenuUsuario/component/MenuUsuarioComponent";
 import CompraComponent from './Compras/component/CompraComponent';
-import ErrorComponent from './resources/Error';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -116,7 +114,6 @@ export default class App extends React.Component {
                 <Route path="/Domicilio" component={DomicilioComponent} />
                 <Route path="/Compras" component={ComprasGridComponent} />
                 <Route path="/Compra" component={CompraComponent} />
-                <Route path="/ErrorDelServidor" component={ErrorComponent} />
                 <Route path="/" component={HomePageComponent} />
               </Switch>
             </div>
