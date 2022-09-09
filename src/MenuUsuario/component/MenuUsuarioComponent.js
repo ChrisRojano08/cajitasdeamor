@@ -123,13 +123,13 @@ class MenuUsuarioComponent extends React.Component {
     mostrarEstado(estado){
         switch(estado){
             case 'En espera':
-                return(<p className="text-info">{estado}</p>);
+                return(<h6 className="text-info text-center responText">{estado}</h6>);
             case 'En devolución': case 'Cancelado':
-                return(<p className="text-danger">{estado}</p>);
+                return(<h6 className="text-danger text-center responText">{estado}</h6>);
             case 'Entregado':
-                return(<p className="text-success">{estado}</p>);
+                return(<h6 className="text-success text-center responText">{estado}</h6>);
             default:
-                return(<p className="text-primary">{estado}</p>);
+                return(<h6 className="text-primary text-center responText">{estado}</h6>);
         }
     }
 
@@ -140,10 +140,10 @@ class MenuUsuarioComponent extends React.Component {
                 <h5 class="card-header">{c.Fecha}</h5>
                 <div class="card-body">
                     <div className="row align-items-center justify-content-center">
-                        <div className="col-xl-6 col-lg-4 col-md-4 col-sm-12 mt-4">
+                        <div className="col-xl-5 col-lg-4 col-md-4 col-sm-12 mt-4">
                             <ImgsProds data={c.Productos} />
                         </div>
-                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12 mt-4">
+                        <div className="col-xl-3 col-lg-2 col-md-2 col-sm-12 mt-4">
                             {this.mostrarEstado(c.Estado)}
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mt-4">
@@ -151,20 +151,17 @@ class MenuUsuarioComponent extends React.Component {
                                 <div class="card-header">
                                     <div className="row fullWidth">
                                         <div className="col-lg-10 col-md-10"> </div>
-
                                         <div className="col-lg-2 col-md-2 pe-auto" >
                                             {c.Estado==='En espera' ? 
                                                 <button onClick={()=>this.editarDedicatoria(c)}><i class="fi fi-rr-edit"></i></button>
                                             :
                                             <button disabled><i class="fi fi-rr-edit"></i></button>
                                             }
-                                            
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-text">{c.Dedicatoria}</p>
+                                    <p class="card-text text-center">{c.Dedicatoria}</p>
                                 </div>
                             </div>
                         </div>
@@ -190,8 +187,8 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarDomicilios(){
         return this.state.domicilios.map((c)=>
-            <div className="col-lg-4 col-md-4 col-sm-6">
-                <div class="card mx-2 p-4">
+            <div className="col-lg-4 col-md-4 col-sm-6 mt-4">
+                <div class="card mx-2 p-4 domTarj">
                     <div class="card-body">
                         <div className="row">
                             <div className="col-2">
@@ -214,12 +211,12 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarTarjetas(){
         return this.state.tarjetas.map((c)=>
-            <div className="col-lg-4 col-md-6 p-2">
+            <div className="col-lg-4 col-md-6 p-2 mt-4 cardSh">
                 <Cards
                     cvc={c.CVV}
                     expiry={c.FechaVencimiento}
                     name={c.Nombre}
-                    number={c.Cuenta}
+                    number={c.Cuenta.substring(0,8)}
                 />
             </div>
         )
@@ -343,7 +340,7 @@ class MenuUsuarioComponent extends React.Component {
                             
                         </div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                            <div className="row">
+                            <div className="row p-4">
                                 { this.state.tarjetas[0].status === "Vacio" ? this.datosVacios("agrega una nueva tarjeta") : this.mostrarTarjetas()}
                             </div>
                         </div>
