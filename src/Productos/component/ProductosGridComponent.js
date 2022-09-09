@@ -123,7 +123,7 @@ class ProductosGridComponent extends React.Component {
                                     <div className="container-fluid contProd">
                                         <div className="row justify-content-start">
                                             <div className="col-1"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div>
-                                            <div className="col-2">{this.newBusinessBotton()}</div>
+                                            <div className="col-2 mx-4">{this.newBusinessBotton()}</div>
                                         </div>
                                         <br/><br/>
                                         <div className="row justify-content-center mt-3">
