@@ -22,13 +22,14 @@ class ContactanosComponent extends React.Component {
     }
 
     enviarEmail = e => {
+        console.log(e)
         e.preventDefault();
 
         emailjs.sendForm('service_q03spzk', 'template_wtrfkym', e.target, 'rRgb6F4Wl1gVg9TDY').then(res => {
             if (res.text === 'OK') {
                 Utils.swalSuccess("Sus comentarios fueron enviados con exito!!");
                 this.props.history.push('/');
-                window.location.reload(true);
+                window.location.reload(false);
             } else {
                 Utils.swalError("No se pudieron enviar sus comentarios, intente de nuevo más tarde.");
             }
@@ -52,13 +53,13 @@ class ContactanosComponent extends React.Component {
                                 <div class="row g-2">
                                     <div class="col-md">
                                         <div class="form-floating border-danger">
-                                            <input type="text" class="form-control" id="floatingInputGrid" required />
+                                            <input type="text" class="form-control" id="nombre floatingInputGrid" name="nombre" required />
                                             <label for="floatingInputGrid"><dt>Nombre</dt> </label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingInputGrid" required />
+                                            <input type="text" class="form-control" id="apellidos floatingInputGrid" name="apellidos" required />
                                             <label for="floatingInputGrid"><dt>Apellido</dt> </label>
                                         </div>
                                     </div>
@@ -68,21 +69,21 @@ class ContactanosComponent extends React.Component {
                                 <div class="row g-2">
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input type="email" class="form-control" id="floatingInputGrid" required />
+                                            <input type="email" class="form-control" id="correo floatingInputGrid" name="correo" required />
                                             <label for="floatingInputGrid"><dt>Correo Electronico</dt> </label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" required>
+                                            <select class="form-select" id="motivo floatingSelectGrid" name="motivo" aria-label="Floating label select example" required>
                                                 <option selected></option>
-                                                <option value="1">Queja</option>
-                                                <option value="2">Pedido Especial</option>
-                                                <option value="3">Paquete Dañado</option>
-                                                <option value="4">Pedido Grande</option>
-                                                <option value="5">Error en la pagina</option>
-                                                <option value="6">Error al acceder algun dato</option>
-                                                <option value="3">Pedido Extraviado</option>
+                                                <option value="Queja">Queja</option>
+                                                <option value="Pedido Especial">Pedido Especial</option>
+                                                <option value="Paquete Dañado">Paquete Dañado</option>
+                                                <option value="Pedido Grande">Pedido Grande</option>
+                                                <option value="Error en la pagina">Error en la pagina</option>
+                                                <option value="Error al acceder algun dato">Error al acceder algun dato</option>
+                                                <option value="Pedido Extraviado">Pedido Extraviado</option>
                                             </select>
                                             <label for="floatingInputGrid"> <dt>Seleccione su motivo</dt></label>
                                         </div>
@@ -90,7 +91,7 @@ class ContactanosComponent extends React.Component {
                                 </div>
                                 <br />
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ height: "200px" }} required></textarea>
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="mensaje floatingTextarea" name="mensaje" style={{ height: "200px" }} required></textarea>
                                     <label for="floatingTextarea"><dt>Comentario</dt> </label>
                                 </div>
 
