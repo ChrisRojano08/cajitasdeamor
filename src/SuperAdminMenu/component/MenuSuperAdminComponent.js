@@ -37,8 +37,7 @@ class MenuSuperAdminComponent extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid my-6">
-                <br/><br/>
+            <div className="container-fluid mt-4">
                 <div className="cotainer-lg">
                     <div className="container bg-dark text-white">
                     <br/>
@@ -89,7 +88,7 @@ class MenuSuperAdminComponent extends React.Component {
                         </center>
                     </div>
                 </div>
-                <br/><br/>
+                <br/>
             </div>
         )
     }

@@ -86,12 +86,12 @@ class MenuUsuarioComponent extends React.Component {
                 </div>
                 <div className="row justify-content-center">
                     <div className="col-lg-10 col-md-10 col-sm-10 my-4">
-                        <h1>Parece que no hay nada por aqui...</h1>
+                        <h1 className="text-center">Parece que no hay nada por aqui</h1>
                     </div>
                 </div>
                 <div className="row justify-content-center">
                     <div className="col-lg-10 col-md-10 col-sm-10 my-4">
-                        <h1>Porque no {msg} y regresa despues</h1>
+                        <h1 className="text-center">Porque no {msg} y regresa despues</h1>
                     </div>
                 </div>
             </div>
@@ -136,9 +136,9 @@ class MenuUsuarioComponent extends React.Component {
     mostrarCompras() {
         return this.state.compra.map((c) =>
             <div className="col-12 col-xl-6">
-            <div class="card my-2">
-                <h5 class="card-header">{c.Fecha}</h5>
-                <div class="card-body">
+            <div className="card my-2">
+                <h5 className="card-header">{c.Fecha}</h5>
+                <div className="card-body">
                     <div className="row align-items-center justify-content-center">
                         <div className="col-xl-5 col-lg-4 col-md-4 col-sm-12 mt-4">
                             <ImgsProds data={c.Productos} />
@@ -147,31 +147,31 @@ class MenuUsuarioComponent extends React.Component {
                             {this.mostrarEstado(c.Estado)}
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mt-4">
-                            <div class="card">
-                                <div class="card-header">
+                            <div className="card">
+                                <div className="card-header">
                                     <div className="row fullWidth">
                                         <div className="col-lg-10 col-md-10"> </div>
                                         <div className="col-lg-2 col-md-2 pe-auto" >
                                             {c.Estado==='En espera' ? 
-                                                <button onClick={()=>this.editarDedicatoria(c)}><i class="fi fi-rr-edit"></i></button>
+                                                <button onClick={()=>this.editarDedicatoria(c)}><i className="fi fi-rr-edit"></i></button>
                                             :
-                                            <button disabled><i class="fi fi-rr-edit"></i></button>
+                                            <button disabled><i className="fi fi-rr-edit"></i></button>
                                             }
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text text-center">{c.Dedicatoria}</p>
+                                <div className="card-body">
+                                    <p className="card-text text-center">{c.Dedicatoria}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12 p-2 mt-4" style={{'left':'5px'}}>
                             {c.Estado!=='En espera' ?
-                                <button type="button" class="btn btn-danger" disabled>
+                                <button type="button" className="btn btn-danger" disabled>
                                     Cancelar
                                 </button>
                             : 
-                                <button type="button" class="btn btn-danger" 
+                                <button type="button" className="btn btn-danger" 
                                     data-bs-toggle="modal" data-bs-target="#exampleModal01"
                                     onClick={() => this.setDatos(c.idCompra)}>
                                     Cancelar
@@ -188,19 +188,19 @@ class MenuUsuarioComponent extends React.Component {
     mostrarDomicilios(){
         return this.state.domicilios.map((c)=>
             <div className="col-lg-4 col-md-4 col-sm-6 mt-4">
-                <div class="card mx-2 p-4 domTarj">
-                    <div class="card-body">
+                <div className="card mx-2 p-4 domTarj">
+                    <div className="card-body">
                         <div className="row">
                             <div className="col-2">
-                                <i class="fi fi-rr-home"></i>
+                                <i className="fi fi-rr-home"></i>
                             </div>
                             <div className="col-10">
-                                <h5 class="card-title">{c.Calle} {c.Numero}</h5>
+                                <h5 className="card-title">{c.Calle} {c.Numero}</h5>
                             </div>
                         </div>
                         <div className="row">
-                            <p class="card-text">Codigo Postal {c.CodigoPostal}</p>
-                            <p class="card-text">{c.Colonia}, {c.Municipio}, {c.Estado}</p>
+                            <p className="card-text">Codigo Postal {c.CodigoPostal}</p>
+                            <p className="card-text">{c.Colonia}, {c.Municipio}, {c.Estado}</p>
                         </div>
                     </div>
                 </div>
@@ -287,19 +287,19 @@ class MenuUsuarioComponent extends React.Component {
 
     render() {
         return (
-            <div class="container col-lg-12 col-md-12 col-sm-12 p-4">
+            <div className="container col-lg-12 col-md-12 col-sm-12 p-4">
                 
-                <div class="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmar cancelacion</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div className="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Confirmar cancelacion</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">Desea cancelar esta compra?</div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick={() =>this.cancelarCompra()}>Si</button>
+                            <div className="modal-body">Desea cancelar esta compra?</div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={() =>this.cancelarCompra()}>Si</button>
                             </div>
                         </div>
                     </div>
@@ -311,35 +311,35 @@ class MenuUsuarioComponent extends React.Component {
 
                 <br/>
                 <div>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                    <ul className="nav nav-tabs" id="myTab" role="tablist">
+                        <li className="nav-item" role="presentation">
+                            <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
                             role="tab" aria-controls="home" aria-selected="false">Compras</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                        <li className="nav-item" role="presentation">
+                            <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
                             role="tab" aria-controls="profile" aria-selected="true">Domicilios</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+                        <li className="nav-item" role="presentation">
+                            <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
                             role="tab" aria-controls="contact" aria-selected="false">Tarjetas</button>
                         </li>
                     </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div className="tab-content" id="myTabContent">
+                        <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div className="col-lg-12 col-md-12 p-4">
                                 <div className="row">
                                     { this.state.compra[0].status === "Vacio" ? this.datosVacios("realiza una compra") : this.mostrarCompras()}
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div className="card-group p-4 row">
                             { this.state.domicilios[0].status === "Vacio" ? this.datosVacios("agrega un nuevo domicilio") : this.mostrarDomicilios()}
                             </div>
                             
                         </div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                             <div className="row p-4">
                                 { this.state.tarjetas[0].status === "Vacio" ? this.datosVacios("agrega una nueva tarjeta") : this.mostrarTarjetas()}
                             </div>

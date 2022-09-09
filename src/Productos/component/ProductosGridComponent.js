@@ -72,8 +72,8 @@ class ProductosGridComponent extends React.Component {
                  <td>{d.Tamanio}</td>
                  <td>{d.Categoria.Descripcion}</td>
                  <td>
-                    <button onClick={() => this.changeStateFinal(d)} class="btn btn-primary">Editar</button> &nbsp;
-                    <button type="button" class="btn btn-danger"
+                    <button onClick={() => this.changeStateFinal(d)} className="btn btn-primary">Editar</button> &nbsp;
+                    <button type="button" className="btn btn-danger"
                             data-bs-toggle="modal" data-bs-target="#exampleModal"
                             onClick={() => this.setDatos(d.idProducto)}>Eliminar</button>
                  </td>
@@ -83,10 +83,10 @@ class ProductosGridComponent extends React.Component {
 
     newBusinessBotton(){
         return (
-            <div class="d-flex">
-                <div class="ml-auto">
+            <div className="d-flex">
+                <div className="ml-auto">
                     <div className="row justify-content-right" >
-                        <a href="/productosForm" class="btn btn-success me-2">
+                        <a href="/productosForm" className="btn btn-success me-2">
                             Agregar
                         </a>
                     </div>
@@ -98,17 +98,17 @@ class ProductosGridComponent extends React.Component {
     renderCard() {
         return <div className="container-fluid py-3 my-6">
             
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmar eliminacion</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Confirmar eliminacion</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">Desea eliminar este producto?</div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick={() =>this.delete()}>Eliminar</button>
+                            <div className="modal-body">Desea eliminar este producto?</div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary my-2" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" className="btn btn-danger mt-4" data-bs-dismiss="modal" onClick={() =>this.delete()}>Eliminar</button>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@ class ProductosGridComponent extends React.Component {
                                 <div className="card-body">
                                     <div className="container-fluid contProd">
                                         <div className="row justify-content-start">
-                                            <div className="col-1"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div>
+                                            <div className="col-2 mx-4"><button type="button" className="btn btn-info" onClick={() => this.back()}>Regresar</button></div>
                                             <div className="col-2 mx-4">{this.newBusinessBotton()}</div>
                                         </div>
                                         <br/><br/>

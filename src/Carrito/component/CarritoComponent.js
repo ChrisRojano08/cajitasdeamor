@@ -74,14 +74,16 @@ class CarritoComponent extends React.Component {
         };
         
         await this.carritoController.updateCart(data);
+
+        this.loadData();
     }
 
     renderNoLogeado(){
         return(
             <div className="row justify-content-center">
                 <div className="col-lg-11 text-center">
-                    <h3>No ha iniciado sesion!</h3>
-                    <h4>Registrese o inicie sesión para poder ver y guardar productos en el carrito de compras.</h4>
+                    <h3 className="text-center">No ha iniciado sesion!</h3>
+                    <h4 className="text-center">Registrese o inicie sesión para poder ver y guardar productos en el carrito de compras.</h4>
                 </div>
             </div>
         );
@@ -91,8 +93,8 @@ class CarritoComponent extends React.Component {
         return(
             <div className="row justify-content-center mt-4">
                 <div className="col-lg-11">
-                    <h3>El carrito está vacio!</h3>
-                    <h4>Visite la tienda y revise nuestros productos.</h4>
+                    <h3 className="text-center">El carrito está vacio!</h3>
+                    <h4 className="text-center">Visite la tienda y revise nuestros productos.</h4>
                 </div>
             </div>
         );
@@ -202,10 +204,10 @@ class CarritoComponent extends React.Component {
                                 {this.productosCarrito()}
 
                             </div>
-                                <div className="col-lg-3  bg-light p-3">
-                                        <h3>Total</h3>
+                                <div className="col-lg-3 bg-light p-3">
+                                        <h3 className="text-center">Total</h3>
                                         <br/>
-                                        <h3>${this.state.Total}</h3>
+                                        <h3 className="text-center">${this.state.Total}</h3>
                                         <br/>
                                         <button className="btn btn-success" style={{width:'80%', marginLeft:'10%'}}
                                             onClick={()=>this.irCompra()}>
@@ -221,7 +223,7 @@ class CarritoComponent extends React.Component {
     render() {
         return (
             <div className="container-fluid ">
-                <div className="text-center">
+                <div className="text-center mt-4 my-4">
                   <h1 style={{ color: 'red' }} >Carrito</h1>
                 </div>
                 

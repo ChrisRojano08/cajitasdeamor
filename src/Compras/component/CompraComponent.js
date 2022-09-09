@@ -157,21 +157,21 @@ class CompraComponent extends React.Component {
                     <div className="my-4">
                         <div className="row justify-content-center p-4">
                             <div className="col-xl-10 col-lg-10 col-md-10">
-                                <div class="card border-dark mb-3">
-                                    <div class="card-header">
+                                <div className="card border-dark mb-3">
+                                    <div className="card-header">
                                         <div className="row">
                                             <div className="col-2">
-                                                <i class="fi fi-rr-home"></i>
+                                                <i className="fi fi-rr-home"></i>
                                             </div>
                                             <div className="col-8">
-                                                <h6 class="card-title">Domicilio</h6>
+                                                <h6 className="card-title">Domicilio</h6>
                                             </div>
                                             <div className="col-2"> </div>
                                         </div>
                                     </div>
-                                    <div class="card-body text-dark">
-                                        <h5 class="card-title">{this.state.domicilio.Numero} {this.state.domicilio.Calle}</h5>
-                                        <p class="card-text">Código postal {this.state.domicilio.CodigoPostal} - {this.state.domicilio.Colonia},
+                                    <div className="card-body text-dark">
+                                        <h5 className="card-title">{this.state.domicilio.Numero} {this.state.domicilio.Calle}</h5>
+                                        <p className="card-text">Código postal {this.state.domicilio.CodigoPostal} - {this.state.domicilio.Colonia},
                                             {this.state.domicilio.Municipio}, {this.state.domicilio.Estado}</p>
                                     </div>
                                 </div>
@@ -180,21 +180,21 @@ class CompraComponent extends React.Component {
 
                         <div className="row justify-content-center p-4">
                             <div className="col-xl-10 col-lg-10 col-md-10">
-                                <div class="card border-dark mb-3">
-                                    <div class="card-header">
+                                <div className="card border-dark mb-3">
+                                    <div className="card-header">
                                         <div className="row">
                                             <div className="col-2">
-                                                <i class="fi fi-rr-credit-card"></i>
+                                                <i className="fi fi-rr-credit-card"></i>
                                             </div>
                                             <div className="col-8">
-                                                <h6 class="card-title">Método de pago</h6>
+                                                <h6 className="card-title">Método de pago</h6>
                                             </div>
                                             <div className="col-2"> </div>
                                         </div>
                                     </div>
-                                    <div class="card-body text-dark">
-                                        <h5 class="card-title">{this.state.pago.Nombre}</h5>
-                                        <p class="card-text"> Cuenta: {this.state.pago.Cuenta.substring(0, this.state.pago.Cuenta.length -4)}XXXX
+                                    <div className="card-body text-dark">
+                                        <h5 className="card-title">{this.state.pago.Nombre}</h5>
+                                        <p className="card-text"> Cuenta: {this.state.pago.Cuenta.substring(0, this.state.pago.Cuenta.length -4)}XXXX
                                             &nbsp;&nbsp;CVV: *** &nbsp;&nbsp;Vencimiento: {this.state.pago.FechaVencimiento}</p>
                                     </div>
                                 </div>
@@ -203,21 +203,21 @@ class CompraComponent extends React.Component {
 
                         <div className="row justify-content-center p-4">
                             <div className="col-xl-10 col-lg-10 col-md-10">
-                                <div class="card border-dark mb-3">
-                                    <div class="card-header">
+                                <div className="card border-dark mb-3">
+                                    <div className="card-header">
                                         <div className="row">
                                             <div className="col-2">
-                                                <i class="fi fi-rr-envelope"></i>
+                                                <i className="fi fi-rr-envelope"></i>
                                             </div>
                                             <div className="col-8">
-                                                <h6 class="card-title">Dedicatoria</h6>
+                                                <h6 className="card-title">Dedicatoria</h6>
                                             </div>
                                             <div className="col-2"> </div>
                                         </div>
                                     </div>
-                                    <div class="card-body text-dark">
-                                        <h5 class="card-title">{this.state.dedicatoria.Nombre}</h5>
-                                        <p class="card-text">{this.state.dedicatoria.Dedicatoria}</p>
+                                    <div className="card-body text-dark">
+                                        <h5 className="card-title">{this.state.dedicatoria.Nombre}</h5>
+                                        <p className="card-text">{this.state.dedicatoria.Dedicatoria}</p>
                                     </div>
                                 </div>
                             </div>
@@ -298,20 +298,20 @@ class CompraComponent extends React.Component {
                         {this.mostrarForm()}
                     </div>
                     <div className="col-lg-4 col-md-12">
-                        <div class="card">
-                            <div class="card-header">
+                        <div className="card">
+                            <div className="card-header">
                                 Resumen de compra
                             </div>
-                            <div class="card-body">
+                            <div className="card-body">
                                 <div className="row justify-content-center">
-                                    <div className="col-xl-10 col-lg-10 col-md-4">
+                                    <div className="col-xl-10 col-lg-10 col-md-12 col-sm-12 text-center">
                                         {this.mostrarImgs()}
                                     </div>
                                 </div>
                                     
-                                <hr class="my-4 mx-4"/>
+                                <hr className="my-4 mx-4"/>
                                     {this.mostrarNombres()}
-                                <hr class="my-4 mx-4"/>
+                                <hr className="my-4 mx-4"/>
                                 <div className="row">
                                     <div className="col-xl-8 col-lg-8 col-md-8">
                                         <h5>Total:</h5>
@@ -320,7 +320,7 @@ class CompraComponent extends React.Component {
                                         <h5>${this.state.Total}</h5>
                                     </div>
                                 </div>
-                                <hr class="my-4 mx-4"/>
+                                <hr className="my-4 mx-4"/>
                                 <div className="row justify-content-center">
                                     <div className="col-xl-10 col-lg-10 col-md-10 p-2 my-4">
                                         {this.state.progreso===3 ? 
