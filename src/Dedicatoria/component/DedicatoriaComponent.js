@@ -109,7 +109,7 @@ class ProductoComponent extends React.Component {
     mostrarFormUpd=_=>{
         return(
             <div className="row p-4">
-                <h1 style={{ color: 'red' }} className="p-4">Modificar dedicatoria</h1>
+                <h1 style={{ color: 'red' }} className="p-4 text-center mb-4">Modificar dedicatoria</h1>
                 <br/>
                 <div className="col-lg-4 col-md-4">
                     <ImgsProds data={this.state.compra.Productos} />

@@ -100,6 +100,8 @@ class ProductosFormComponent extends React.Component{
 
         if(resp[0].status==='Ok'){
             Utils.swalSuccess(resp[0].Mensaje);
+            setTimeout(() => { this.props.history.push('/productosGrid') }, 1500);
+            setTimeout(() => { window.location.reload(true) }, 2000);
         }else{
             Utils.swalError(resp.exception);
         }
@@ -116,6 +118,8 @@ class ProductosFormComponent extends React.Component{
 
         if(resp[0].status==='Ok'){
             Utils.swalSuccess(resp[0].Mensaje);
+            setTimeout(() => { this.props.history.push('/productosGrid') }, 1500);
+            setTimeout(() => { window.location.reload(true) }, 2000);
         }else{
             Utils.swalError(resp.exception);
         }
@@ -161,7 +165,7 @@ class ProductosFormComponent extends React.Component{
                             <div className="p-4">
                                 <img id="uploadPreview"
                                     src="https://drive.google.com/uc?export=view&id=1ZZpRLvGV02-M4Kstjy5JI2Z_EirFsj1z"
-                                    className="img-thumbnail"
+                                    className="imgProdt"
                                     width="100%"
                                     alt="Vista previa"
                                 />
@@ -201,6 +205,7 @@ class ProductosFormComponent extends React.Component{
                                 <input className="form-control"
                                     type="text"
                                     name="Nombre"
+                                    placeholder="Nombre"
                                     defaultValue={this.state.productos.Nombre}
                                     onChange={this.handleChange}
                                     required
@@ -214,10 +219,11 @@ class ProductosFormComponent extends React.Component{
                             </div>
                             <div className="p-2">
                                 <input className="form-control"
-                                    type="text"
+                                    type="number"
                                     name="Precio"
                                     id="PrecioIn"
-                                    placeholder="$200.00"
+                                    min={10}
+                                    placeholder="200.00"
                                     onChange={this.handleChange}
                                     required
                                 />

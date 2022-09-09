@@ -27,7 +27,7 @@ class DomicilioComponent extends React.Component {
                 Estado: ' ',
                 Municipio: ' ',
                 Numero: 0,
-                idDomicilio: 0
+                idDomicilio: -1
             }]
         }
     }
@@ -41,6 +41,8 @@ class DomicilioComponent extends React.Component {
         const datos = { idUsuario: sessionStorage.getItem("idUsuario") }; 
         const respuestaH = await this.domicilioController.findHome(datos);
 
+        console.log(respuestaH)
+
         this.setState({ domicilios: respuestaH });
     }
 
@@ -50,22 +52,21 @@ class DomicilioComponent extends React.Component {
         if(sessionStorage.getItem("idUsuario") === null){
             Utils.swalError("Necesita iniciar sesion para poder agregar una direccion!");
         }else{
-            const respuesta = await this.domicilioController.insert(this.state.domicilio);
-
-            if(respuesta.status==='Ok'){
-                Utils.swalSuccess("El domicilio fue agregado correctamente!");
-
-                this.loadData();
-                Array.prototype.forEach.call(document.getElementsByClassName("form-control"), function(el) {
-                    el.value = "webos";
-                });
-            }else if (respuesta.status==='Error'){
-                Utils.swalError("Ocurrió un error al insertar al usuario!");
+            if(this.state.domicilio.CodigoPostal < 10000 || this.state.domicilio.CodigoPostal > 99999){
+                Utils.swalError('Ingrese un código postal valido');
             }else{
-                Utils.swalError(respuesta.status);
-            }
+                const respuesta = await this.domicilioController.insert(this.state.domicilio);
 
-                
+                if(respuesta.status==='Ok'){
+                    Utils.swalSuccess("El domicilio fue agregado correctamente!");
+    
+                    setTimeout(() => window.location.reload(true), 1000);
+                }else if (respuesta.status==='Error'){
+                    Utils.swalError("Ocurrió un error al insertar al usuario!");
+                }else{
+                    Utils.swalError(respuesta.status);
+                }
+            }
         }
     }
 
@@ -85,67 +86,66 @@ class DomicilioComponent extends React.Component {
     formulario(){
         return(
             <div>
-                <h3 style={{ color: 'red' }} >Agregar domicilio</h3>
+                <h3 className="text-center" style={{ color: 'red' }} >Agregar domicilio</h3>
                 <br/>
-                <div class="card">
-                    <div class="card-header">
+                <div className="card">
+                    <div className="card-header">
                         Ubicacion
                     </div>
-                    <div class="card-body">
-                        <form class="row g-3 needs-validation justify-content-center" 
-                            onSubmit={this.comprobacion} novalidate>
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <label for="numeroDom" class="form-label">Número</label>
+                    <div className="card-body">
+                        <form className="row g-3 needs-validation justify-content-center" 
+                            onSubmit={this.comprobacion} >
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <label htmlFor="numeroDom" className="form-label">Número</label>
                                 <input type="number" 
-                                        class="form-control" 
+                                        className="form-control" 
                                         id="domTextIn"
                                         onChange={this.handleChange}
                                         name="Numero"  required/>
                             </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <label for="calleDom" class="form-label">Calle </label>
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <label htmlFor="calleDom" className="form-label">Calle </label>
                                 <input type="text" 
-                                        class="form-control" 
+                                        className="form-control" 
                                         id="calleDom" 
                                         onChange={this.handleChange}
                                         name="Calle" required/>
                             </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <label for="coloniaDom" class="form-label">Colonia</label>
+                            <div className="col-xl-12 col-lg-12 col-md-6 col-sm-12">
+                                <label htmlFor="coloniaDom" className="form-label">Colonia</label>
                                 <input type="text" 
-                                        class="form-control" 
+                                        className="form-control" 
                                         id="coloniaDom"
                                         onChange={this.handleChange} 
                                         name="Colonia"  required/>
                             </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <label for="validationCustom03" class="form-label">Municipio</label>
+                            <div className="col-xl-12 col-lg-12 col-md-6 col-sm-12">
+                                <label htmlFor="validationCustom03" className="form-label">Municipio</label>
                                 <input type="text" 
-                                        class="form-control" 
+                                        className="form-control" 
                                         id="municipoDom" 
                                         onChange={this.handleChange}
                                         name="Municipio" required/>
                             </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <label for="validationCustom04" class="form-label">Estado</label>
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <label htmlFor="validationCustom04" className="form-label">Estado</label>
                                 <input type="text" 
-                                        class="form-control" 
+                                        className="form-control" 
                                         id="validationCustom03" 
                                         onChange={this.handleChange}
                                         name="Estado" required/>
                             </div> 
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <label for="validationCustom05" class="form-label">Código postal</label>
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <label htmlFor="validationCustom05" className="form-label">Código postal</label>
                                 <input type="number" 
-                                        max="99999" 
-                                        class="form-control" 
+                                        className="form-control" 
                                         id="validationCustom05" 
                                         onChange={this.handleChange}
                                         name="CodigoPostal" required/>
                             </div>
 
-                            <div class="col-12">
-                                <button class="btn btn-primary" onClick={()=>this.comprobacion} type="submit"> Agregar domicilio</button>
+                            <div className="col-12">
+                                <button className="btn btn-primary" onClick={()=>this.comprobacion} type="submit"> Agregar domicilio</button>
                             </div>
                         </form>
                     </div>
@@ -157,19 +157,19 @@ class DomicilioComponent extends React.Component {
     domicilios(){
         return this.state.domicilios.map((c)=>
             <div className="col-lg-12 col-md-6 col-sm-12 my-2" key={c.idDomicilio}>
-                <div class="card mx-2 p-4 cardDom" onClick={()=>this.seleccionarDomicilio(c)}>
-                    <div class="card-body">
+                <div className="card mx-2 p-4 cardDom" onClick={()=>this.seleccionarDomicilio(c)}>
+                    <div className="card-body">
                         <div className="row">
                             <div className="col-2">
-                                <i class="fi fi-rr-home"></i>
+                                <i className="fi fi-rr-home"></i>
                             </div>
                             <div className="col-10">
-                                <h5 class="card-title">{c.Calle} {c.Numero}</h5>
+                                <h5 className="card-title">{c.Calle} {c.Numero}</h5>
                             </div>
                         </div>
                         <div className="row">
-                            <p class="card-text">Codigo Postal {c.CodigoPostal}</p>
-                            <p class="card-text">{c.Colonia}, {c.Municipio}, {c.Estado}</p>
+                            <p className="card-text">Codigo Postal {c.CodigoPostal}</p>
+                            <p className="card-text">{c.Colonia}, {c.Municipio}, {c.Estado}</p>
                         </div>
                     </div>
                 </div>
@@ -179,15 +179,19 @@ class DomicilioComponent extends React.Component {
     }
 
     comprobarDomicilios(){
-        if(this.state.domicilios.length > 0){
+        console.log(this.state.domicilios[0])
+
+        if(this.state.domicilios[0].idDomicilio !== -1){
             return(
                 <div className="row">
-                    <div className="col-lg-4 col-md-12">
-                        <h3 style={{ color: 'red' }} >Seleccionar domicilio</h3>
+                    <div className="col-lg-4 col-md-12 mb-4">
+                        <h3 className="text-center" style={{ color: 'red' }} >Seleccionar domicilio</h3>
                         <br/>
-                        {this.domicilios()}
+                        <div className="row justify-conten-center">
+                            {this.domicilios()}
+                        </div>
                     </div>
-                    <div className="col-lg-8 col-md-12">
+                    <div className="col-lg-8 col-md-12 mt-4">
                         {this.formulario()}
                     </div>
                 </div>
@@ -205,7 +209,7 @@ class DomicilioComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid my-2 p-4">
+            <div className="container-fluid my-2 p-4">
                 {this.comprobarDomicilios()}
             </div>
         )
