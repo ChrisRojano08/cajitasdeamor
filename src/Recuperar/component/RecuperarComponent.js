@@ -24,7 +24,7 @@ class RecuperarComponent extends React.Component {
 
     sendEmail = e => {
         e.preventDefault();
-        console.log(e.target);
+
         emailjs.sendForm('service_q03spzk', 'template_s65doos', e.target, 'rRgb6F4Wl1gVg9TDY').then(res=>{
             if(res.text==='OK'){
                 Utils.swalSuccess("Codigo de verifiación enviado correctamente");
@@ -41,18 +41,32 @@ class RecuperarComponent extends React.Component {
             Utils.swalSuccess("Se encontro el correo");
             this.beforeASubmit();
             this.sendEmail(event);
-            console.log(respuesta);
         }else{
             Utils.swalError("No se encontro el correo");
         }
     }
 
+    comprobarPass=e=>{
+        let pass1 = document.getElementById('pass').value;
+        let pass2 = document.getElementById('passConfirm').value;
+
+        var el = document.getElementById("msgConf");
+        if(pass1!==pass2){
+            el.setAttribute("style", "display:'block';");
+        }else{
+            el.setAttribute("style", "display:none;");
+        }
+    }
+
     changePass = async event => {
         event.preventDefault();
+
+        
+
         const formEmail = this.state.email;
         const formPass = document.getElementById('pass').value;
         const formPassConfirm = document.getElementById('passConfirm').value;
-        const codeCheck = document.getElementById('codeGen').value;
+        const codeCheck = document.getElementById('codeEmail').value;
         if(formPass === formPassConfirm && codeCheck === this.state.code){
             let data = {
                 Correo: formEmail,
@@ -69,11 +83,13 @@ class RecuperarComponent extends React.Component {
             }else if(respuesta.status === 'no caracter'){
                 Utils.swalError("La contraseña debe contener algun caracter especial (# $ % _ -)!");
             }else if(respuesta.status === 'no letra'){
-                Utils.swalError("La contraseña debe contener alguna letra en mayuscula o minuscula!");
+                Utils.swalError("La contraseña solo debe contener letras en minuscula!");
             }else if(respuesta.status === 'Error'){
                 Utils.swalError("Ocurrió un error al cambiar contraseña!");
             }
             
+        }else{
+            Utils.swalError("Código incorrecto!");
         }
     }
 
@@ -93,10 +109,20 @@ class RecuperarComponent extends React.Component {
         formPass.setAttribute("style", "display: block");
     }
 
+    showPass(idIn) {
+        if (document.getElementById(idIn).type === "password") {
+            document.getElementById(idIn).type = "text";
+            document.getElementById(idIn + "Pass").className = "fi-rr-eye-crossed";
+        } else {
+            document.getElementById(idIn).type = "password";
+            document.getElementById(idIn + "Pass").className = "fi-rr-eye";
+        }
+    }
+
     render() {
         return (
             <div class="container-fluid ">
-                <h1 style={{ color: 'red' }} >Recuperar</h1>
+                <h1 style={{ color: 'red' }} className="text-center my-4">Recuperar</h1>
                 <div class="card text-dark bg-light mb-3 col-md-6 mx-auto">
                             <div class="card-header">
                                 Cambiar contraseña
@@ -108,8 +134,8 @@ class RecuperarComponent extends React.Component {
                                         <input type="email" class="form-control" id="exampleInputEmail1" name='Correo' onChange={this.handleChange} aria-describedby="emailHelp" required />
                                         <input type="number" id="codeGen" name='codigo'  style={{display: 'none'}}/> 
                                     </div>
-                                    <div class="col-3 mx-auto" >
-                                        <button class="btn btn-primary" type="submit">Buscar</button>
+                                    <div class="col-12 mx-auto text-center" >
+                                        <button class="btn btn-primary" type="submit">Enviar código</button>
                                     </div>
                                 </form>
                                 <form id="formPass" style={{display: 'none'}} class="row g-4 needs-validation justify-content-center " onSubmit={this.changePass} novalidate>
@@ -117,18 +143,61 @@ class RecuperarComponent extends React.Component {
                                         <h6>Se ha enviado un código al correo para cambiar la contraseña</h6>
                                         <br/>
                                         <h5 class="card-title">Código</h5>
-                                        <input type="text" class="form-control" id="codeEmail" required />
+                                        <input type="number" minLength="10000" maxLength="99999" class="form-control"
+                                            id="codeEmail" placeholder="Código de recuperación" required />
                                     </div>
+
                                     <div class="md-3 position-relative">
                                         <h5 class="card-title">Contraseña</h5>
-                                        <input type="password" class="form-control" id="pass" placeholder="Contraseña" required />
+                                        <div className='input-group'>
+                                            <input type="password"
+                                                class="form-control"
+                                                id="pass"
+                                                placeholder="Contraseña"
+                                                name='Contrasenia'
+                                                minLength={8}
+                                                maxLength={21}
+                                                onChange={()=>this.comprobarPass()}
+                                                required />
+
+                                            <div className='input-group-prepend' onClick={() => this.showPass('pass')}>
+                                                <span className='input-group-text recL' id='busqueda'>
+                                                    <i id="passPass" className="fi-rr-eye" />
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
+
                                     <div class="md-3 position-relative">
-                                        <h5 class="card-title">Confirmar Contraseña</h5>
-                                        <input type="password" class="form-control" id="passConfirm" placeholder="Confirmar contraseña" required />
-                                    </div>        
-                                    <div class="col-3">
-                                        <button class="btn btn-primary" type="submit">Cambiar</button>
+                                    <div className="row">
+                                            <div className="col">
+                                                <h5 class="card-title">Confirmar contraseña</h5> &nbsp;
+                                            </div>
+                                            <div className="col">
+                                                <h6 id="msgConf" class="text-danger" style={{display:'none'}}>Ambas contraseñas deben ser iguales!</h6>
+                                            </div>
+                                        </div>
+                                        <div className='input-group'>
+                                            <input type="password"
+                                                class="form-control"
+                                                id="passConfirm"
+                                                name='Contrasenia'
+                                                minLength={8}
+                                                maxLength={21}
+                                                onChange={()=>this.comprobarPass()}
+                                                placeholder="Confirmar contraseña"
+                                                required />
+
+                                            <div className='input-group-prepend' onClick={() => this.showPass('passConfirm')}>
+                                                <span className='input-group-text recL' id='busqueda'>
+                                                    <i id="passConfirmPass" className="fi-rr-eye" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-primary" type="submit">Cambiar contraseña</button>
                                     </div>
                                 </form>
                             </div>

@@ -200,7 +200,7 @@ class TiendaComponent extends React.Component {
                     <button className="btn btnPag" onClick={() => this.prevPage()}><h3>{"<"}</h3></button>
                     {
                         this.state.buttonSt.map((c) =>
-                            <button className="btn btnPag" onClick={() => this.paginateProds(c)}><h3>{c}</h3></button>
+                            <button key={c} className="btn btnPag" onClick={() => this.paginateProds(c)}><h3 key={c}>{c}</h3></button>
                         )
                     }
                     <button className="btn btnPag" onClick={() => this.nextPage()}><h3>{">"}</h3></button>
@@ -244,17 +244,21 @@ class TiendaComponent extends React.Component {
 
     mostrarProds() {
         return this.state.prodsFilt.map((c) =>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" key={c.id}>
-                <div class="card text-dark bg-light mb-3">
+            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6" key={c.id}>
+                <div className="card text-dark bg-light mb-3">
                     <div className="col-12" style={{ 'overflow': 'hidden' }}>
                         <img src={c.Imagen} className="card-img-top" alt={c.Nombre} style={{ 'height': '30vh' }} />
                     </div>
 
-                    <div class="card-body">
-                        <h5 class="card-title">{c.Nombre}</h5>
-                        <p class="card-text">${c.Precio}</p>
-                        <button class="btn btn-primary" onClick={() => this.mostrarProducto(c)}>Ver Producto</button>
-                        <button class="btn btn-success" onClick={() => this.agregarCarrito(c.idProducto)}>Agregar al carrito</button>
+                    <div className="card-body" key={c.id}>
+                        <h5 className="card-title">{c.Nombre}</h5>
+                        <p className="card-text">${c.Precio}</p>
+                                <button className="btn btn-primary p-1" onClick={() => this.mostrarProducto(c)}>
+                                    <i className="fi-rr-eye p-2"/>
+                                </button>
+                                <button className="btn btn-success p-1 mx-2" onClick={() => this.agregarCarrito(c.idProducto)}>
+                                    <i className="fi-rr-shopping-cart-add p-2"/>
+                                </button>
                     </div>
                 </div>
             </div>
@@ -270,7 +274,7 @@ class TiendaComponent extends React.Component {
                     Todas
                 </button>
                 {this.state.categories.map((c) =>
-                    <div>
+                    <div key={c.idCategoria}>
                         <button key={c.idCategoria} className="btnCat"
                             style={{ 'width': '80%', 'marginBottom': '3%' }} onClick={() => this.filtrar(c.idCategoria)}>
                             {c.Descripcion}
@@ -286,7 +290,7 @@ class TiendaComponent extends React.Component {
             <div style={{ 'paddingLeft': '5%', 'paddingRight': '5%', 'marginBottom': '30px' }}>
                 <h1 style={{ color: 'red', 'marginTop': '30px', 'marginBottom': '5%' }}  className="text-center">Productos</h1>
 
-                <div class="row justify-content-center">
+                <div className="row justify-content-center">
                     <div className="col-lg-2 col-md-4 col-sm-12 col-xs-12">
                         <div className="row">
                             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -330,7 +334,7 @@ class TiendaComponent extends React.Component {
                                     </div>
                                 </div>
 
-                                <div class="row justify-content-center aling-item-center">
+                                <div className="row d-flex justify-content-center aling-items-center">
                                     {this.mostrarProds()}
 
                                     <div className="d-flex justify-content-center">
