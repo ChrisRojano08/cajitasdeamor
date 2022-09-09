@@ -83,7 +83,7 @@ class RecuperarComponent extends React.Component {
             }else if(respuesta.status === 'no caracter'){
                 Utils.swalError("La contraseña debe contener algun caracter especial (# $ % _ -)!");
             }else if(respuesta.status === 'no letra'){
-                Utils.swalError("La contraseña solo debe contener letras en minuscula!");
+                Utils.swalError("La contraseña debe contener letras en minuscula y mayuscula!");
             }else if(respuesta.status === 'Error'){
                 Utils.swalError("Ocurrió un error al cambiar contraseña!");
             }
