@@ -20,5 +20,6 @@ jobs:
         else
         npm i
         fi
+        chmod 755 /home
     - name: Build
       run: npm run build
