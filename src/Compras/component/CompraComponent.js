@@ -52,7 +52,7 @@ class CompraComponent extends React.Component {
                     }],
                     Subtotal: 0
                 }],
-            Total: localStorage.getItem('totalCompra') || 0
+            Total: sessionStorage.getItem('totalCompra') || 0
         }
 
         this.handlerDom = this.handlerDom.bind(this);
@@ -67,6 +67,7 @@ class CompraComponent extends React.Component {
             this.setState({Total: sessionStorage.getItem('totalCompra')});
         }, 100);
     }
+    
 
     handlerDom(num, state) {
         this.setState({

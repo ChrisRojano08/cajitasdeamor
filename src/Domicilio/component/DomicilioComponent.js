@@ -12,21 +12,21 @@ class DomicilioComponent extends React.Component {
         //Almacena datos
         this.state = {
             domicilio:{
-                Numero:' ',
-               Calle:' ',
-                Colonia:' ',
-                Municipio:' ',
-                Estado:' ',
-                CodigoPostal:' ',
+                Numero: '',
+                Calle: '',
+                Colonia: '',
+                Municipio: '',
+                Estado: '',
+                CodigoPostal: '',
                 idUsuario:sessionStorage.getItem("idUsuario")
             },
             domicilios: [{
-                Calle: ' ',
-                CodigoPostal: ' ',
-                Colonia: ' ',
-                Estado: ' ',
-                Municipio: ' ',
-                Numero: 0,
+                Calle: '',
+                CodigoPostal: '',
+                Colonia: '',
+                Estado: '',
+                Municipio: '',
+                Numero: '',
                 idDomicilio: -1
             }]
         }
@@ -34,14 +34,18 @@ class DomicilioComponent extends React.Component {
 
     //Inicializa funciones
     componentDidMount() {
-        this.loadData();
+        if(this.props.location.anterior === 'menuUsuario'){
+            setTimeout(() => {
+                this.setState({domicilio: this.props.location.data});
+            }, 200);
+        }else{
+            this.loadData();
+        }
     }
 
     async loadData(){
         const datos = { idUsuario: sessionStorage.getItem("idUsuario") }; 
         const respuestaH = await this.domicilioController.findHome(datos);
-
-        console.log(respuestaH)
 
         this.setState({ domicilios: respuestaH });
     }
@@ -55,16 +59,33 @@ class DomicilioComponent extends React.Component {
             if(this.state.domicilio.CodigoPostal < 10000 || this.state.domicilio.CodigoPostal > 99999){
                 Utils.swalError('Ingrese un código postal valido');
             }else{
-                const respuesta = await this.domicilioController.insert(this.state.domicilio);
+                if(this.props.location.anterior === 'menuUsuario'){
+                    const respuesta = await this.domicilioController.update(this.state.domicilio);
 
-                if(respuesta.status==='Ok'){
-                    Utils.swalSuccess("El domicilio fue agregado correctamente!");
-    
-                    setTimeout(() => window.location.reload(true), 1000);
-                }else if (respuesta.status==='Error'){
-                    Utils.swalError("Ocurrió un error al insertar al usuario!");
+                    if(respuesta.status==='Ok'){
+                        Utils.swalSuccess("El domicilio fue editado correctamente!");
+        
+                        setTimeout(() => {
+                            this.props.history.push('/menuUsuario')
+                            window.location.reload(true);
+                        }, 1000);
+                    }else if (respuesta.status==='Error'){
+                        Utils.swalError("Ocurrió un error al editar al usuario!");
+                    }else{
+                        Utils.swalError(respuesta.status);
+                    }
                 }else{
-                    Utils.swalError(respuesta.status);
+                    const respuesta = await this.domicilioController.insert(this.state.domicilio);
+
+                    if(respuesta.status==='Ok'){
+                        Utils.swalSuccess("El domicilio fue agregado correctamente!");
+        
+                        setTimeout(() => window.location.reload(true), 1000);
+                    }else if (respuesta.status==='Error'){
+                        Utils.swalError("Ocurrió un error al insertar al usuario!");
+                    }else{
+                        Utils.swalError(respuesta.status);
+                    }
                 }
             }
         }
@@ -86,7 +107,10 @@ class DomicilioComponent extends React.Component {
     formulario(){
         return(
             <div>
-                <h3 className="text-center" style={{ color: 'red' }} >Agregar domicilio</h3>
+                {this.props.location.anterior === 'menuUsuario' ?
+                    <h3 className="text-center" style={{ color: 'red' }} >Editar domicilio</h3> :
+                    <h3 className="text-center" style={{ color: 'red' }} >Agregar domicilio</h3>
+                }
                 <br/>
                 <div className="card">
                     <div className="card-header">
@@ -100,6 +124,7 @@ class DomicilioComponent extends React.Component {
                                 <input type="number" 
                                         className="form-control" 
                                         id="domTextIn"
+                                        value={this.state.domicilio.Numero}
                                         onChange={this.handleChange}
                                         name="Numero"  required/>
                             </div>
@@ -107,7 +132,8 @@ class DomicilioComponent extends React.Component {
                                 <label htmlFor="calleDom" className="form-label">Calle </label>
                                 <input type="text" 
                                         className="form-control" 
-                                        id="calleDom" 
+                                        id="calleDom"
+                                        value={this.state.domicilio.Calle}
                                         onChange={this.handleChange}
                                         name="Calle" required/>
                             </div>
@@ -116,6 +142,7 @@ class DomicilioComponent extends React.Component {
                                 <input type="text" 
                                         className="form-control" 
                                         id="coloniaDom"
+                                        value={this.state.domicilio.Colonia}
                                         onChange={this.handleChange} 
                                         name="Colonia"  required/>
                             </div>
@@ -124,6 +151,7 @@ class DomicilioComponent extends React.Component {
                                 <input type="text" 
                                         className="form-control" 
                                         id="municipoDom" 
+                                        value={this.state.domicilio.Municipio}
                                         onChange={this.handleChange}
                                         name="Municipio" required/>
                             </div>
@@ -133,6 +161,7 @@ class DomicilioComponent extends React.Component {
                                         className="form-control" 
                                         id="validationCustom03" 
                                         onChange={this.handleChange}
+                                        value={this.state.domicilio.Estado}
                                         name="Estado" required/>
                             </div> 
                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -141,11 +170,17 @@ class DomicilioComponent extends React.Component {
                                         className="form-control" 
                                         id="validationCustom05" 
                                         onChange={this.handleChange}
+                                        value={this.state.domicilio.CodigoPostal}
                                         name="CodigoPostal" required/>
                             </div>
 
                             <div className="col-12">
-                                <button className="btn btn-primary" onClick={()=>this.comprobacion} type="submit"> Agregar domicilio</button>
+                                <button className="btn btn-primary" onClick={()=>this.comprobacion} type="submit">
+                                {this.props.location.anterior === 'menuUsuario' ?
+                                    "Editar domicilio":
+                                    "Agregar domicilio"
+                                }
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -179,8 +214,6 @@ class DomicilioComponent extends React.Component {
     }
 
     comprobarDomicilios(){
-        console.log(this.state.domicilios[0])
-
         if(this.state.domicilios[0].idDomicilio !== -1){
             return(
                 <div className="row">
