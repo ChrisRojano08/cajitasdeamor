@@ -36,24 +36,12 @@ export default class App extends React.Component {
       view: 0
     }
   }
-  sessionAdmin(){
-    const nameUser = sessionStorage.getItem("nombre");
-    const typeUser = sessionStorage.getItem("tipo");
-    if (nameUser != null && typeUser === 'sudosu') {
-      return (<Route path="/menuSuper" component={MenuSuperAdminComponent} />);  
-    }
-}
 
   validarSesion() {
     let nameUser = sessionStorage.getItem("nombre");
-    let typeUser = sessionStorage.getItem("tipo");
 
     if (nameUser != null) {
-      if (typeUser === 'admin') {
-        return (<Nav.Link href="/menuSuper" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nameUser}</Nav.Link>);
-      } else {
         return (<Nav.Link href="/menuUsuario" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />{nameUser}</Nav.Link>);
-      }
     } else {
       return (<Nav.Link href="/Login" style={{ margin: '0px 15px' }}><i className="fi fi-rr-user" style={{ margin: '0px 5px' }} />Usuario</Nav.Link>);
     }
@@ -97,7 +85,6 @@ export default class App extends React.Component {
           <Router>
             <div className="row justify-content-center">
               <Switch>
-                {this.sessionAdmin()}
                 <Route path="/usuariosGrid" component={UsuariosGridComponent} />
                 <Route path="/productosForm" component={ProductosFormComponent} />
                 <Route path="/Dedicatoria" component={DedicatoriaComponent} />
@@ -114,6 +101,7 @@ export default class App extends React.Component {
                 <Route path="/Domicilio" component={DomicilioComponent} />
                 <Route path="/Compras" component={ComprasGridComponent} />
                 <Route path="/Compra" component={CompraComponent} />
+                <Route path="/menuSuper" component={MenuSuperAdminComponent} />
                 <Route path="/" component={HomePageComponent} />
               </Switch>
             </div>

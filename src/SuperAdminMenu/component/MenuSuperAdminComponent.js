@@ -32,7 +32,7 @@ class MenuSuperAdminComponent extends React.Component {
         event.preventDefault();
         sessionStorage.clear();
         this.props.history.push('/login')
-        setTimeout(() => window.location.reload(true), 1500);
+        setTimeout(() => window.location.reload(true), 600);
     }
 
     render() {
