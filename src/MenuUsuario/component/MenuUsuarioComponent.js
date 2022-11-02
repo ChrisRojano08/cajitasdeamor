@@ -135,7 +135,7 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarCompras() {
         return this.state.compra.map((c) =>
-            <div className="col-12 col-xl-6">
+            <div className="col-12 col-xl-6" >
             <div className="card my-2">
                 <h5 className="card-header">{c.Fecha}</h5>
                 <div className="card-body">
@@ -187,8 +187,8 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarDomicilios(){
         return this.state.domicilios.map((c)=>
-            <div className="col-lg-4 col-md-4 col-sm-6 mt-4">
-                <div className="card mx-2 p-4 domTarj">
+            <div className="col-lg-4 col-md-4 col-sm-6 mt-4" onClick={()=>this.editarDomicilio(c)}>
+                <div className="card mx-2 p-4 domTarj handShow">
                     <div className="card-body">
                         <div className="row">
                             <div className="col-2">
@@ -211,7 +211,7 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarTarjetas(){
         return this.state.tarjetas.map((c)=>
-            <div className="col-lg-4 col-md-6 p-2 mt-4 cardSh">
+            <div className="col-lg-4 col-md-6 p-2 mt-4 cardSh mx-4"  onClick={()=>this.editarPago(c)}>
                 <Cards
                     cvc={c.CVV}
                     expiry={c.FechaVencimiento}
@@ -238,6 +238,24 @@ class MenuUsuarioComponent extends React.Component {
             data: e,
             anterior: 'menuUsuario'
         })
+    }
+
+    editarDomicilio = e => {
+        this.props.history.push({
+            pathname: '/Domicilio',
+            data: e,
+            anterior: 'menuUsuario'
+        })
+    }
+
+    editarPago = e => {
+        if(e.Nombre !== 'uwu'){
+            this.props.history.push({
+                pathname: '/Pago',
+                data: e,
+                anterior: 'menuUsuario'
+            })
+        }
     }
 
     irMenuSuper = e => {

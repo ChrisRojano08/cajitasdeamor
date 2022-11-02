@@ -90,9 +90,7 @@ class UsuariosGridComponent extends React.Component {
             data.Tipo = this.state.newType;
         }
 
-        console.log(data)
         const resp = await this.usersController.updateUser(data);
-        console.log(resp)
 
         if(resp[0].status === 'Ok'){
             Utils.swalSuccess(resp[0].Mensaje);

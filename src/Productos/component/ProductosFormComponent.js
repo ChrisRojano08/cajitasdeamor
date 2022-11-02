@@ -96,8 +96,6 @@ class ProductosFormComponent extends React.Component{
 
         let resp = await this.productosController.update(this.state.productos);
 
-        console.log(resp[0].status);
-
         if(resp[0].status==='Ok'){
             Utils.swalSuccess(resp[0].Mensaje);
             setTimeout(() => { this.props.history.push('/productosGrid') }, 1500);
@@ -113,9 +111,7 @@ class ProductosFormComponent extends React.Component{
         this.state.productos.idCategoria = this.state.Categoria.idCategoria
 
         let resp = await this.productosController.insert(this.state.productos);
-
-        console.log(resp);
-
+        
         if(resp[0].status==='Ok'){
             Utils.swalSuccess(resp[0].Mensaje);
             setTimeout(() => { this.props.history.push('/productosGrid') }, 1500);

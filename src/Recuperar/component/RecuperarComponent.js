@@ -75,7 +75,6 @@ class RecuperarComponent extends React.Component {
             let respuesta = await this.RecuperarController.changePass(data);
             if (respuesta.status === "Ok") {
                 Utils.swalSuccess("Se cambio la contraseña correctamente!");
-                console.log(respuesta);
                 
             setTimeout(this.props.history.push('/Login'), 500);
             }else if(respuesta.status === 'no numero'){

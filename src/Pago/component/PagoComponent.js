@@ -12,12 +12,12 @@ class PagoComponent extends React.Component {
         //Almacena datos
         this.state = {
             pago: {
-                Nombre: ' ',
-                Banco: ' ',
-                Cuenta: ' ',
+                Nombre: '',
+                Banco: '',
+                Cuenta: '',
                 idUsuario: sessionStorage.getItem("idUsuario"),
-                CVV: ' ',
-                FechaVencimiento: ' '
+                CVV: '',
+                FechaVencimiento: ''
             },
             tarjetas:[{
                 Banco: ' ',
@@ -33,7 +33,27 @@ class PagoComponent extends React.Component {
 
     //Inicializa funciones
     componentDidMount() {
-        this.loadData();
+        if(this.props.location.anterior === 'menuUsuario'){
+            setTimeout(() => {
+                this.setState({pago: this.props.location.data},() => (this.setDate()))
+            }, 200);
+        }else{
+            this.loadData();
+        }
+    }
+
+    setDate(){
+        const dat = this.state.pago.FechaVencimiento;
+        let curr = dat.split('-');
+        let fV = curr[2]+"-"+curr[1]+"-"+curr[0];
+
+        document.getElementsByClassName('form-control date')[0].value = fV;
+        this.setState({
+            pago: {
+                ...this.state.pago,
+                FechaVencimiento: fV
+            }
+        })
     }
 
     async loadData(){
@@ -79,16 +99,33 @@ class PagoComponent extends React.Component {
                             idUsuario: sessionStorage.getItem("idUsuario")
                         });
 
-                        const respuesta = await this.pagoController.insert(this.state.pago);
+                        if(this.props.location.anterior === 'menuUsuario'){
+                            const respuesta = await this.pagoController.update(this.state.pago);
 
-                        if(respuesta.status === 'Ok'){
-                            Utils.swalSuccess("El método de pago fue agregado correctamente!");
-            
-                            setTimeout(() => window.location.reload(true), 1000);
-                        }else if(respuesta.exception){
-                            Utils.swalError(respuesta.exception);
+                            if(respuesta.status === 'Ok'){
+                                Utils.swalSuccess("El método de pago fue editado correctamente!");
+                
+                                setTimeout(() => {
+                                    this.props.history.push('/menuUsuario')
+                                    window.location.reload(true);
+                                }, 1000);
+                            }else if(respuesta.exception){
+                                Utils.swalError(respuesta.exception);
+                            }else{
+                                Utils.swalError(respuesta.status);
+                            }
                         }else{
-                            Utils.swalError(respuesta.status);
+                            const respuesta = await this.pagoController.insert(this.state.pago);
+
+                            if(respuesta.status === 'Ok'){
+                                Utils.swalSuccess("El método de pago fue agregado correctamente!");
+                
+                                setTimeout(() => window.location.reload(true), 1000);
+                            }else if(respuesta.exception){
+                                Utils.swalError(respuesta.exception);
+                            }else{
+                                Utils.swalError(respuesta.status);
+                            }
                         }
                     }
                 }
@@ -111,7 +148,10 @@ class PagoComponent extends React.Component {
     formulario(){
         return(
             <div>
-                <h3 className="text-center" style={{ color: 'red' }} >Agregar tarjeta</h3>
+                {this.props.location.anterior === 'menuUsuario' ?
+                    <h3 className="text-center" style={{ color: 'red' }} >Editar tarjeta</h3> :
+                    <h3 className="text-center" style={{ color: 'red' }} >Agregar tarjeta</h3>
+                }
                 <br/>
                     <div className="card">
                         <div className="card-header">
@@ -139,6 +179,7 @@ class PagoComponent extends React.Component {
                                                 className="form-control"
                                                 id="validationCustom01"
                                                 onChange={this.handleChange}
+                                                value={this.state.pago.Nombre}
                                                 name="Nombre" required />
                                         </div>
                                         <div className="col-xl-12 col-lg-6 col-md-4 col-sm-12">
@@ -146,6 +187,7 @@ class PagoComponent extends React.Component {
                                             <input type="text"
                                                 className="form-control"
                                                 id="validationCustom02"
+                                                value={this.state.pago.Banco}
                                                 onChange={this.handleChange}
                                                 name="Banco" required />
                                         </div>
@@ -155,6 +197,7 @@ class PagoComponent extends React.Component {
                                                 className="form-control"
                                                 id="validationCustom02"
                                                 onChange={this.handleChange}
+                                                value={this.state.pago.Cuenta}
                                                 name="Cuenta" required />
                                         </div>
                                         <div className="col-xl-12 col-lg-6 col-md-6 col-sm-12">
@@ -163,20 +206,27 @@ class PagoComponent extends React.Component {
                                                 className="form-control"
                                                 id="validationCustom03"
                                                 name="CVV"
+                                                value={this.state.pago.CVV}
                                                 onChange={this.handleChange} required />
                                         </div>
 
                                         <div className="col-xl-12 col-lg-6 col-md-6 col-sm-12">
                                             <label htmlFor="validationCustom05" className="form-label">Vencimiento</label>
+                                            
                                             <input type="date"
-                                                className="form-control"
+                                                className="form-control date"
                                                 id="validationCustom05"
                                                 onChange={this.handleChange}
                                                 name="FechaVencimiento" required />
                                         </div>
 
                                         <div className="col-12">
-                                            <button className="btn btn-primary" type="submit">Agregar metodo de pago</button>
+                                            <button className="btn btn-primary" type="submit">
+                                                {this.props.location.anterior === 'menuUsuario' ?
+                                                    "Editar metodo de pago" :
+                                                    "Agregar metodo de pago"
+                                                }
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -190,7 +240,7 @@ class PagoComponent extends React.Component {
 
     tarjetas(){
         return this.state.tarjetas.map((c)=>
-            <div className="col-lg-12 col-xl-12 col-md-6 p-2 mt-4 tarjeta"
+            <div className="col-lg-12 col-xl-12 col-md-6 p-2 mt-4 tarjeta cardSh"
                 key={c.idMetodoPago} onClick={()=>this.seleccionarMetodo(c)}>
                 <Cards
                     cvc={c.CVV}

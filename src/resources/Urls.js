@@ -1,6 +1,6 @@
-const baseURl='http://35.171.25.92:5000/';
+const baseURl='http://cajitasdeamor.mx:5000/';
 
-//this is a explame data for base url api CAMBIO RANDOM 1.1
+//this is a explame data for base url api
 const baseApi={
     users:baseURl+'users/',
     product:baseURl+'product/',

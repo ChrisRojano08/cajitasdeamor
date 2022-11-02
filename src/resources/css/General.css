@@ -223,6 +223,11 @@
   }
 
   .cardSh:hover{
-  transform: scale(1.2);
-  cursor: none;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.handShow:hover{
+  transform: scale(1.1);
+  cursor: pointer;
 }

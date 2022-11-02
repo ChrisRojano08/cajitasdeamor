@@ -53,8 +53,6 @@ class ProductoComponent extends React.Component {
 
             const respuesta = await this.productoController.addCart(datos);
 
-            console.log(respuesta)
-
             if (respuesta[0].status === 'Ok') {
                 Utils.swalSuccess(respuesta[0].Mensaje);
                 setTimeout(() => { this.props.history.push("/Carrito") }, 1500);
