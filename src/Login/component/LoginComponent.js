@@ -115,32 +115,32 @@ class LoginComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid ">
+            <div className="container-fluid ">
                 <br />
 
-                <div class="row justify-content-center aling-item-center row-cols-1 row-cols-md-2 g-4 mt-2">
-                    <div class="col">
-                        <div class="card text-dark bg-light mb-3">
-                            <div class="card-header">
+                <div className="row justify-content-center aling-item-center row-cols-1 row-cols-md-2 g-4 mt-2">
+                    <div className="col">
+                        <div className="card text-dark bg-light mb-3">
+                            <div className="card-header">
                                 Inicio de sesión
                             </div>
-                            <div class="card-body">
-                                <form class="row g-4 needs-validation justify-content-center "
+                            <div className="card-body">
+                                <form className="row g-4 needs-validation justify-content-center "
                                     onSubmit={this.findUs} novalidate>
-                                    <div class="md-3 position-relative">
-                                        <label for="exampleInputEmail1" class="form-label"><h5>Correo</h5></label>
+                                    <div className="md-3 position-relative">
+                                        <label for="exampleInputEmail1" className="form-label"><h5>Correo</h5></label>
                                         <input type="email"
-                                            class="form-control"
+                                            className="form-control"
                                             id="exampleInputEmail0"
                                             name='Correo'
                                             onChange={this.handleChange}
                                             aria-describedby="emailHelp" required />
                                     </div>
-                                    <div class="md-3 position-relative">
-                                        <h5 class="card-title">Contraseña</h5>
+                                    <div className="md-3 position-relative">
+                                        <h5 className="card-title">Contraseña</h5>
                                         <div className='input-group'>
                                             <input type="password"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="inputPassword0"
                                                 name='Contrasenia'
                                                 onChange={this.handleChange}
@@ -153,48 +153,48 @@ class LoginComponent extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="/Recuperar" className="pe-auto"><label class="form-label recL">Recuperar Contraseña</label> </a>
+                                    <a href="/Recuperar" className="pe-auto"><label className="form-label recL">Recuperar Contraseña</label> </a>
 
-                                    <div class="col-4">
-                                        <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+                                    <div className="col-4">
+                                        <button className="btn btn-primary" type="submit">Iniciar sesión</button>
                                     </div>
                                 </form>
 
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card text-dark bg-light mb-3">
-                            <div class="card-header">
+                    <div className="col">
+                        <div className="card text-dark bg-light mb-3">
+                            <div className="card-header">
                                 Registrarse
                             </div>
-                            <div class="card-body">
-                                <form class="row g-4 needs-validation justify-content-center " onSubmit={this.regUs} novalidate>
+                            <div className="card-body">
+                                <form className="row g-4 needs-validation justify-content-center " onSubmit={this.regUs} novalidate>
 
-                                    <div class="md-3 position-relative">
-                                        <h5 class="card-title">Nombre</h5>
+                                    <div className="md-3 position-relative">
+                                        <h5 className="card-title">Nombre</h5>
                                         <input type="text"
-                                            class="form-control"
+                                            className="form-control"
                                             id="validationTooltip01"
                                             placeholder=" "
                                             name='Nombre'
                                             onChange={this.handleChangeU}
                                             required />
                                     </div>
-                                    <div class="md-3 position-relative">
-                                        <h5 class="card-title">Apellidos</h5>
+                                    <div className="md-3 position-relative">
+                                        <h5 className="card-title">Apellidos</h5>
                                         <input type="text"
-                                            class="form-control"
+                                            className="form-control"
                                             id="validationTooltip02"
                                             placeholder=" "
                                             name='Apellidos'
                                             onChange={this.handleChangeU}
                                             required />
                                     </div>
-                                    <div class="md-3 position-relative">
-                                        <label for="exampleInputEmail1" class="form-label"><h5>Correo</h5></label>
+                                    <div className="md-3 position-relative">
+                                        <label for="exampleInputEmail1" className="form-label"><h5>Correo</h5></label>
                                         <input type="email"
-                                            class="form-control"
+                                            className="form-control"
                                             id="exampleInputEmail1"
                                             aria-describedby="emailHelp"
                                             name='Correo'
@@ -202,11 +202,11 @@ class LoginComponent extends React.Component {
                                             required />
                                     </div>
 
-                                    <div class="md-3 position-relative">
-                                        <h5 class="card-title">Contraseña</h5>
+                                    <div className="md-3 position-relative">
+                                        <h5 className="card-title">Contraseña</h5>
                                         <div className='input-group'>
                                             <input type="password"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="inputPassword1"
                                                 placeholder=" "
                                                 name='Contrasenia'
@@ -223,18 +223,18 @@ class LoginComponent extends React.Component {
                                         </div>
                                     </div>
 
-                                    <div class="md-3 position-relative">
+                                    <div className="md-3 position-relative">
                                         <div className="row">
                                             <div className="col">
-                                                <h5 class="card-title">Confirmar contraseña</h5> &nbsp;
+                                                <h5 className="card-title">Confirmar contraseña</h5> &nbsp;
                                             </div>
                                             <div className="col">
-                                                <h6 id="msgConf" class="text-danger" style={{ display: 'none' }}>Ambas contraseñas deben ser iguales!</h6>
+                                                <h6 id="msgConf" className="text-danger" style={{ display: 'none' }}>Ambas contraseñas deben ser iguales!</h6>
                                             </div>
                                         </div>
                                         <div className='input-group'>
                                             <input type="password"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="inputPassword2"
                                                 placeholder=" "
                                                 name='ConfContr'
@@ -251,8 +251,8 @@ class LoginComponent extends React.Component {
                                         </div>
                                     </div>
 
-                                    <div class="col-3">
-                                        <button class="btn btn-primary" type="submit">Registrarse</button>
+                                    <div className="col-3">
+                                        <button className="btn btn-primary" type="submit">Registrarse</button>
                                     </div>
                                     <br />
                                 </form>

@@ -100,7 +100,7 @@ class MenuUsuarioComponent extends React.Component {
 
     nombreProds= prods =>{ 
         return prods.map((c) =>
-            <p>{c.Nombre}</p>
+            <p key={c}>{c.Nombre}</p>
         );
     }
 
@@ -135,7 +135,7 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarCompras() {
         return this.state.compra.map((c) =>
-            <div className="col-12 col-xl-6" >
+            <div className="col-12 col-xl-6" key={c.idCompra}>
             <div className="card my-2">
                 <h5 className="card-header">{c.Fecha}</h5>
                 <div className="card-body">
@@ -187,7 +187,7 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarDomicilios(){
         return this.state.domicilios.map((c)=>
-            <div className="col-lg-4 col-md-4 col-sm-6 mt-4" onClick={()=>this.editarDomicilio(c)}>
+            <div className="col-lg-4 col-md-4 col-sm-6 mt-4" onClick={()=>this.editarDomicilio(c)} key={c.idDomicilio}>
                 <div className="card mx-2 p-4 domTarj handShow">
                     <div className="card-body">
                         <div className="row">
@@ -211,7 +211,7 @@ class MenuUsuarioComponent extends React.Component {
 
     mostrarTarjetas(){
         return this.state.tarjetas.map((c)=>
-            <div className="col-lg-4 col-md-6 p-2 mt-4 cardSh mx-4"  onClick={()=>this.editarPago(c)}>
+            <div className="col-lg-4 col-md-6 p-2 mt-4 cardSh mx-4" key={c.idMetodoPago} onClick={()=>this.editarPago(c)}>
                 <Cards
                     cvc={c.CVV}
                     expiry={c.FechaVencimiento}
@@ -307,7 +307,7 @@ class MenuUsuarioComponent extends React.Component {
         return (
             <div className="container col-lg-12 col-md-12 col-sm-12 p-4">
                 
-                <div className="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id="exampleModal01" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div className="modal-content">
                             <div className="modal-header">

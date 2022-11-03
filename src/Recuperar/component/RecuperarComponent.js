@@ -120,37 +120,37 @@ class RecuperarComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid ">
+            <div className="container-fluid ">
                 <h1 style={{ color: 'red' }} className="text-center my-4">Recuperar</h1>
-                <div class="card text-dark bg-light mb-3 col-md-6 mx-auto">
-                            <div class="card-header">
+                <div className="card text-dark bg-light mb-3 col-md-6 mx-auto">
+                            <div className="card-header">
                                 Cambiar contraseña
                             </div>
-                            <div class="card-body">
-                                <form id="formEmail" style={{display: 'block'}} class="row g-4 needs-validation justify-content-center " onSubmit={this.findEmail} novalidate>
-                                    <div class="md-3 position-relative" >
-                                        <label for="exampleInputEmail1" class="form-label"><h5>Correo</h5></label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" name='Correo' onChange={this.handleChange} aria-describedby="emailHelp" required />
+                            <div className="card-body">
+                                <form id="formEmail" style={{display: 'block'}} className="row g-4 needs-validation justify-content-center " onSubmit={this.findEmail} novalidate>
+                                    <div className="md-3 position-relative" >
+                                        <label for="exampleInputEmail1" className="form-label"><h5>Correo</h5></label>
+                                        <input type="email" className="form-control" id="exampleInputEmail1" name='Correo' onChange={this.handleChange} aria-describedby="emailHelp" required />
                                         <input type="number" id="codeGen" name='codigo'  style={{display: 'none'}}/> 
                                     </div>
-                                    <div class="col-12 mx-auto text-center" >
-                                        <button class="btn btn-primary" type="submit">Enviar código</button>
+                                    <div className="col-12 mx-auto text-center" >
+                                        <button className="btn btn-primary" type="submit">Enviar código</button>
                                     </div>
                                 </form>
-                                <form id="formPass" style={{display: 'none'}} class="row g-4 needs-validation justify-content-center " onSubmit={this.changePass} novalidate>
-                                    <div class="md-3 position-relative">
+                                <form id="formPass" style={{display: 'none'}} className="row g-4 needs-validation justify-content-center " onSubmit={this.changePass} novalidate>
+                                    <div className="md-3 position-relative">
                                         <h6>Se ha enviado un código al correo para cambiar la contraseña</h6>
                                         <br/>
-                                        <h5 class="card-title">Código</h5>
-                                        <input type="number" minLength="10000" maxLength="99999" class="form-control"
+                                        <h5 className="card-title">Código</h5>
+                                        <input type="number" minLength="10000" maxLength="99999" className="form-control"
                                             id="codeEmail" placeholder="Código de recuperación" required />
                                     </div>
 
-                                    <div class="md-3 position-relative">
-                                        <h5 class="card-title">Contraseña</h5>
+                                    <div className="md-3 position-relative">
+                                        <h5 className="card-title">Contraseña</h5>
                                         <div className='input-group'>
                                             <input type="password"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="pass"
                                                 placeholder="Contraseña"
                                                 name='Contrasenia'
@@ -167,18 +167,18 @@ class RecuperarComponent extends React.Component {
                                         </div>
                                     </div>
 
-                                    <div class="md-3 position-relative">
+                                    <div className="md-3 position-relative">
                                     <div className="row">
                                             <div className="col">
-                                                <h5 class="card-title">Confirmar contraseña</h5> &nbsp;
+                                                <h5 className="card-title">Confirmar contraseña</h5> &nbsp;
                                             </div>
                                             <div className="col">
-                                                <h6 id="msgConf" class="text-danger" style={{display:'none'}}>Ambas contraseñas deben ser iguales!</h6>
+                                                <h6 id="msgConf" className="text-danger" style={{display:'none'}}>Ambas contraseñas deben ser iguales!</h6>
                                             </div>
                                         </div>
                                         <div className='input-group'>
                                             <input type="password"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="passConfirm"
                                                 name='Contrasenia'
                                                 minLength={8}
@@ -195,8 +195,8 @@ class RecuperarComponent extends React.Component {
                                         </div>
                                     </div>
 
-                                    <div class="col-12 text-center">
-                                        <button class="btn btn-primary" type="submit">Cambiar contraseña</button>
+                                    <div className="col-12 text-center">
+                                        <button className="btn btn-primary" type="submit">Cambiar contraseña</button>
                                     </div>
                                 </form>
                             </div>

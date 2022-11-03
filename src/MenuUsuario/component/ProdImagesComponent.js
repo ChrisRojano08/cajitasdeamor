@@ -3,7 +3,6 @@ import '../../resources/css/carrito.css';
 
 const ProdsImgs = props =>{
     const prods = props.data;
-
     if(props.data === undefined){
         return( <p>UnU</p>);
     }

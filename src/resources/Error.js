@@ -11,7 +11,7 @@ class ErrorComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid ">
+            <div className="container-fluid ">
                 <div className="row justify-content-center my-4 mx-4 p-2">
                     <div className="col-lg-10 col-md-10 col-sm-10">
                         <br/><br/><br/>

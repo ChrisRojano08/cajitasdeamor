@@ -154,8 +154,8 @@ class ComprasGridComponent extends React.Component {
                     </select>
                  </td>
                  <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal02" onClick={() => this.setDatos(d.idCompra)}> Guardar </button> &nbsp;
-                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal01" onClick={() => this.setDatos(d.idCompra)}> Cancelar </button>
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal02" onClick={() => this.setDatos(d.idCompra)}> Guardar </button> &nbsp;
+                    <button type="button" className="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal01" onClick={() => this.setDatos(d.idCompra)}> Cancelar </button>
                  </td>
             </tr>
             
@@ -165,33 +165,33 @@ class ComprasGridComponent extends React.Component {
     renderCard() {
         return <div className="container-fluid py-3 my-6">
             
-                <div class="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmar cancelacion</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div className="modal fade" id="exampleModal01" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Confirmar cancelacion</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">Desea cancelar esta compra?</div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick={() =>this.cancelarCompra()}>Si</button>
+                            <div className="modal-body">Desea cancelar esta compra?</div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={() =>this.cancelarCompra()}>Si</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal fade" id="exampleModal02" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmar guardado</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div className="modal fade" id="exampleModal02" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Confirmar guardado</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">Desea cambiar esta compra?</div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onClick={() =>this.cambiarEstado()}>Cambiar</button>
+                            <div className="modal-body">Desea cambiar esta compra?</div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() =>this.cambiarEstado()}>Cambiar</button>
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@ class ComprasGridComponent extends React.Component {
                                 <div className="card-body">
                                     <div className="container-fluid contProd">
                                         <div className="row">
-                                            <div class="col-6"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div>
+                                            <div className="col-6"><button type="button" className="btn btn-info" onClick={() => this.back()}>Regresar</button></div>
                                             <br/>
                                         </div>
                                         <br/><br/>

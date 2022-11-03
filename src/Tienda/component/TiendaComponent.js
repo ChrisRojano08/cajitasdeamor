@@ -244,13 +244,13 @@ class TiendaComponent extends React.Component {
 
     mostrarProds() {
         return this.state.prodsFilt.map((c) =>
-            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6" key={c.id}>
+            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6"  key={c.id}>
                 <div className="card text-dark bg-light mb-3">
                     <div className="col-12" style={{ 'overflow': 'hidden' }}>
                         <img src={c.Imagen} className="card-img-top" alt={c.Nombre} style={{ 'height': '30vh' }} />
                     </div>
 
-                    <div className="card-body" key={c.id}>
+                    <div className="card-body">
                         <h5 className="card-title">{c.Nombre}</h5>
                         <p className="card-text">${c.Precio}</p>
                                 <button className="btn btn-primary p-1" onClick={() => this.mostrarProducto(c)}>

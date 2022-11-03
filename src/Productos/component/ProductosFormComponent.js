@@ -316,7 +316,7 @@ class ProductosFormComponent extends React.Component{
                                 </div>
                             </div>
                                 <div className="row">
-                                    <center><div class="col-6"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div></center>
+                                    <center><div className="col-6"><button type="button" className="btn btn-info" onClick={() => this.back()}>Regresar</button></div></center>
                                     <br/>
                                 </div>
                                 <br/><br/>
