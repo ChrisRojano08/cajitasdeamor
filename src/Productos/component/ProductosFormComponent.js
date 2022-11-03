@@ -219,6 +219,7 @@ class ProductosFormComponent extends React.Component{
                                     name="Precio"
                                     id="PrecioIn"
                                     min={10}
+                                    max={9999}
                                     placeholder="200.00"
                                     onChange={this.handleChange}
                                     required
