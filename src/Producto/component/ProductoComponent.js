@@ -85,93 +85,93 @@ class ProductoComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid ">
+            <div className="container-fluid ">
                 <br />
-                <button type="button" class="btn btn-danger"
+                <button type="button" className="btn btn-danger"
                     data-bs-toggle="modal" data-bs-target="#exampleModal" id="modalButton" style={{ display: 'none' }}>Eliminar</button>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">No ha iniciado sesion!</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">No ha iniciado sesion!</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">Debe estar registrado e iniciar sesión para comprar productos o agregarlos al carrito.</div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onClick={() => this.props.history.push("/Login")}>Iniciar sesion</button>
+                            <div className="modal-body">Debe estar registrado e iniciar sesión para comprar productos o agregarlos al carrito.</div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => this.props.history.push("/Login")}>Iniciar sesion</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="container" style={{'padding':'2%'}}>
-                    <div class="row justify-content-center">
-                        <div class="my-4 mt-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-8"  >
+                <div className="container" style={{'padding':'2%'}}>
+                    <div className="row justify-content-center">
+                        <div className="my-4 mt-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-8"  >
                             <img src={D1} className="imgProdt" alt="Producto" id="imgProd" />
                         </div>
-                        <div class="my-4 mt-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div className="my-4 mt-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                             <div>
-                                <button type="button" class="btn btn-primary position-relative">
+                                <button type="button" className="btn btn-primary position-relative">
                                    <h1>{this.state.productos.Nombre}
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">New
+                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">New
                                     </span>
                                 </h1>
                                 </button>
                                 
                             </div>
                             <br /><br />
-                            <div class="accordion" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button"
+                            <div className="accordion" id="accordionExample">
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="headingOne">
+                                        <button className="accordion-button" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             <h5>Descripcion</h5>
                                         </button>
                                     </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
+                                    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div className="accordion-body">
                                             {this.state.productos.Descripcion}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="headingTwo">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                             <h5>Tamaño</h5>
                                         </button>
                                     </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
                                     data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
+                                        <div className="accordion-body">
                                             {this.state.productos.Tamanio}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="headingThree">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                             <h5>Precio</h5>
                                         </button>
                                     </h2>
-                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
+                                    <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div className="accordion-body">
                                             ${this.state.productos.Precio}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="my-4 mt-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12"  >
+                        <div className="my-4 mt-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12"  >
 
-                            <div class="d-grid gap-2 col-5 mx-auto">
+                            <div className="d-grid gap-2 col-5 mx-auto">
                                 <h5 >Cantidad:</h5>
                                 <div className="col-lg-5">
                                     <input type="number"
-                                        class="form-control"
+                                        className="form-control"
                                         id="cantidadIn"
                                         placeholder=" "
                                         name='Cantidad'
@@ -182,9 +182,9 @@ class ProductoComponent extends React.Component {
                                 </div>
                             </div>
                             <br />
-                            <div class="d-grid gap-2 col-6 mx-auto">
-                                <button class="btn btn-primary" type="button" onClick={() => this.irCompra()}><i class="fi fi-rr-shopping-bag"></i> Comprar</button>
-                                <button class="btn btn-success" type="button" onClick={() => this.agregarCarrito()}><i class="fi fi-rr-shopping-cart"></i> Agregar al carrito</button>
+                            <div className="d-grid gap-2 col-6 mx-auto">
+                                <button className="btn btn-primary" type="button" onClick={() => this.irCompra()}><i className="fi fi-rr-shopping-bag"></i> Comprar</button>
+                                <button className="btn btn-success" type="button" onClick={() => this.agregarCarrito()}><i className="fi fi-rr-shopping-cart"></i> Agregar al carrito</button>
                             </div>
                         </div>
                     </div>

@@ -115,24 +115,24 @@ class ProductoComponent extends React.Component {
                     <ImgsProds data={this.state.compra.Productos} />
                 </div>
                 <div className="col-lg-6 col-md-6">
-                    <form class="row g-4 needs-validation justify-content-center "
+                    <form className="row g-4 needs-validation justify-content-center "
                         onSubmit={this.modificarDedicatoria}>
-                        <div class="md-3 position-relative">
-                            <label class="form-label"><h5>Nombre</h5></label>
+                        <div className="md-3 position-relative">
+                            <label className="form-label"><h5>Nombre</h5></label>
                             <input type="text"
-                                class="form-control"
+                                className="form-control"
                                 name='Nombre'
                                 value={this.state.Dedicatoria.Nombre}
                                 onChange={this.handleChange} required />
                         </div>
-                        <div class="md-3 position-relative">
-                            <h5 class="card-title">Dedicatoria</h5>
-                            <textarea class="form-control" name="Dedicatoria"
+                        <div className="md-3 position-relative">
+                            <h5 className="card-title">Dedicatoria</h5>
+                            <textarea className="form-control" name="Dedicatoria"
                             rows="3" value={this.state.Dedicatoria.Dedicatoria}
                             onChange={this.handleChange}  required/>
                         </div>
-                        <div class="col-3">
-                            <button class="btn btn-primary" type="submit">Modificar</button>
+                        <div className="col-3">
+                            <button className="btn btn-primary" type="submit">Modificar</button>
                         </div>
                     </form>
                 </div>
@@ -146,24 +146,24 @@ class ProductoComponent extends React.Component {
                 <h3 style={{ color: 'red' }} className="p-4">Agregar dedicatoria</h3>
                 <br/>
                 <div className="col-lg-6 col-md-6">
-                    <form class="row g-4 needs-validation justify-content-center "
+                    <form className="row g-4 needs-validation justify-content-center "
                         onSubmit={this.seleccionarDedicatoria}>
-                        <div class="md-3 position-relative">
-                            <label class="form-label"><h5>Nombre</h5></label>
+                        <div className="md-3 position-relative">
+                            <label className="form-label"><h5>Nombre</h5></label>
                             <input type="text"
-                                class="form-control"
+                                className="form-control"
                                 name='Nombre'
                                 value={this.state.Dedicatoria.Nombre}
                                 onChange={this.handleChange} required />
                         </div>
-                        <div class="md-3 position-relative">
-                            <h5 class="card-title">Dedicatoria</h5>
-                            <textarea class="form-control" name="Dedicatoria"
+                        <div className="md-3 position-relative">
+                            <h5 className="card-title">Dedicatoria</h5>
+                            <textarea className="form-control" name="Dedicatoria"
                             rows="3" value={this.state.Dedicatoria.Dedicatoria}
                             onChange={this.handleChange}  required/>
                         </div>
-                        <div class="col-4">
-                            <button class="btn btn-primary" type="submit">Agregar</button>
+                        <div className="col-4">
+                            <button className="btn btn-primary" type="submit">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -173,7 +173,7 @@ class ProductoComponent extends React.Component {
 
     render() {
         return (
-            <div class="container-fluid my-4">
+            <div className="container-fluid my-4">
                 <div className="row">
                     {this.props.productos ? <>{this.mostrarFormInsert()}</> : <>{this.mostrarFormUpd()}</>} 
                 </div>

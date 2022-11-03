@@ -197,7 +197,7 @@ class UsuariosGridComponent extends React.Component {
                     <div className="card-body">
                         <div className="container-fluid contProd">
                             <div className="row">
-                                <div class="col-6"><button type="button" class="btn btn-info" onClick={() => this.back()}>Regresar</button></div>
+                                <div className="col-6"><button type="button" className="btn btn-info" onClick={() => this.back()}>Regresar</button></div>
                                 <br />
                             </div>
                             <br /><br />
