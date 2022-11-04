@@ -195,6 +195,8 @@ class PagoComponent extends React.Component {
                                             <label htmlFor="validationCustom02" className="form-label">Número de cuenta</label>
                                             <input type="number"
                                                 className="form-control"
+                                                min = {1000000000000000}
+                                                max = {9999999999999999}
                                                 id="validationCustom02"
                                                 onChange={this.handleChange}
                                                 value={this.state.pago.Cuenta}
@@ -203,6 +205,8 @@ class PagoComponent extends React.Component {
                                         <div className="col-xl-12 col-lg-6 col-md-6 col-sm-12">
                                             <label htmlFor="validationCustom03" className="form-label">CVV</label>
                                             <input type="number"
+                                                min = {1}
+                                                max = {999} 
                                                 className="form-control"
                                                 id="validationCustom03"
                                                 name="CVV"
